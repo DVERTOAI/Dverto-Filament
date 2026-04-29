@@ -9,6 +9,11 @@ class CreateRole extends CreateRecord
 {
     protected static string $resource = RoleResource::class;
 
+    protected function getFormActions(): array
+    {
+        return [];
+    }
+
     protected function getRedirectUrl(): string
     {
         return static::getResource()::getUrl('index');

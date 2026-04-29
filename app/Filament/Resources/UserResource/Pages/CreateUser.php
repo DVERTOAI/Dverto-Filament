@@ -9,6 +9,11 @@ class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
 
+    protected function getFormActions(): array
+    {
+        return [];
+    }
+
     protected function getRedirectUrl(): string
     {
         return static::getResource()::getUrl('index');

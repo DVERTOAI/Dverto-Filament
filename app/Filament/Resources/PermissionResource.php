@@ -5,11 +5,15 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PermissionResource\Pages;
 use App\Filament\Support\AccessControlFormCard;
 use App\Support\AdminPermissions;
+use Filament\Actions\Action;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
+use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Actions as SchemaActions;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -58,6 +62,24 @@ class PermissionResource extends Resource
                         ->default('web')
                         ->required()
                         ->maxLength(255),
+                    SchemaActions::make([
+                        Action::make('save')
+                            ->label('Save Changes')
+                            ->submit('save')
+                            ->color('primary')
+                            ->visible(fn ($livewire): bool => $livewire instanceof EditRecord),
+                        Action::make('create')
+                            ->label('Create')
+                            ->submit('create')
+                            ->color('primary')
+                            ->visible(fn ($livewire): bool => $livewire instanceof CreateRecord),
+                        Action::make('cancel')
+                            ->label('Cancel')
+                            ->color('gray')
+                            ->url(fn ($livewire): string => $livewire->getResource()::getUrl('index')),
+                    ])
+                        ->alignEnd()
+                        ->columnSpanFull(),
                 ],
                 Heroicon::OutlinedKey,
                 'permission',
@@ -84,7 +106,10 @@ class PermissionResource extends Resource
             ])
             ->defaultSort('name')
             ->actions([
-                EditAction::make(),
+                EditAction::make()
+                    ->icon(Heroicon::OutlinedPencilSquare)
+                    ->iconButton()
+                    ->tooltip('Edit'),
             ])
             ->bulkActions([
                 DeleteBulkAction::make(),

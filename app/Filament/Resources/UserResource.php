@@ -6,12 +6,17 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Support\AccessControlFormCard;
 use App\Models\User;
 use App\Support\AdminPermissions;
+use Filament\Actions\Action;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Actions as SchemaActions;
+use Filament\Schemas\Components\Grid;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -60,28 +65,49 @@ class UserResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->unique(ignoreRecord: true),
-                    TextInput::make('password')
-                        ->placeholder('Create a strong password')
-                        ->prefixIcon(Heroicon::OutlinedLockClosed)
-                        ->password()
-                        ->revealable()
-                        ->dehydrateStateUsing(static fn (string $state): string => Hash::make($state))
-                        ->dehydrated(static fn (?string $state): bool => filled($state))
-                        ->required(static fn (string $operation): bool => $operation === 'create')
-                        ->minLength(8),
-                    CheckboxList::make('roles')
-                        ->label('Assigned Roles')
-                        ->relationship('roles', 'name')
-                        ->columns([
-                            'md' => 2,
-                            'xl' => 3,
+                    Grid::make([
+                        'default' => 2,
+                        'xl' => 2,
+                    ])
+                        ->schema([
+                            TextInput::make('password')
+                                ->placeholder('Create a strong password')
+                                ->prefixIcon(Heroicon::OutlinedLockClosed)
+                                ->password()
+                                ->revealable()
+                                ->dehydrateStateUsing(static fn (string $state): string => Hash::make($state))
+                                ->dehydrated(static fn (?string $state): bool => filled($state))
+                                ->required(static fn (string $operation): bool => $operation === 'create')
+                                ->minLength(8),
+                            Select::make('roles')
+                                ->label('Assigned Roles')
+                                ->placeholder('Select roles')
+                                ->prefixIcon(Heroicon::OutlinedUserGroup)
+                                ->relationship('roles', 'name')
+                                ->multiple()
+                                ->searchable()
+                                ->preload()
+                                ->position('top'),
                         ])
-                        ->columnSpanFull()
-                        ->searchable()
-                        ->bulkToggleable()
-                        ->extraAttributes([
-                            'class' => 'ac-form-selector',
-                        ]),
+                        ->columnSpanFull(),
+                    SchemaActions::make([
+                        Action::make('save')
+                            ->label('Save Changes')
+                            ->submit('save')
+                            ->color('primary')
+                            ->visible(fn ($livewire): bool => $livewire instanceof EditRecord),
+                        Action::make('create')
+                            ->label('Save Changes')
+                            ->submit('create')
+                            ->color('primary')
+                            ->visible(fn ($livewire): bool => $livewire instanceof CreateRecord),
+                        Action::make('cancel')
+                            ->label('Cancel')
+                            ->color('gray')
+                            ->url(fn ($livewire): string => $livewire->getResource()::getUrl('index')),
+                    ])
+                        ->alignEnd()
+                        ->columnSpanFull(),
                 ],
                 Heroicon::OutlinedUserGroup,
                 'user',
@@ -113,7 +139,10 @@ class UserResource extends Resource
             ])
             ->defaultSort('name')
             ->actions([
-                EditAction::make(),
+                EditAction::make()
+                    ->icon(Heroicon::OutlinedPencilSquare)
+                    ->iconButton()
+                    ->tooltip('Edit'),
             ])
             ->bulkActions([
                 DeleteBulkAction::make(),

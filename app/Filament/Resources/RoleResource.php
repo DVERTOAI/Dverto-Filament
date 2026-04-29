@@ -5,12 +5,15 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\RoleResource\Pages;
 use App\Filament\Support\AccessControlFormCard;
 use App\Support\AdminPermissions;
+use Filament\Actions\Action;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Actions as SchemaActions;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -59,19 +62,29 @@ class RoleResource extends Resource
                         ->default('web')
                         ->required()
                         ->maxLength(255),
-                    CheckboxList::make('permissions')
+                    Select::make('permissions')
                         ->label('Permission Matrix')
                         ->relationship('permissions', 'name')
-                        ->columns([
-                            'md' => 2,
-                            'xl' => 3,
-                        ])
-                        ->columnSpanFull()
+                        ->multiple()
                         ->searchable()
-                        ->bulkToggleable()
+                        ->preload()
+                        ->columnSpanFull(),
+                    SchemaActions::make([
+                        Action::make('create')
+                            ->label('Create')
+                            ->submit('create')
+                            ->color('primary')
+                            ->visible(fn ($livewire): bool => $livewire instanceof CreateRecord),
+                        Action::make('cancel')
+                            ->label('Cancel')
+                            ->color('gray')
+                            ->url(fn ($livewire): string => $livewire->getResource()::getUrl('index')),
+                    ])
+                        ->alignEnd()
                         ->extraAttributes([
-                            'class' => 'ac-form-selector',
-                        ]),
+                            'class' => 'ac-card-actions',
+                        ])
+                        ->columnSpanFull(),
                 ],
                 Heroicon::OutlinedShieldCheck,
                 'role',
@@ -102,7 +115,10 @@ class RoleResource extends Resource
             ])
             ->defaultSort('name')
             ->actions([
-                EditAction::make(),
+                EditAction::make()
+                    ->icon(Heroicon::OutlinedPencilSquare)
+                    ->iconButton()
+                    ->tooltip('Edit'),
             ])
             ->bulkActions([
                 DeleteBulkAction::make(),
