@@ -7,7 +7,6 @@ use App\Filament\Support\AccessControlFormCard;
 use App\Models\User;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -121,31 +120,36 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->extraAttributes(['class' => 'ac-compact-table'])
+            ->recordAction(null)
+            ->recordUrl(null)
             ->columns([
                 TextColumn::make('name')
+                    ->width('30%')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email')
+                    ->width('34%')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('roles.name')
                     ->label('Roles')
+                    ->width('22%')
                     ->badge()
                     ->separator(','),
                 TextColumn::make('created_at')
+                    ->width('14%')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('name')
+            ->recordActionsColumnLabel('Edit')
             ->actions([
                 EditAction::make()
                     ->icon(Heroicon::OutlinedPencilSquare)
                     ->iconButton()
                     ->tooltip('Edit'),
-            ])
-            ->bulkActions([
-                DeleteBulkAction::make(),
             ]);
     }
 

@@ -6,7 +6,6 @@ use App\Filament\Resources\PermissionResource\Pages;
 use App\Filament\Support\AccessControlFormCard;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\CreateRecord;
@@ -93,26 +92,30 @@ class PermissionResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->extraAttributes(['class' => 'ac-compact-table'])
+            ->recordAction(null)
+            ->recordUrl(null)
             ->columns([
                 TextColumn::make('name')
+                    ->width('33.33%')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('guard_name')
+                    ->width('33.33%')
                     ->badge(),
                 TextColumn::make('created_at')
+                    ->width('33.33%')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('name')
+            ->recordActionsColumnLabel('Edit')
             ->actions([
                 EditAction::make()
                     ->icon(Heroicon::OutlinedPencilSquare)
                     ->iconButton()
                     ->tooltip('Edit'),
-            ])
-            ->bulkActions([
-                DeleteBulkAction::make(),
             ]);
     }
 

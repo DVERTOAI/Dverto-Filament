@@ -6,7 +6,6 @@ use App\Filament\Resources\RoleResource\Pages;
 use App\Filament\Support\AccessControlFormCard;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -98,30 +97,35 @@ class RoleResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->extraAttributes(['class' => 'ac-compact-table'])
+            ->recordAction(null)
+            ->recordUrl(null)
             ->columns([
                 TextColumn::make('name')
+                    ->width('22%')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('guard_name')
+                    ->width('14%')
                     ->badge(),
                 TextColumn::make('permissions.name')
                     ->label('Permissions')
+                    ->width('46%')
                     ->badge()
                     ->separator(','),
                 TextColumn::make('updated_at')
+                    ->width('18%')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('name')
+            ->recordActionsColumnLabel('Edit')
             ->actions([
                 EditAction::make()
                     ->icon(Heroicon::OutlinedPencilSquare)
                     ->iconButton()
                     ->tooltip('Edit'),
-            ])
-            ->bulkActions([
-                DeleteBulkAction::make(),
             ]);
     }
 
