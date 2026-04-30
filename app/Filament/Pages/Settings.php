@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Pages\Concerns\HasMinimalBreadcrumbs;
 use App\Filament\Pages\Concerns\HasPagePermission;
 use App\Support\AdminPermissions;
 use Filament\Pages\Page;
@@ -9,6 +10,7 @@ use Filament\Support\Icons\Heroicon;
 
 class Settings extends Page
 {
+    use HasMinimalBreadcrumbs;
     use HasPagePermission;
 
     protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCog6Tooth;

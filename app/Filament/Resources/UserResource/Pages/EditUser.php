@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
+use App\Filament\Resources\Pages\EditAdminRecord;
 use App\Filament\Resources\UserResource;
 use Filament\Actions\DeleteAction;
-use Filament\Resources\Pages\EditRecord;
 
-class EditUser extends EditRecord
+class EditUser extends EditAdminRecord
 {
     protected static string $resource = UserResource::class;
 
@@ -18,14 +18,6 @@ class EditUser extends EditRecord
     public function getSubheading(): ?string
     {
         return 'Update account details and access roles.';
-    }
-
-    public function getBreadcrumbs(): array
-    {
-        return [
-            UserResource::getUrl('index') => 'Users',
-            'Edit User',
-        ];
     }
 
     protected function getFormActions(): array

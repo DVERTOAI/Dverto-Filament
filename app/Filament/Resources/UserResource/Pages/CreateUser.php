@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
+use App\Filament\Resources\Pages\CreateAdminRecord;
 use App\Filament\Resources\UserResource;
-use Filament\Resources\Pages\CreateRecord;
 
-class CreateUser extends CreateRecord
+class CreateUser extends CreateAdminRecord
 {
     protected static string $resource = UserResource::class;
 
@@ -17,14 +17,6 @@ class CreateUser extends CreateRecord
     public function getSubheading(): ?string
     {
         return 'Add profile details and assign workspace roles.';
-    }
-
-    public function getBreadcrumbs(): array
-    {
-        return [
-            UserResource::getUrl('index') => 'Users',
-            'New User',
-        ];
     }
 
     protected function getFormActions(): array

@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\RoleResource\Pages;
 
+use App\Filament\Resources\Pages\EditAdminRecord;
 use App\Filament\Resources\RoleResource;
 use Filament\Actions\DeleteAction;
-use Filament\Resources\Pages\EditRecord;
 
-class EditRole extends EditRecord
+class EditRole extends EditAdminRecord
 {
     protected static string $resource = RoleResource::class;
 

@@ -2,12 +2,14 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Pages\Concerns\HasMinimalBreadcrumbs;
 use App\Filament\Pages\Concerns\HasPagePermission;
 use App\Support\AdminPermissions;
 use Filament\Pages\Page;
 
 class SettingsNotifications extends Page
 {
+    use HasMinimalBreadcrumbs;
     use HasPagePermission;
 
     protected static ?string $navigationLabel = 'Notifications';
@@ -19,6 +21,11 @@ class SettingsNotifications extends Page
     protected static bool $shouldRegisterNavigation = false;
 
     protected string $view = 'filament.pages.settings-notifications';
+
+    protected static function getBreadcrumbParentPage(): ?string
+    {
+        return Settings::class;
+    }
 
     protected static function requiredPermission(): string
     {

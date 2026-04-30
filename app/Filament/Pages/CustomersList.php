@@ -2,12 +2,14 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Pages\Concerns\HasMinimalBreadcrumbs;
 use App\Filament\Pages\Concerns\HasPagePermission;
 use App\Support\AdminPermissions;
 use Filament\Pages\Page;
 
 class CustomersList extends Page
 {
+    use HasMinimalBreadcrumbs;
     use HasPagePermission;
 
     protected static ?string $navigationLabel = 'Customer List';
@@ -19,6 +21,11 @@ class CustomersList extends Page
     protected static bool $shouldRegisterNavigation = false;
 
     protected string $view = 'filament.pages.customers-list';
+
+    protected static function getBreadcrumbParentPage(): ?string
+    {
+        return Customers::class;
+    }
 
     protected static function requiredPermission(): string
     {

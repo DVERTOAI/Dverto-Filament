@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
+use App\Filament\Resources\Pages\ListAdminRecords;
 use App\Filament\Resources\UserResource;
 use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Icons\Heroicon;
 
-class ListUsers extends ListRecords
+class ListUsers extends ListAdminRecords
 {
     protected static string $resource = UserResource::class;
 
@@ -19,11 +19,6 @@ class ListUsers extends ListRecords
     public function getSubheading(): ?string
     {
         return 'Manage and organize admin users across your workspace.';
-    }
-
-    public function getBreadcrumbs(): array
-    {
-        return [];
     }
 
     protected function getHeaderActions(): array

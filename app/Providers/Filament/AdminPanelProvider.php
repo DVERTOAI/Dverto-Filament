@@ -6,6 +6,7 @@ use App\Filament\Auth\Login;
 use App\Filament\Pages\Customers;
 use App\Filament\Pages\CustomersList;
 use App\Filament\Pages\CustomersSegments;
+use App\Filament\Pages\Dashboard;
 use App\Filament\Pages\Reports;
 use App\Filament\Pages\ReportsDaily;
 use App\Filament\Pages\ReportsMonthly;
@@ -24,7 +25,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationBuilder;
 use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -148,9 +148,6 @@ class AdminPanelProvider extends PanelProvider
             })
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
-            ->pages([
-                Dashboard::class,
-            ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,

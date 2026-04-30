@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\RoleResource\Pages;
 
+use App\Filament\Resources\Pages\ListAdminRecords;
 use App\Filament\Resources\RoleResource;
 use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Icons\Heroicon;
 
-class ListRoles extends ListRecords
+class ListRoles extends ListAdminRecords
 {
     protected static string $resource = RoleResource::class;
 
@@ -19,11 +19,6 @@ class ListRoles extends ListRecords
     public function getSubheading(): ?string
     {
         return 'Manage role groups and their access levels across your workspace.';
-    }
-
-    public function getBreadcrumbs(): array
-    {
-        return [];
     }
 
     protected function getHeaderActions(): array

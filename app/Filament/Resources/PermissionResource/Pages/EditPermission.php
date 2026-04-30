@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\PermissionResource\Pages;
 
+use App\Filament\Resources\Pages\EditAdminRecord;
 use App\Filament\Resources\PermissionResource;
 use Filament\Actions\DeleteAction;
-use Filament\Resources\Pages\EditRecord;
 
-class EditPermission extends EditRecord
+class EditPermission extends EditAdminRecord
 {
     protected static string $resource = PermissionResource::class;
 
