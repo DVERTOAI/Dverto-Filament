@@ -106,8 +106,7 @@ class PermissionResource extends Resource
                 TextColumn::make('created_at')
                     ->width('33.33%')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
             ])
             ->defaultSort('name')
             ->recordActionsColumnLabel('Edit')

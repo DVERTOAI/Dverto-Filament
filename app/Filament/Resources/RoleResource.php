@@ -116,8 +116,7 @@ class RoleResource extends Resource
                 TextColumn::make('updated_at')
                     ->width('18%')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
             ])
             ->defaultSort('name')
             ->recordActionsColumnLabel('Edit')

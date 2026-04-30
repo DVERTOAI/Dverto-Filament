@@ -140,8 +140,7 @@ class UserResource extends Resource
                 TextColumn::make('created_at')
                     ->width('14%')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
             ])
             ->defaultSort('name')
             ->recordActionsColumnLabel('Edit')
