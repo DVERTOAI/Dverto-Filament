@@ -13,9 +13,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Actions as SchemaActions;
 use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -120,32 +120,55 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->extraAttributes(['class' => 'ac-compact-table'])
+            ->extraAttributes(['class' => 'ac-compact-table ac-user-table'])
+            ->searchPlaceholder('Search users by name or email')
+            ->defaultPaginationPageOption(5)
+            ->paginationPageOptions([5])
             ->recordAction(null)
             ->recordUrl(null)
             ->columns([
                 TextColumn::make('name')
-                    ->width('30%')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('email')
-                    ->width('34%')
+                    ->label('User')
+                    ->width('43%')
+                    ->html()
+                    ->formatStateUsing(static function (User $record): string {
+                        $initials = e(static::getUserInitials($record->name));
+                        $name = e($record->name);
+                        $email = e($record->email);
+
+                        return <<<HTML
+                            <div class="ac-user-cell">
+                                <span class="ac-user-avatar">{$initials}</span>
+                                <span class="ac-user-meta">
+                                    <span class="ac-user-name">{$name}</span>
+                                    <span class="ac-user-email">{$email}</span>
+                                </span>
+                            </div>
+                        HTML;
+                    })
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('roles.name')
                     ->label('Roles')
-                    ->width('22%')
+                    ->width('32%')
                     ->badge()
-                    ->separator(','),
-                TextColumn::make('created_at')
-                    ->width('14%')
-                    ->dateTime()
-                    ->sortable(),
+                    ->separator(',')
+                    ->limitList(3)
+                    ->expandableLimitedList()
+                    ->placeholder('No role'),
+                TextColumn::make('email_verified_at')
+                    ->label('Status')
+                    ->width('15%')
+                    ->badge()
+                    ->getStateUsing(static fn (User $record): string => $record->email_verified_at ? 'Verified' : 'Pending')
+                    ->color(static fn (string $state): string => $state === 'Verified' ? 'success' : 'warning')
+                    ->visibleFrom('md'),
             ])
             ->defaultSort('name')
             ->recordActionsColumnLabel('Edit')
-            ->actions([
+            ->recordActions([
                 EditAction::make()
+                    ->label('Edit')
                     ->icon(Heroicon::OutlinedPencilSquare)
                     ->iconButton()
                     ->tooltip('Edit'),
@@ -169,5 +192,18 @@ class UserResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->with('roles');
+    }
+
+    protected static function getUserInitials(string $name): string
+    {
+        $parts = preg_split('/\s+/', trim($name)) ?: [];
+
+        $initials = collect($parts)
+            ->filter()
+            ->map(static fn (string $part): string => mb_strtoupper(mb_substr($part, 0, 1)))
+            ->take(2)
+            ->implode('');
+
+        return $initials !== '' ? $initials : 'U';
     }
 }

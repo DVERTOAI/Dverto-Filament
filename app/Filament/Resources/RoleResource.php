@@ -11,11 +11,12 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Actions as SchemaActions;
+use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\Permission\Models\Role;
 
 class RoleResource extends Resource
@@ -97,31 +98,53 @@ class RoleResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->extraAttributes(['class' => 'ac-compact-table'])
+            ->extraAttributes(['class' => 'ac-compact-table ac-user-table'])
+            ->searchPlaceholder('Search roles by name or guard')
+            ->defaultPaginationPageOption(5)
+            ->paginationPageOptions([5])
             ->recordAction(null)
             ->recordUrl(null)
             ->columns([
                 TextColumn::make('name')
-                    ->width('22%')
+                    ->label('Role')
+                    ->width('43%')
+                    ->html()
+                    ->formatStateUsing(static function (Role $record): string {
+                        $initials = e(static::getRoleInitials($record->name));
+                        $name = e($record->name);
+                        $guard = e($record->guard_name);
+
+                        return <<<HTML
+                            <div class="ac-user-cell">
+                                <span class="ac-user-avatar">{$initials}</span>
+                                <span class="ac-user-meta">
+                                    <span class="ac-user-name">{$name}</span>
+                                    <span class="ac-user-email">{$guard}</span>
+                                </span>
+                            </div>
+                        HTML;
+                    })
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('guard_name')
-                    ->width('14%')
-                    ->badge(),
                 TextColumn::make('permissions.name')
                     ->label('Permissions')
-                    ->width('46%')
+                    ->width('32%')
                     ->badge()
-                    ->separator(','),
-                TextColumn::make('updated_at')
-                    ->width('18%')
-                    ->dateTime()
-                    ->sortable(),
+                    ->separator(',')
+                    ->limitList(3)
+                    ->expandableLimitedList()
+                    ->placeholder('No permission'),
+                TextColumn::make('guard_name')
+                    ->label('Guard')
+                    ->width('15%')
+                    ->badge()
+                    ->visibleFrom('md'),
             ])
             ->defaultSort('name')
             ->recordActionsColumnLabel('Edit')
-            ->actions([
+            ->recordActions([
                 EditAction::make()
+                    ->label('Edit')
                     ->icon(Heroicon::OutlinedPencilSquare)
                     ->iconButton()
                     ->tooltip('Edit'),
@@ -140,5 +163,23 @@ class RoleResource extends Resource
             'create' => Pages\CreateRole::route('/create'),
             'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with('permissions');
+    }
+
+    protected static function getRoleInitials(string $name): string
+    {
+        $parts = preg_split('/\s+/', trim($name)) ?: [];
+
+        $initials = collect($parts)
+            ->filter()
+            ->map(static fn (string $part): string => mb_strtoupper(mb_substr($part, 0, 1)))
+            ->take(2)
+            ->implode('');
+
+        return $initials !== '' ? $initials : 'R';
     }
 }
