@@ -9,6 +9,24 @@ class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
 
+    public function getHeading(): string
+    {
+        return 'New User';
+    }
+
+    public function getSubheading(): ?string
+    {
+        return 'Add profile details and assign workspace roles.';
+    }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            UserResource::getUrl('index') => 'Users',
+            'New User',
+        ];
+    }
+
     protected function getFormActions(): array
     {
         return [];

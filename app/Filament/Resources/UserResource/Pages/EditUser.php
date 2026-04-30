@@ -10,6 +10,24 @@ class EditUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
 
+    public function getHeading(): string
+    {
+        return 'Edit User';
+    }
+
+    public function getSubheading(): ?string
+    {
+        return 'Update account details and access roles.';
+    }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            UserResource::getUrl('index') => 'Users',
+            'Edit User',
+        ];
+    }
+
     protected function getFormActions(): array
     {
         return [];

@@ -48,8 +48,8 @@ class UserResource extends Resource
     {
         return $schema->schema([
             AccessControlFormCard::make(
-                'User Workspace',
-                '',
+                'Profile & Access',
+                'Keep the user profile simple and attach the right roles.',
                 [
                     TextInput::make('name')
                         ->label('Full Name')
