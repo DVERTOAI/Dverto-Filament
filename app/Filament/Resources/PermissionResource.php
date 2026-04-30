@@ -12,6 +12,7 @@ use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Actions as SchemaActions;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
@@ -44,23 +45,30 @@ class PermissionResource extends Resource
     {
         return $schema->schema([
             AccessControlFormCard::make(
-                'Permission Workspace',
+                'Permission Details',
                 '',
                 [
-                    TextInput::make('name')
-                        ->label('Permission Name')
-                        ->placeholder('e.g. manage users')
-                        ->prefixIcon(Heroicon::OutlinedSparkles)
-                        ->required()
-                        ->maxLength(255)
-                        ->unique(ignoreRecord: true),
-                    TextInput::make('guard_name')
-                        ->label('Guard')
-                        ->placeholder('web')
-                        ->prefixIcon(Heroicon::OutlinedGlobeAlt)
-                        ->default('web')
-                        ->required()
-                        ->maxLength(255),
+                    Grid::make([
+                        'default' => 1,
+                        'md' => 2,
+                    ])
+                        ->schema([
+                            TextInput::make('name')
+                                ->label('Permission Name')
+                                ->placeholder('e.g. manage users')
+                                ->prefixIcon(Heroicon::OutlinedSparkles)
+                                ->required()
+                                ->maxLength(255)
+                                ->unique(ignoreRecord: true),
+                            TextInput::make('guard_name')
+                                ->label('Guard')
+                                ->placeholder('web')
+                                ->prefixIcon(Heroicon::OutlinedGlobeAlt)
+                                ->default('web')
+                                ->required()
+                                ->maxLength(255),
+                        ])
+                        ->columnSpanFull(),
                     SchemaActions::make([
                         Action::make('save')
                             ->label('Save Changes')
@@ -68,7 +76,7 @@ class PermissionResource extends Resource
                             ->color('primary')
                             ->visible(fn ($livewire): bool => $livewire instanceof EditRecord),
                         Action::make('create')
-                            ->label('Create')
+                            ->label('Create Permission')
                             ->submit('create')
                             ->color('primary')
                             ->visible(fn ($livewire): bool => $livewire instanceof CreateRecord),
@@ -78,14 +86,14 @@ class PermissionResource extends Resource
                             ->url(fn ($livewire): string => $livewire->getResource()::getUrl('index')),
                     ])
                         ->alignEnd()
+                        ->extraAttributes([
+                            'class' => 'ac-card-actions',
+                        ])
                         ->columnSpanFull(),
                 ],
                 Heroicon::OutlinedKey,
                 'permission',
-            )->columns([
-                'default' => 1,
-                'xl' => 2,
-            ]),
+            )->columns(1),
         ]);
     }
 

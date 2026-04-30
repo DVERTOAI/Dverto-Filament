@@ -48,27 +48,27 @@ class UserResource extends Resource
     {
         return $schema->schema([
             AccessControlFormCard::make(
-                'Profile & Access',
-                'Keep the user profile simple and attach the right roles.',
+                'User Details',
+                '',
                 [
-                    TextInput::make('name')
-                        ->label('Full Name')
-                        ->placeholder('Enter team member full name')
-                        ->prefixIcon(Heroicon::OutlinedUser)
-                        ->required()
-                        ->maxLength(255),
-                    TextInput::make('email')
-                        ->placeholder('name@company.com')
-                        ->prefixIcon(Heroicon::OutlinedEnvelope)
-                        ->email()
-                        ->required()
-                        ->maxLength(255)
-                        ->unique(ignoreRecord: true),
                     Grid::make([
-                        'default' => 2,
-                        'xl' => 2,
+                        'default' => 1,
+                        'md' => 2,
                     ])
                         ->schema([
+                            TextInput::make('name')
+                                ->label('Full Name')
+                                ->placeholder('Enter team member full name')
+                                ->prefixIcon(Heroicon::OutlinedUser)
+                                ->required()
+                                ->maxLength(255),
+                            TextInput::make('email')
+                                ->placeholder('name@company.com')
+                                ->prefixIcon(Heroicon::OutlinedEnvelope)
+                                ->email()
+                                ->required()
+                                ->maxLength(255)
+                                ->unique(ignoreRecord: true),
                             TextInput::make('password')
                                 ->placeholder('Create a strong password')
                                 ->prefixIcon(Heroicon::OutlinedLockClosed)
@@ -96,7 +96,7 @@ class UserResource extends Resource
                             ->color('primary')
                             ->visible(fn ($livewire): bool => $livewire instanceof EditRecord),
                         Action::make('create')
-                            ->label('Save Changes')
+                            ->label('Create User')
                             ->submit('create')
                             ->color('primary')
                             ->visible(fn ($livewire): bool => $livewire instanceof CreateRecord),
@@ -106,14 +106,14 @@ class UserResource extends Resource
                             ->url(fn ($livewire): string => $livewire->getResource()::getUrl('index')),
                     ])
                         ->alignEnd()
+                        ->extraAttributes([
+                            'class' => 'ac-card-actions ac-card-actions--user',
+                        ])
                         ->columnSpanFull(),
                 ],
                 Heroicon::OutlinedUserGroup,
                 'user',
-            )->columns([
-                'default' => 1,
-                'xl' => 2,
-            ]),
+            )->columns(1),
         ]);
     }
 

@@ -10,8 +10,10 @@ use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Actions as SchemaActions;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
@@ -45,33 +47,45 @@ class RoleResource extends Resource
     {
         return $schema->schema([
             AccessControlFormCard::make(
-                'Role Workspace',
+                'Role Details',
                 '',
                 [
-                    TextInput::make('name')
-                        ->label('Role Name')
-                        ->placeholder('e.g. Operations Manager')
-                        ->prefixIcon(Heroicon::OutlinedIdentification)
-                        ->required()
-                        ->maxLength(255)
-                        ->unique(ignoreRecord: true),
-                    TextInput::make('guard_name')
-                        ->label('Guard')
-                        ->placeholder('web')
-                        ->prefixIcon(Heroicon::OutlinedGlobeAlt)
-                        ->default('web')
-                        ->required()
-                        ->maxLength(255),
+                    Grid::make([
+                        'default' => 1,
+                        'md' => 2,
+                    ])
+                        ->schema([
+                            TextInput::make('name')
+                                ->label('Role Name')
+                                ->placeholder('e.g. Operations Manager')
+                                ->prefixIcon(Heroicon::OutlinedIdentification)
+                                ->required()
+                                ->maxLength(255)
+                                ->unique(ignoreRecord: true),
+                            TextInput::make('guard_name')
+                                ->label('Guard')
+                                ->placeholder('web')
+                                ->prefixIcon(Heroicon::OutlinedGlobeAlt)
+                                ->default('web')
+                                ->required()
+                                ->maxLength(255),
+                        ])
+                        ->columnSpanFull(),
                     Select::make('permissions')
-                        ->label('Permission Matrix')
+                        ->label('Permissions')
                         ->relationship('permissions', 'name')
                         ->multiple()
                         ->searchable()
                         ->preload()
                         ->columnSpanFull(),
                     SchemaActions::make([
+                        Action::make('save')
+                            ->label('Save Changes')
+                            ->submit('save')
+                            ->color('primary')
+                            ->visible(fn ($livewire): bool => $livewire instanceof EditRecord),
                         Action::make('create')
-                            ->label('Create')
+                            ->label('Create Role')
                             ->submit('create')
                             ->color('primary')
                             ->visible(fn ($livewire): bool => $livewire instanceof CreateRecord),
@@ -88,10 +102,7 @@ class RoleResource extends Resource
                 ],
                 Heroicon::OutlinedShieldCheck,
                 'role',
-            )->columns([
-                'default' => 1,
-                'xl' => 2,
-            ]),
+            )->columns(1),
         ]);
     }
 
