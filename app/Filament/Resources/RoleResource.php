@@ -7,7 +7,7 @@ use App\Filament\Support\AccessControlFormCard;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\Select;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\EditRecord;
@@ -15,10 +15,13 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Components\Actions as SchemaActions;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\GridDirection;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleResource extends Resource
@@ -73,12 +76,24 @@ class RoleResource extends Resource
                                 ->maxLength(255),
                         ])
                         ->columnSpanFull(),
-                    Select::make('permissions')
-                        ->label('Permissions')
-                        ->relationship('permissions', 'name')
-                        ->multiple()
+                    CheckboxList::make('permissions')
+                        ->label('Available Permissions')
+                        ->relationship(
+                            'permissions',
+                            'name',
+                            modifyQueryUsing: fn (Builder $query): Builder => $query->orderBy('name'),
+                        )
+                        ->getOptionLabelFromRecordUsing(static fn (Permission $record): string => static::formatPermissionLabel($record->name))
+                        ->bulkToggleable()
                         ->searchable()
-                        ->preload()
+                        ->columns([
+                            'default' => 1,
+                            'md' => 2,
+                        ])
+                        ->gridDirection(GridDirection::Column)
+                        ->extraAttributes([
+                            'class' => 'ac-permissions-checkbox-tree',
+                        ])
                         ->columnSpanFull(),
                     SchemaActions::make([
                         Action::make('save')
@@ -139,14 +154,20 @@ class RoleResource extends Resource
                     })
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('permissions.name')
+                ViewColumn::make('permissions')
                     ->label('Permissions')
                     ->width('32%')
-                    ->badge()
-                    ->separator(',')
-                    ->limitList(3)
-                    ->expandableLimitedList()
-                    ->placeholder('No permission'),
+                    ->view('filament.tables.access-badge-popover')
+                    ->viewData(static fn (Role $record): array => [
+                        'emptyLabel' => 'No permission',
+                        'items' => $record->permissions
+                            ->pluck('name')
+                            ->map(static fn (string $permission): string => static::formatPermissionLabel($permission))
+                            ->sort()
+                            ->values()
+                            ->all(),
+                        'popoverTitle' => 'More permissions',
+                    ]),
                 TextColumn::make('guard_name')
                     ->label('Guard')
                     ->width('15%')
@@ -194,5 +215,14 @@ class RoleResource extends Resource
             ->implode('');
 
         return $initials !== '' ? $initials : 'R';
+    }
+
+    protected static function formatPermissionLabel(string $permission): string
+    {
+        return str($permission)
+            ->replace(['_', '-'], ' ')
+            ->squish()
+            ->headline()
+            ->toString();
     }
 }

@@ -18,6 +18,7 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Hash;
@@ -150,14 +151,19 @@ class UserResource extends Resource
                     })
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('roles.name')
+                ViewColumn::make('roles')
                     ->label('Roles')
                     ->width('32%')
-                    ->badge()
-                    ->separator(',')
-                    ->limitList(3)
-                    ->expandableLimitedList()
-                    ->placeholder('No role'),
+                    ->view('filament.tables.access-badge-popover')
+                    ->viewData(static fn (User $record): array => [
+                        'emptyLabel' => 'No role',
+                        'items' => $record->roles
+                            ->pluck('name')
+                            ->sort()
+                            ->values()
+                            ->all(),
+                        'popoverTitle' => 'More roles',
+                    ]),
                 TextColumn::make('email_verified_at')
                     ->label('Status')
                     ->width('15%')

@@ -10,6 +10,16 @@ class EditPermission extends EditAdminRecord
 {
     protected static string $resource = PermissionResource::class;
 
+    public function getHeading(): string
+    {
+        return 'Edit Permission';
+    }
+
+    public function getSubheading(): ?string
+    {
+        return 'Update permission details for workspace access.';
+    }
+
     protected function getFormActions(): array
     {
         return [];

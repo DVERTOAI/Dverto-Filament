@@ -10,6 +10,21 @@ class EditRole extends EditAdminRecord
 {
     protected static string $resource = RoleResource::class;
 
+    public function getHeading(): string
+    {
+        return 'Edit Role';
+    }
+
+    public function getSubheading(): ?string
+    {
+        return 'Update role details and permission access.';
+    }
+
+    protected function getFormActions(): array
+    {
+        return [];
+    }
+
     protected function getHeaderActions(): array
     {
         return [

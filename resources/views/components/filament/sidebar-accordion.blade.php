@@ -78,5 +78,34 @@
         }
 
         document.addEventListener('livewire:navigated', syncSidebarAccordion);
+
+        const applyTheme = (theme) => {
+            const resolvedTheme = theme ?? localStorage.getItem('theme') ?? 'light';
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = resolvedTheme === 'dark' || (resolvedTheme === 'system' && prefersDark);
+
+            window.theme = resolvedTheme;
+            document.documentElement.classList.toggle('dark', isDark);
+            window.dispatchEvent(new CustomEvent('ac-theme-changed', {
+                detail: { theme: resolvedTheme, isDark },
+            }));
+        };
+
+        window.acDashboardTheme = {
+            get() {
+                return localStorage.getItem('theme') ?? 'light';
+            },
+
+            set(theme) {
+                localStorage.setItem('theme', theme);
+                applyTheme(theme);
+            },
+
+            toggle() {
+                this.set(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
+            },
+        };
+
+        applyTheme(window.acDashboardTheme.get());
     })();
 </script>
