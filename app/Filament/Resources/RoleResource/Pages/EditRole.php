@@ -2,13 +2,28 @@
 
 namespace App\Filament\Resources\RoleResource\Pages;
 
+use App\Filament\Resources\Pages\EditAdminRecord;
 use App\Filament\Resources\RoleResource;
 use Filament\Actions\DeleteAction;
-use Filament\Resources\Pages\EditRecord;
 
-class EditRole extends EditRecord
+class EditRole extends EditAdminRecord
 {
     protected static string $resource = RoleResource::class;
+
+    public function getHeading(): string
+    {
+        return 'Edit Role';
+    }
+
+    public function getSubheading(): ?string
+    {
+        return 'Update role details and permission access.';
+    }
+
+    protected function getFormActions(): array
+    {
+        return [];
+    }
 
     protected function getHeaderActions(): array
     {

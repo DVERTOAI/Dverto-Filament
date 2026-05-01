@@ -18,6 +18,7 @@ class AccessControlFormCard
             ->columnSpanFull()
             ->extraAttributes([
                 'class' => "ac-form-shell ac-form-shell--{$variant}",
+                'data-ac-form-variant' => $variant,
             ]);
     }
 }

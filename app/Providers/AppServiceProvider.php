@@ -43,7 +43,17 @@ class AppServiceProvider extends ServiceProvider
 
         FilamentView::registerRenderHook(
             PanelsRenderHook::TOPBAR_START,
-            fn (): View => view('components.filament.hamburger'),
+            fn (): View => view('components.filament.sidebar-toggle'),
+        );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::USER_MENU_BEFORE,
+            fn (): View => view('components.filament.topbar-utilities'),
+        );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::SIDEBAR_FOOTER,
+            fn (): View => view('components.filament.sidebar-footer'),
         );
 
         FilamentView::registerRenderHook(

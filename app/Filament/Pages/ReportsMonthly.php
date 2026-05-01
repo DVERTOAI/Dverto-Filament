@@ -2,12 +2,14 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Pages\Concerns\HasMinimalBreadcrumbs;
 use App\Filament\Pages\Concerns\HasPagePermission;
 use App\Support\AdminPermissions;
 use Filament\Pages\Page;
 
 class ReportsMonthly extends Page
 {
+    use HasMinimalBreadcrumbs;
     use HasPagePermission;
 
     protected static ?string $navigationLabel = 'Monthly';
@@ -19,6 +21,11 @@ class ReportsMonthly extends Page
     protected static bool $shouldRegisterNavigation = false;
 
     protected string $view = 'filament.pages.reports-monthly';
+
+    protected static function getBreadcrumbParentPage(): ?string
+    {
+        return Reports::class;
+    }
 
     protected static function requiredPermission(): string
     {

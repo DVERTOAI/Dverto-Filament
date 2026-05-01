@@ -11,8 +11,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Actions as SchemaActions;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -27,6 +28,8 @@ class PermissionResource extends Resource
     protected static string|\UnitEnum|null $navigationGroup = 'Administration';
 
     protected static ?string $navigationLabel = 'Permissions';
+
+    protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?int $navigationSort = 3;
 
@@ -44,23 +47,30 @@ class PermissionResource extends Resource
     {
         return $schema->schema([
             AccessControlFormCard::make(
-                'Permission Workspace',
+                'Permission Details',
                 '',
                 [
-                    TextInput::make('name')
-                        ->label('Permission Name')
-                        ->placeholder('e.g. manage users')
-                        ->prefixIcon(Heroicon::OutlinedSparkles)
-                        ->required()
-                        ->maxLength(255)
-                        ->unique(ignoreRecord: true),
-                    TextInput::make('guard_name')
-                        ->label('Guard')
-                        ->placeholder('web')
-                        ->prefixIcon(Heroicon::OutlinedGlobeAlt)
-                        ->default('web')
-                        ->required()
-                        ->maxLength(255),
+                    Grid::make([
+                        'default' => 1,
+                        'md' => 2,
+                    ])
+                        ->schema([
+                            TextInput::make('name')
+                                ->label('Permission Name')
+                                ->placeholder('e.g. manage users')
+                                ->prefixIcon(Heroicon::OutlinedSparkles)
+                                ->required()
+                                ->maxLength(255)
+                                ->unique(ignoreRecord: true),
+                            TextInput::make('guard_name')
+                                ->label('Guard')
+                                ->placeholder('web')
+                                ->prefixIcon(Heroicon::OutlinedGlobeAlt)
+                                ->default('web')
+                                ->required()
+                                ->maxLength(255),
+                        ])
+                        ->columnSpanFull(),
                     SchemaActions::make([
                         Action::make('save')
                             ->label('Save Changes')
@@ -68,7 +78,7 @@ class PermissionResource extends Resource
                             ->color('primary')
                             ->visible(fn ($livewire): bool => $livewire instanceof EditRecord),
                         Action::make('create')
-                            ->label('Create')
+                            ->label('Create Permission')
                             ->submit('create')
                             ->color('primary')
                             ->visible(fn ($livewire): bool => $livewire instanceof CreateRecord),
@@ -78,40 +88,59 @@ class PermissionResource extends Resource
                             ->url(fn ($livewire): string => $livewire->getResource()::getUrl('index')),
                     ])
                         ->alignEnd()
+                        ->extraAttributes([
+                            'class' => 'ac-card-actions',
+                        ])
                         ->columnSpanFull(),
                 ],
                 Heroicon::OutlinedKey,
                 'permission',
-            )->columns([
-                'default' => 1,
-                'xl' => 2,
-            ]),
+            )->columns(1),
         ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->extraAttributes(['class' => 'ac-compact-table'])
+            ->extraAttributes(['class' => 'ac-compact-table ac-user-table'])
+            ->searchPlaceholder('Search permissions by name or guard')
+            ->defaultPaginationPageOption(5)
+            ->paginationPageOptions([5])
             ->recordAction(null)
             ->recordUrl(null)
             ->columns([
                 TextColumn::make('name')
-                    ->width('33.33%')
+                    ->label('Permission')
+                    ->width('43%')
+                    ->html()
+                    ->formatStateUsing(static function (Permission $record): string {
+                        $initials = e(static::getPermissionInitials($record->name));
+                        $name = e($record->name);
+                        $guard = e($record->guard_name);
+
+                        return <<<HTML
+                            <div class="ac-user-cell">
+                                <span class="ac-user-avatar">{$initials}</span>
+                                <span class="ac-user-meta">
+                                    <span class="ac-user-name">{$name}</span>
+                                    <span class="ac-user-email">{$guard}</span>
+                                </span>
+                            </div>
+                        HTML;
+                    })
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('guard_name')
-                    ->width('33.33%')
-                    ->badge(),
-                TextColumn::make('created_at')
-                    ->width('33.33%')
-                    ->dateTime()
-                    ->sortable(),
+                    ->label('Guard')
+                    ->width('32%')
+                    ->badge()
+                    ->visibleFrom('md'),
             ])
             ->defaultSort('name')
             ->recordActionsColumnLabel('Edit')
-            ->actions([
+            ->recordActions([
                 EditAction::make()
+                    ->label('Edit')
                     ->icon(Heroicon::OutlinedPencilSquare)
                     ->iconButton()
                     ->tooltip('Edit'),
@@ -130,5 +159,18 @@ class PermissionResource extends Resource
             'create' => Pages\CreatePermission::route('/create'),
             'edit' => Pages\EditPermission::route('/{record}/edit'),
         ];
+    }
+
+    protected static function getPermissionInitials(string $name): string
+    {
+        $parts = preg_split('/\s+/', trim($name)) ?: [];
+
+        $initials = collect($parts)
+            ->filter()
+            ->map(static fn (string $part): string => mb_strtoupper(mb_substr($part, 0, 1)))
+            ->take(2)
+            ->implode('');
+
+        return $initials !== '' ? $initials : 'P';
     }
 }

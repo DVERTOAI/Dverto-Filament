@@ -7,15 +7,21 @@ use App\Filament\Support\AccessControlFormCard;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\Select;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Actions as SchemaActions;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Schema;
+use Filament\Support\Enums\GridDirection;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleResource extends Resource
@@ -27,6 +33,8 @@ class RoleResource extends Resource
     protected static string|\UnitEnum|null $navigationGroup = 'Administration';
 
     protected static ?string $navigationLabel = 'Roles';
+
+    protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?int $navigationSort = 2;
 
@@ -44,33 +52,57 @@ class RoleResource extends Resource
     {
         return $schema->schema([
             AccessControlFormCard::make(
-                'Role Workspace',
+                'Role Details',
                 '',
                 [
-                    TextInput::make('name')
-                        ->label('Role Name')
-                        ->placeholder('e.g. Operations Manager')
-                        ->prefixIcon(Heroicon::OutlinedIdentification)
-                        ->required()
-                        ->maxLength(255)
-                        ->unique(ignoreRecord: true),
-                    TextInput::make('guard_name')
-                        ->label('Guard')
-                        ->placeholder('web')
-                        ->prefixIcon(Heroicon::OutlinedGlobeAlt)
-                        ->default('web')
-                        ->required()
-                        ->maxLength(255),
-                    Select::make('permissions')
-                        ->label('Permission Matrix')
-                        ->relationship('permissions', 'name')
-                        ->multiple()
+                    Grid::make([
+                        'default' => 1,
+                        'md' => 2,
+                    ])
+                        ->schema([
+                            TextInput::make('name')
+                                ->label('Role Name')
+                                ->placeholder('e.g. Operations Manager')
+                                ->prefixIcon(Heroicon::OutlinedIdentification)
+                                ->required()
+                                ->maxLength(255)
+                                ->unique(ignoreRecord: true),
+                            TextInput::make('guard_name')
+                                ->label('Guard')
+                                ->placeholder('web')
+                                ->prefixIcon(Heroicon::OutlinedGlobeAlt)
+                                ->default('web')
+                                ->required()
+                                ->maxLength(255),
+                        ])
+                        ->columnSpanFull(),
+                    CheckboxList::make('permissions')
+                        ->label('Available Permissions')
+                        ->relationship(
+                            'permissions',
+                            'name',
+                            modifyQueryUsing: fn (Builder $query): Builder => $query->orderBy('name'),
+                        )
+                        ->getOptionLabelFromRecordUsing(static fn (Permission $record): string => static::formatPermissionLabel($record->name))
+                        ->bulkToggleable()
                         ->searchable()
-                        ->preload()
+                        ->columns([
+                            'default' => 1,
+                            'md' => 2,
+                        ])
+                        ->gridDirection(GridDirection::Column)
+                        ->extraAttributes([
+                            'class' => 'ac-permissions-checkbox-tree',
+                        ])
                         ->columnSpanFull(),
                     SchemaActions::make([
+                        Action::make('save')
+                            ->label('Save Changes')
+                            ->submit('save')
+                            ->color('primary')
+                            ->visible(fn ($livewire): bool => $livewire instanceof EditRecord),
                         Action::make('create')
-                            ->label('Create')
+                            ->label('Create Role')
                             ->submit('create')
                             ->color('primary')
                             ->visible(fn ($livewire): bool => $livewire instanceof CreateRecord),
@@ -87,41 +119,66 @@ class RoleResource extends Resource
                 ],
                 Heroicon::OutlinedShieldCheck,
                 'role',
-            )->columns([
-                'default' => 1,
-                'xl' => 2,
-            ]),
+            )->columns(1),
         ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->extraAttributes(['class' => 'ac-compact-table'])
+            ->extraAttributes(['class' => 'ac-compact-table ac-user-table'])
+            ->searchPlaceholder('Search roles by name or guard')
+            ->defaultPaginationPageOption(5)
+            ->paginationPageOptions([5])
             ->recordAction(null)
             ->recordUrl(null)
             ->columns([
                 TextColumn::make('name')
-                    ->width('22%')
+                    ->label('Role')
+                    ->width('43%')
+                    ->html()
+                    ->formatStateUsing(static function (Role $record): string {
+                        $initials = e(static::getRoleInitials($record->name));
+                        $name = e($record->name);
+                        $guard = e($record->guard_name);
+
+                        return <<<HTML
+                            <div class="ac-user-cell">
+                                <span class="ac-user-avatar">{$initials}</span>
+                                <span class="ac-user-meta">
+                                    <span class="ac-user-name">{$name}</span>
+                                    <span class="ac-user-email">{$guard}</span>
+                                </span>
+                            </div>
+                        HTML;
+                    })
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('guard_name')
-                    ->width('14%')
-                    ->badge(),
-                TextColumn::make('permissions.name')
+                ViewColumn::make('permissions')
                     ->label('Permissions')
-                    ->width('46%')
+                    ->width('32%')
+                    ->view('filament.tables.access-badge-popover')
+                    ->viewData(static fn (Role $record): array => [
+                        'emptyLabel' => 'No permission',
+                        'items' => $record->permissions
+                            ->pluck('name')
+                            ->map(static fn (string $permission): string => static::formatPermissionLabel($permission))
+                            ->sort()
+                            ->values()
+                            ->all(),
+                        'popoverTitle' => 'More permissions',
+                    ]),
+                TextColumn::make('guard_name')
+                    ->label('Guard')
+                    ->width('15%')
                     ->badge()
-                    ->separator(','),
-                TextColumn::make('updated_at')
-                    ->width('18%')
-                    ->dateTime()
-                    ->sortable(),
+                    ->visibleFrom('md'),
             ])
             ->defaultSort('name')
             ->recordActionsColumnLabel('Edit')
-            ->actions([
+            ->recordActions([
                 EditAction::make()
+                    ->label('Edit')
                     ->icon(Heroicon::OutlinedPencilSquare)
                     ->iconButton()
                     ->tooltip('Edit'),
@@ -140,5 +197,32 @@ class RoleResource extends Resource
             'create' => Pages\CreateRole::route('/create'),
             'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with('permissions');
+    }
+
+    protected static function getRoleInitials(string $name): string
+    {
+        $parts = preg_split('/\s+/', trim($name)) ?: [];
+
+        $initials = collect($parts)
+            ->filter()
+            ->map(static fn (string $part): string => mb_strtoupper(mb_substr($part, 0, 1)))
+            ->take(2)
+            ->implode('');
+
+        return $initials !== '' ? $initials : 'R';
+    }
+
+    protected static function formatPermissionLabel(string $permission): string
+    {
+        return str($permission)
+            ->replace(['_', '-'], ' ')
+            ->squish()
+            ->headline()
+            ->toString();
     }
 }

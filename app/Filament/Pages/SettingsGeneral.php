@@ -2,12 +2,14 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Pages\Concerns\HasMinimalBreadcrumbs;
 use App\Filament\Pages\Concerns\HasPagePermission;
 use App\Support\AdminPermissions;
 use Filament\Pages\Page;
 
 class SettingsGeneral extends Page
 {
+    use HasMinimalBreadcrumbs;
     use HasPagePermission;
 
     protected static ?string $navigationLabel = 'General';
@@ -19,6 +21,11 @@ class SettingsGeneral extends Page
     protected static bool $shouldRegisterNavigation = false;
 
     protected string $view = 'filament.pages.settings-general';
+
+    protected static function getBreadcrumbParentPage(): ?string
+    {
+        return Settings::class;
+    }
 
     protected static function requiredPermission(): string
     {

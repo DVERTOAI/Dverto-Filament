@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\PermissionResource\Pages;
 
+use App\Filament\Resources\Pages\ListAdminRecords;
 use App\Filament\Resources\PermissionResource;
 use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Icons\Heroicon;
 
-class ListPermissions extends ListRecords
+class ListPermissions extends ListAdminRecords
 {
     protected static string $resource = PermissionResource::class;
 
@@ -19,11 +19,6 @@ class ListPermissions extends ListRecords
     public function getSubheading(): ?string
     {
         return 'Manage permission rules that control access across your workspace.';
-    }
-
-    public function getBreadcrumbs(): array
-    {
-        return [];
     }
 
     protected function getHeaderActions(): array
