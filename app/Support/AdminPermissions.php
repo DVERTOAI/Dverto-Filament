@@ -14,6 +14,8 @@ class AdminPermissions
 
     public const MANAGE_SETTINGS = 'manage settings';
 
+    public const VIEW_ACTIVITY_LOG = 'view activity log';
+
     /**
      * @return list<string>
      */
@@ -25,6 +27,7 @@ class AdminPermissions
             self::VIEW_CUSTOMERS,
             self::MANAGE_CUSTOMERS,
             self::MANAGE_SETTINGS,
+            self::VIEW_ACTIVITY_LOG,
         ];
     }
 }

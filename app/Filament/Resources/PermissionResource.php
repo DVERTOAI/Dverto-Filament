@@ -6,6 +6,7 @@ use App\Filament\Resources\PermissionResource\Pages;
 use App\Filament\Support\AccessControlFormCard;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\CreateRecord;
@@ -16,6 +17,8 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Spatie\Permission\Models\Permission;
 
@@ -39,6 +42,21 @@ class PermissionResource extends Resource
     }
 
     public static function canViewAny(): bool
+    {
+        return static::canAccess();
+    }
+
+    public static function canCreate(): bool
+    {
+        return static::canAccess();
+    }
+
+    public static function canEdit($record): bool
+    {
+        return static::canAccess();
+    }
+
+    public static function canDelete($record): bool
     {
         return static::canAccess();
     }
@@ -104,8 +122,8 @@ class PermissionResource extends Resource
         return $table
             ->extraAttributes(['class' => 'ac-compact-table ac-user-table'])
             ->searchPlaceholder('Search permissions by name or guard')
-            ->defaultPaginationPageOption(5)
-            ->paginationPageOptions([5])
+            ->defaultPaginationPageOption(10)
+            ->paginationPageOptions([10, 25, 50])
             ->recordAction(null)
             ->recordUrl(null)
             ->columns([
@@ -136,13 +154,25 @@ class PermissionResource extends Resource
                     ->badge()
                     ->visibleFrom('md'),
             ])
+            ->filters([
+                SelectFilter::make('guard_name')
+                    ->label('Guard')
+                    ->searchable()
+                    ->options(fn () => Permission::query()->distinct()->pluck('guard_name', 'guard_name')->toArray()),
+            ], layout: FiltersLayout::AboveContent)
+            ->filtersFormColumns(1)
             ->defaultSort('name')
-            ->recordActionsColumnLabel('Edit')
+            ->recordActionsColumnLabel('Actions')
             ->recordActions([
-                EditAction::make()
-                    ->label('Edit')
-                    ->icon(Heroicon::OutlinedPencilSquare)
+                DeleteAction::make()
                     ->iconButton()
+                    ->icon(Heroicon::OutlinedTrash)
+                    ->color('danger')
+                    ->tooltip('Delete'),
+                EditAction::make()
+                    ->iconButton()
+                    ->icon(Heroicon::OutlinedPencilSquare)
+                    ->color('gray')
                     ->tooltip('Edit'),
             ]);
     }
