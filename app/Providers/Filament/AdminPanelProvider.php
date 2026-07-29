@@ -7,6 +7,9 @@ use App\Filament\Pages\Customers;
 use App\Filament\Pages\CustomersList;
 use App\Filament\Pages\CustomersSegments;
 use App\Filament\Pages\Dashboard;
+use App\Filament\Pages\DashboardAnalytics;
+use App\Filament\Pages\DashboardOverview;
+use App\Filament\Pages\DashboardReports;
 use App\Filament\Pages\Reports;
 use App\Filament\Pages\ReportsDaily;
 use App\Filament\Pages\ReportsMonthly;
@@ -40,6 +43,14 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use LaraZeus\Sky\Filament\Resources\FaqResource;
+use LaraZeus\Sky\Filament\Resources\LibraryResource;
+use LaraZeus\Sky\Filament\Resources\NavigationResource;
+use LaraZeus\Sky\Filament\Resources\PageResource;
+use LaraZeus\Sky\Filament\Resources\PostResource;
+use LaraZeus\Sky\Filament\Resources\TagResource;
+use LaraZeus\Sky\SkyPlugin;
+use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -73,6 +84,10 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Violet,
             ])
+            ->plugins([
+                SpatieTranslatablePlugin::make()->defaultLocales([config('app.locale')]),
+                SkyPlugin::make(),
+            ])
             ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
                 $user = Auth::user();
 
@@ -81,9 +96,14 @@ class AdminPanelProvider extends PanelProvider
                         ->items([
                             NavigationItem::make('Dashboard')
                                 ->icon(Heroicon::OutlinedHome)
-                                ->isActiveWhen(fn (): bool => request()->routeIs(Dashboard::getRouteName()))
+                                ->isActiveWhen(fn (): bool => request()->routeIs([
+                                    Dashboard::getRouteName(),
+                                    DashboardOverview::getRouteName(),
+                                    DashboardAnalytics::getRouteName(),
+                                    DashboardReports::getRouteName(),
+                                ]))
                                 ->sort(-2)
-                                ->url(Dashboard::getUrl()),
+                                ->url(DashboardOverview::getUrl()),
                         ]),
                     NavigationGroup::make('Reports')
                         ->icon(Heroicon::OutlinedChartBarSquare)
@@ -144,6 +164,35 @@ class AdminPanelProvider extends PanelProvider
                                 ->isActiveWhen(fn (): bool => request()->routeIs(SettingsNotifications::getRouteName()))
                                 ->visible(fn (): bool => $user?->can(AdminPermissions::MANAGE_SETTINGS) ?? false)
                                 ->url(SettingsNotifications::getUrl()),
+                        ]),
+                    NavigationGroup::make('Sky')
+                        ->icon(Heroicon::OutlinedNewspaper)
+                        ->collapsible()
+                        ->items([
+                            NavigationItem::make(PostResource::getNavigationLabel())
+                                ->icon(PostResource::getNavigationIcon())
+                                ->isActiveWhen(fn (): bool => request()->routeIs(PostResource::getRouteBaseName().'.*'))
+                                ->url(PostResource::getUrl()),
+                            NavigationItem::make(PageResource::getNavigationLabel())
+                                ->icon(PageResource::getNavigationIcon())
+                                ->isActiveWhen(fn (): bool => request()->routeIs(PageResource::getRouteBaseName().'.*'))
+                                ->url(PageResource::getUrl()),
+                            NavigationItem::make(FaqResource::getNavigationLabel())
+                                ->icon(FaqResource::getNavigationIcon())
+                                ->isActiveWhen(fn (): bool => request()->routeIs(FaqResource::getRouteBaseName().'.*'))
+                                ->url(FaqResource::getUrl()),
+                            NavigationItem::make(LibraryResource::getNavigationLabel())
+                                ->icon(LibraryResource::getNavigationIcon())
+                                ->isActiveWhen(fn (): bool => request()->routeIs(LibraryResource::getRouteBaseName().'.*'))
+                                ->url(LibraryResource::getUrl()),
+                            NavigationItem::make(TagResource::getNavigationLabel())
+                                ->icon(TagResource::getNavigationIcon())
+                                ->isActiveWhen(fn (): bool => request()->routeIs(TagResource::getRouteBaseName().'.*'))
+                                ->url(TagResource::getUrl()),
+                            NavigationItem::make(NavigationResource::getNavigationLabel())
+                                ->icon(NavigationResource::getNavigationIcon())
+                                ->isActiveWhen(fn (): bool => request()->routeIs(NavigationResource::getRouteBaseName().'.*'))
+                                ->url(NavigationResource::getUrl()),
                         ]),
                     NavigationGroup::make('Administration')
                         ->icon(Heroicon::OutlinedShieldCheck)

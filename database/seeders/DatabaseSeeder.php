@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
             ],
         );
 
+        app(PermissionRegistrar::class)->forgetCachedPermissions();
+
         $missingPermissions = array_values(array_diff(
             AdminPermissions::all(),
             $adminRole->permissions()->pluck('name')->all(),

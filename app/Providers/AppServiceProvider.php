@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Listeners\ClearLatestLoginSession;
 use App\Listeners\StoreLatestLoginSession;
+use App\Models\User;
+use App\Policies\PermissionPolicy;
+use App\Policies\RolePolicy;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Auth\Events\CurrentDeviceLogout;
@@ -13,6 +16,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,17 +38,21 @@ class AppServiceProvider extends ServiceProvider
         Event::listen(Logout::class, ClearLatestLoginSession::class);
         Event::listen(CurrentDeviceLogout::class, ClearLatestLoginSession::class);
 
-        Gate::before(function ($user, string $ability): ?bool {
-            if ($user->hasRole('admin')) {
-                return true;
-            }
+        Gate::policy(Role::class, RolePolicy::class);
+        Gate::policy(Permission::class, PermissionPolicy::class);
 
-            return null;
+        Gate::before(function (User $user, string $ability): ?bool {
+            return $user->isSuperAdmin() ? true : null;
         });
 
         FilamentView::registerRenderHook(
             PanelsRenderHook::TOPBAR_START,
             fn (): View => view('components.filament.sidebar-toggle'),
+        );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::GLOBAL_SEARCH_BEFORE,
+            fn (): View => view('components.filament.topbar-welcome'),
         );
 
         FilamentView::registerRenderHook(

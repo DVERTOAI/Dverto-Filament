@@ -18,7 +18,7 @@ class ListUsers extends ListAdminRecords
 
     public function getSubheading(): ?string
     {
-        return 'Manage and organize admin users across your workspace.';
+        return 'Manage admin users, roles, and access.';
     }
 
     protected function getHeaderActions(): array
