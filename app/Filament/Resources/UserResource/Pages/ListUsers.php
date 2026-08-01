@@ -26,7 +26,8 @@ class ListUsers extends ListAdminRecords
         return [
             CreateAction::make()
                 ->label('New User')
-                ->icon(Heroicon::Plus),
+                ->icon(Heroicon::Plus)
+                ->color('primary'),
         ];
     }
 }

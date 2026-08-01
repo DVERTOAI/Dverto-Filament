@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Support\AccessControlFormCard;
+use App\Filament\Support\AdminListTable;
 use App\Models\User;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
@@ -20,9 +21,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ViewColumn;
-use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Hash;
@@ -142,34 +141,32 @@ class UserResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table
-            ->extraAttributes(['class' => 'ac-user-table'])
-            ->searchPlaceholder('Search User')
-            ->defaultPaginationPageOption(10)
-            ->paginationPageOptions([10, 25, 50, 100])
-            ->recordAction(null)
-            ->recordUrl(null)
+        return AdminListTable::configure(
+            $table,
+            searchPlaceholder: 'Search User',
+            filtersFormColumns: 4,
+        )
             ->columns([
                 TextColumn::make('name')
-                    ->label('User')
+                    ->label('Name')
                     ->html()
                     ->formatStateUsing(static function (User $record): string {
                         $initials = e(static::getUserInitials($record->name));
                         $name     = e($record->name);
-                        $email    = e($record->email);
                         $colors   = ['#7367f0', '#28c76f', '#ff9f43', '#ea5455', '#00cfe8'];
                         $color    = $colors[crc32($record->name) % count($colors)];
 
                         return <<<HTML
-                            <div class="sn-user-cell">
-                                <span class="sn-avatar" style="background:color-mix(in srgb,{$color} 11%,#fff);color:{$color};border:1.5px solid color-mix(in srgb,{$color} 24%,#fff);">{$initials}</span>
-                                <span class="sn-user-meta">
-                                    <span class="sn-user-name">{$name}</span>
-                                    <span class="sn-user-email">{$email}</span>
-                                </span>
+                            <div class="ac-user-cell ac-user-cell--single">
+                                <span class="ac-user-avatar" style="background:color-mix(in srgb,{$color} 14%,#fff);color:{$color};">{$initials}</span>
+                                <span class="ac-user-name">{$name}</span>
                             </div>
                         HTML;
                     })
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('email')
+                    ->label('Email')
                     ->searchable()
                     ->sortable(),
                 ViewColumn::make('roles')
@@ -206,12 +203,13 @@ class UserResource extends Resource
                 SelectFilter::make('roles')
                     ->label('Role')
                     ->relationship('roles', 'name')
-                    ->searchable()
                     ->preload()
-                    ->multiple(),
+                    ->native(true)
+                    ->placeholder('All roles'),
                 SelectFilter::make('plan')
                     ->label('Plan')
-                    ->searchable()
+                    ->native(true)
+                    ->placeholder('All plans')
                     ->options([
                         'Basic'      => 'Basic',
                         'Team'       => 'Team',
@@ -219,32 +217,45 @@ class UserResource extends Resource
                     ]),
                 SelectFilter::make('billing')
                     ->label('Billing')
-                    ->searchable()
+                    ->native(true)
+                    ->placeholder('All billing')
                     ->options([
                         'Auto Debit' => 'Auto Debit',
                         'Manual'     => 'Manual',
                         'Invoice'    => 'Invoice',
                     ]),
-                TernaryFilter::make('email_verified_at')
+                SelectFilter::make('email_verified_at')
                     ->label('Status')
-                    ->nullable()
-                    ->trueLabel('Active')
-                    ->falseLabel('Inactive'),
-            ], layout: FiltersLayout::AboveContent)
-            ->filtersFormColumns(['default' => 1, 'sm' => 2, 'lg' => 4])
+                    ->native(true)
+                    ->placeholder('All status')
+                    ->options([
+                        '1' => 'Active',
+                        '0' => 'Inactive',
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        $value = $data['value'] ?? null;
+
+                        if ($value === null || $value === '') {
+                            return $query;
+                        }
+
+                        return $value === '1'
+                            ? $query->whereNotNull('email_verified_at')
+                            : $query->whereNull('email_verified_at');
+                    }),
+            ])
             ->defaultSort('name')
-            ->recordActionsColumnLabel('Actions')
             ->recordActions([
-                DeleteAction::make()
-                    ->iconButton()
-                    ->icon(Heroicon::OutlinedTrash)
-                    ->color('danger')
-                    ->tooltip('Delete'),
                 EditAction::make()
                     ->iconButton()
                     ->icon(Heroicon::OutlinedPencilSquare)
                     ->color('gray')
                     ->tooltip('Edit'),
+                DeleteAction::make()
+                    ->iconButton()
+                    ->icon(Heroicon::OutlinedTrash)
+                    ->color('danger')
+                    ->tooltip('Delete'),
             ]);
     }
 

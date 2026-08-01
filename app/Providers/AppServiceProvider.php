@@ -7,6 +7,7 @@ use App\Listeners\StoreLatestLoginSession;
 use App\Models\User;
 use App\Policies\PermissionPolicy;
 use App\Policies\RolePolicy;
+use Filament\Facades\Filament;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Auth\Events\CurrentDeviceLogout;
@@ -45,8 +46,16 @@ class AppServiceProvider extends ServiceProvider
             return $user->isSuperAdmin() ? true : null;
         });
 
+        Filament::serving(function (): void {
+            $user = auth()->user();
+
+            if ($user instanceof User) {
+                $user->loadMissing('roles');
+            }
+        });
+
         FilamentView::registerRenderHook(
-            PanelsRenderHook::TOPBAR_START,
+            PanelsRenderHook::TOPBAR_LOGO_AFTER,
             fn (): View => view('components.filament.sidebar-toggle'),
         );
 

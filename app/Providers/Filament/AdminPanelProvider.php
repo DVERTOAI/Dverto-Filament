@@ -61,7 +61,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->viteTheme('resources/css/filament/admin/theme.css')
-            ->brandName('Laravel')
+            ->brandName('Sneat')
             ->brandLogo(fn (): HtmlString => new HtmlString(<<<'HTML'
                 <span class="ac-brand">
                     <span class="ac-brand-mark" aria-hidden="true">
@@ -69,20 +69,21 @@ class AdminPanelProvider extends PanelProvider
                             <path d="M16 3.5L26.8253 9.75V22.25L16 28.5L5.17468 22.25V9.75L16 3.5Z" stroke="currentColor" stroke-width="2.75" stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <span class="ac-brand-text">Laravel</span>
+                    <span class="ac-brand-text">Sneat</span>
                 </span>
             HTML))
-            ->brandLogoHeight('2.25rem')
-            ->sidebarWidth('20rem')
+            ->brandLogoHeight('2rem')
+            ->sidebarWidth('16.25rem')
+            ->collapsedSidebarWidth('4.375rem')
             ->sidebarCollapsibleOnDesktop()
             ->darkMode()
+            ->spa()
             ->globalSearch(position: GlobalSearchPosition::Topbar)
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
-            ->globalSearchFieldKeyBindingSuffix()
             ->login(Login::class)
             ->maxContentWidth(Width::Full)
             ->colors([
-                'primary' => Color::Violet,
+                'primary' => Color::hex('#696cff'),
             ])
             ->plugins([
                 SpatieTranslatablePlugin::make()->defaultLocales([config('app.locale')]),

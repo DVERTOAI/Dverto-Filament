@@ -12,7 +12,7 @@ class ProfileReport extends Widget
 
     protected static ?int $sort = 4;
 
-    protected static bool $isLazy = false;
+    protected static bool $isLazy = true;
 
     protected function getViewData(): array
     {

@@ -13,7 +13,7 @@ class DashboardWelcome extends Widget
 
     protected static ?int $sort = -3;
 
-    protected static bool $isLazy = false;
+    protected static bool $isLazy = true;
 
     /**
      * @return array<string, mixed>
@@ -23,7 +23,11 @@ class DashboardWelcome extends Widget
         $user = auth()->user();
         $role = $user?->hasRole('admin')
             ? 'Super Admin'
-            : Str::headline($user?->roles()->pluck('name')->first() ?? 'Team Member');
+            : Str::headline(
+                ($user?->relationLoaded('roles')
+                    ? $user->roles->first()?->name
+                    : $user?->getRoleNames()->first()) ?? 'Team Member'
+            );
 
         return [
             'user' => $user,

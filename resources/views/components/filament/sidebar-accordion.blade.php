@@ -79,6 +79,18 @@
 
         document.addEventListener('livewire:navigated', syncSidebarAccordion);
 
+        const clearNavigating = () => {
+            document.documentElement.classList.remove('ac-navigating');
+        };
+
+        document.addEventListener('livewire:navigate', () => {
+            document.documentElement.classList.add('ac-navigating');
+        });
+
+        document.addEventListener('livewire:navigated', clearNavigating);
+        document.addEventListener('livewire:navigate-error', clearNavigating);
+        document.addEventListener('livewire:commit', clearNavigating);
+
         const applyTheme = (theme) => {
             const resolvedTheme = theme ?? localStorage.getItem('theme') ?? 'light';
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;

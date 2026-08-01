@@ -3,19 +3,18 @@
 
     $user = auth()->user();
     $name = $user?->name ?? 'Admin User';
-    $role = $user?->hasRole('admin')
+
+    // Prefer already-loaded roles relation to avoid a query on every request.
+    $roleName = $user?->relationLoaded('roles')
+        ? $user->roles->first()?->name
+        : $user?->getRoleNames()->first();
+
+    $role = ($user?->hasRole('admin') ?? false)
         ? 'Super Admin'
-        : Str::headline($user?->roles()->pluck('name')->first() ?? 'Team Member');
-    $initials = Str::of($name)
-        ->explode(' ')
-        ->filter()
-        ->take(2)
-        ->map(fn (string $part): string => Str::upper(Str::substr($part, 0, 1)))
-        ->implode('');
+        : Str::headline($roleName ?? 'Team Member');
 @endphp
 
 <div class="ac-topbar-welcome">
-    <span class="ac-topbar-welcome-avatar" aria-hidden="true">{{ $initials }}</span>
     <div class="ac-topbar-welcome-copy">
         <p class="ac-topbar-welcome-text">
             Welcome back, <strong>{{ $name }}</strong>!

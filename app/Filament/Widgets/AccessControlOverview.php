@@ -20,7 +20,7 @@ class AccessControlOverview extends Widget
 
     protected static ?int $sort = -2;
 
-    protected static bool $isLazy = false;
+    protected static bool $isLazy = true;
 
     public static function canView(): bool
     {

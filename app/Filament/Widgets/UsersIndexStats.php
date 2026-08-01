@@ -15,7 +15,7 @@ class UsersIndexStats extends Widget
 
     protected static ?int $sort = -1;
 
-    protected static bool $isLazy = false;
+    protected static bool $isLazy = true;
 
     /**
      * @return array<string, mixed>

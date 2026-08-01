@@ -26,7 +26,8 @@ class ListRoles extends ListAdminRecords
         return [
             CreateAction::make()
                 ->label('New Role')
-                ->icon(Heroicon::Plus),
+                ->icon(Heroicon::Plus)
+                ->color('primary'),
         ];
     }
 }

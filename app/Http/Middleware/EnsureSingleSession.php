@@ -55,7 +55,10 @@ class EnsureSingleSession
 
         $table = config('session.table', 'sessions');
 
-        if (! Schema::hasTable($table)) {
+        if (! cache()->rememberForever(
+            "schema_has_table:{$table}",
+            fn (): bool => Schema::hasTable($table),
+        )) {
             return;
         }
 

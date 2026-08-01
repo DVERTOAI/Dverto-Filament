@@ -257,7 +257,8 @@
             loadCharts();
         } else {
             const s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js';
+            s.src = @js(asset('js/chart.umd.min.js'));
+            s.async = true;
             s.onload = loadCharts;
             document.head.appendChild(s);
         }
