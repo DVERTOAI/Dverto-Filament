@@ -290,7 +290,7 @@ class UserResource extends Resource
             ->recordActions([
                 EditAction::make()
                     ->iconButton()
-                    ->icon(Heroicon::OutlinedPencilSquare)
+                    ->icon(Heroicon::OutlinedPencil)
                     ->color('gray')
                     ->tooltip('Edit'),
                 DeleteAction::make()

@@ -29,5 +29,5 @@
         </div>
     @endif
 
-    <p class="ac-sidebar-footer-note">© 2024 Your Company</p>
+    <p class="ac-sidebar-footer-note">© 2026 Your Company</p>
 </div>

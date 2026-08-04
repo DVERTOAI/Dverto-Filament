@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Filament\Resources\Pages\ListAdminRecords;
 use App\Listeners\ClearLatestLoginSession;
 use App\Listeners\StoreLatestLoginSession;
 use App\Models\User;
@@ -72,6 +73,12 @@ class AppServiceProvider extends ServiceProvider
         FilamentView::registerRenderHook(
             PanelsRenderHook::SCRIPTS_AFTER,
             fn (): View => view('components.filament.sidebar-accordion'),
+        );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::PAGE_START,
+            fn (): View => view('components.filament.table-loading'),
+            scopes: ListAdminRecords::class,
         );
     }
 }

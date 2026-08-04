@@ -88,21 +88,6 @@
                 {{ __('filament::components/pagination.actions.previous.label') }}
             </x-filament::button>
 
-            <x-filament::button
-                color="gray"
-                :disabled="! $paginator->hasMorePages()"
-                :icon="$isRtl ? Heroicon::OutlinedArrowLeft : Heroicon::OutlinedArrowRight"
-                icon-position="after"
-                rel="next"
-                size="sm"
-                :wire:click="$paginator->hasMorePages() ? $nextWireClickAction : null"
-                :wire:key="$this->getId() . '.pagination.next'"
-                class="fi-pagination-next-btn"
-            >
-                {{ __('filament::components/pagination.actions.next.label') }}
-            </x-filament::button>
-        </div>
-
         @if ((! $isSimple) && $paginator->hasPages())
             <ol class="fi-pagination-items">
                 @if (! $paginator->onFirstPage())
@@ -190,5 +175,20 @@
                 @endif
             </ol>
         @endif
+
+            <x-filament::button
+                color="gray"
+                :disabled="! $paginator->hasMorePages()"
+                :icon="$isRtl ? Heroicon::OutlinedArrowLeft : Heroicon::OutlinedArrowRight"
+                icon-position="after"
+                rel="next"
+                size="sm"
+                :wire:click="$paginator->hasMorePages() ? $nextWireClickAction : null"
+                :wire:key="$this->getId() . '.pagination.next'"
+                class="fi-pagination-next-btn"
+            >
+                {{ __('filament::components/pagination.actions.next.label') }}
+            </x-filament::button>
+        </div>
     </div>
 </nav>

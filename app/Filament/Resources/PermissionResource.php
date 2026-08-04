@@ -162,16 +162,16 @@ class PermissionResource extends Resource
             ])
             ->defaultSort('name')
             ->recordActions([
+                EditAction::make()
+                    ->iconButton()
+                    ->icon(Heroicon::OutlinedPencil)
+                    ->color('gray')
+                    ->tooltip('Edit'),
                 DeleteAction::make()
                     ->iconButton()
                     ->icon(Heroicon::OutlinedTrash)
                     ->color('danger')
                     ->tooltip('Delete'),
-                EditAction::make()
-                    ->iconButton()
-                    ->icon(Heroicon::OutlinedPencilSquare)
-                    ->color('gray')
-                    ->tooltip('Edit'),
             ]);
     }
 
