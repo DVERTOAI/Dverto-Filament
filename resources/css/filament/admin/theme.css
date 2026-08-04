@@ -19117,6 +19117,15 @@ body > .fi-dropdown-panel,
    (3rem) − pull-back = sidebar edge.
    =========================================================================== */
 
+/*
+   Collapsed hamburger lives in `.fi-topbar-start` (welcome row), centred in a
+   brand zone that matches the collapsed sidebar width — so it stays on the
+   same row as "Welcome back" and lines up with the rail icons below.
+*/
+.ac-sidebar-toggle--rail {
+    display: none !important;
+}
+
 @media (min-width: 1025px) {
     .ac-topbar-welcome {
         margin-inline-start: -4rem !important;
@@ -19124,8 +19133,112 @@ body > .fi-dropdown-panel,
         transition: margin-inline-start 320ms cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
+    /* Brand zone = full collapsed rail width so the centered toggle matches icons. */
+    .fi-body:has(#fi-main-sidebar:not(.fi-sidebar-open)) .fi-topbar-start {
+        width: var(--collapsed-sidebar-width, 4.375rem) !important;
+        min-width: var(--collapsed-sidebar-width, 4.375rem) !important;
+        max-width: var(--collapsed-sidebar-width, 4.375rem) !important;
+        padding-inline: 0 !important;
+        justify-content: center !important;
+        gap: 0 !important;
+    }
+
+    /* Welcome starts right after the rail; divider sits on the sidebar edge. */
     .fi-body:has(#fi-main-sidebar:not(.fi-sidebar-open)) .ac-topbar-welcome {
-        margin-inline-start: -3.125rem !important;
+        margin-inline-start: -1rem !important;
+        gap: 0 !important;
+        padding-inline: 0 !important;
+    }
+
+    .fi-body:has(#fi-main-sidebar:not(.fi-sidebar-open)) .ac-topbar-welcome .ac-sidebar-toggle {
+        display: none !important;
+    }
+
+    .fi-body:has(#fi-main-sidebar:not(.fi-sidebar-open)) .fi-topbar-start .ac-sidebar-toggle--rail {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        width: 1.85rem !important;
+        min-width: 1.85rem !important;
+        height: 1.85rem !important;
+        min-height: 1.85rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0.5rem !important;
+        background: #2d7ef7 !important;
+        color: #ffffff !important;
+        box-shadow: 0 1px 3px rgba(31, 45, 61, 0.12) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 5 !important;
+    }
+
+    .fi-body:has(#fi-main-sidebar:not(.fi-sidebar-open)) .fi-topbar-start .ac-sidebar-toggle--rail svg {
+        width: 0.95rem !important;
+        height: 0.95rem !important;
+        color: #ffffff !important;
+        stroke: currentColor !important;
+    }
+
+    .fi-body:has(#fi-main-sidebar:not(.fi-sidebar-open)) .fi-topbar-start .ac-sidebar-toggle--rail:hover {
+        background: #2563eb !important;
+        color: #ffffff !important;
+        filter: none !important;
+    }
+
+    /* Rail icons — same size + centred column under the topbar hamburger. */
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-nav {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 0.75rem 0.5rem !important;
+        gap: 0 !important;
+    }
+
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-nav-groups {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 0.55rem !important;
+    }
+
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-group,
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-group-items {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 0.55rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-item-btn,
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-group-dropdown-trigger-btn,
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-database-notifications-btn {
+        width: 1.85rem !important;
+        min-width: 1.85rem !important;
+        max-width: 1.85rem !important;
+        height: 1.85rem !important;
+        min-height: 1.85rem !important;
+        margin-inline: auto !important;
+        padding: 0 !important;
+        justify-content: center !important;
+        background: transparent !important;
+    }
+
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-item-btn > .fi-sidebar-item-icon,
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-group-dropdown-trigger-btn > .fi-icon,
+    .fi-body.fi-body-has-sidebar-collapsible-on-desktop .fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-database-notifications-btn > .fi-icon {
+        width: 1.85rem !important;
+        height: 1.85rem !important;
+        min-width: 1.85rem !important;
+        margin: 0 !important;
+        border-radius: 0.5rem !important;
     }
 }
 
@@ -19708,8 +19821,11 @@ body > .fi-dropdown-panel,
     }
 
     .fi-body:has(#fi-main-sidebar:not(.fi-sidebar-open)) .fi-topbar-start {
+        width: var(--collapsed-sidebar-width, 4.375rem) !important;
+        min-width: var(--collapsed-sidebar-width, 4.375rem) !important;
+        max-width: var(--collapsed-sidebar-width, 4.375rem) !important;
         justify-content: center !important;
-        padding-inline: 0.75rem !important;
+        padding-inline: 0 !important;
     }
 }
 

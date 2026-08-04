@@ -66,6 +66,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         FilamentView::registerRenderHook(
+            PanelsRenderHook::TOPBAR_LOGO_AFTER,
+            fn (): View => view('components.filament.sidebar-rail-toggle'),
+        );
+
+        FilamentView::registerRenderHook(
             PanelsRenderHook::SIDEBAR_FOOTER,
             fn (): View => view('components.filament.sidebar-footer'),
         );
