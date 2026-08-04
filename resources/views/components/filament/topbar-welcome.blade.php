@@ -14,7 +14,10 @@
         : Str::headline($roleName ?? 'Team Member');
 @endphp
 
+{{-- Icon at sidebar end border, welcome text immediately beside it --}}
 <div class="ac-topbar-welcome">
+    @include('components.filament.sidebar-toggle')
+
     <div class="ac-topbar-welcome-copy">
         <p class="ac-topbar-welcome-text">
             Welcome back, <strong>{{ $name }}</strong>!

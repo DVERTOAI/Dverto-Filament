@@ -21,6 +21,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ViewColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -55,7 +56,9 @@ class UserResource extends Resource
         return $schema->schema([
             AccessControlFormCard::make(
                 'User Details',
-                'Fill in the information below to add a new user.',
+                static fn (string $operation): string => $operation === 'create'
+                    ? 'Fill in the information below to add a new user.'
+                    : 'Review and update this user’s profile, role, and billing details.',
                 [
                     Grid::make(['default' => 1, 'md' => 2])
                         ->schema([
@@ -144,8 +147,9 @@ class UserResource extends Resource
         return AdminListTable::configure(
             $table,
             searchPlaceholder: 'Search User',
-            filtersFormColumns: 4,
+            filtersFormColumns: 5,
         )
+            ->searchable(false)
             ->columns([
                 TextColumn::make('name')
                     ->label('Name')
@@ -200,38 +204,76 @@ class UserResource extends Resource
                     ->visibleFrom('md'),
             ])
             ->filters([
+                Filter::make('search')
+                    ->form([
+                        TextInput::make('q')
+                            ->label('Search')
+                            ->placeholder('Search User')
+                            ->prefixIcon(Heroicon::OutlinedMagnifyingGlass)
+                            ->extraFieldWrapperAttributes(['class' => 'ac-filter-field'])
+                            ->extraInputAttributes(['class' => 'ac-filter-control']),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        $q = trim((string) ($data['q'] ?? ''));
+
+                        if ($q === '') {
+                            return $query;
+                        }
+
+                        return $query->where(function (Builder $query) use ($q): void {
+                            $query->where('name', 'like', "%{$q}%")
+                                ->orWhere('email', 'like', "%{$q}%");
+                        });
+                    })
+                    ->indicateUsing(fn (array $data): ?string => filled($data['q'] ?? null) ? 'Search: '.$data['q'] : null),
                 SelectFilter::make('roles')
                     ->label('Role')
                     ->relationship('roles', 'name')
                     ->preload()
                     ->native(true)
-                    ->placeholder('All roles'),
+                    ->selectablePlaceholder(true)
+                    ->placeholder('All roles')
+                    ->modifyFormFieldUsing(fn (Select $field): Select => $field
+                        ->extraFieldWrapperAttributes(['class' => 'ac-filter-field'])
+                        ->extraInputAttributes(['class' => 'ac-filter-control'])),
                 SelectFilter::make('plan')
                     ->label('Plan')
                     ->native(true)
+                    ->selectablePlaceholder(true)
                     ->placeholder('All plans')
                     ->options([
                         'Basic'      => 'Basic',
                         'Team'       => 'Team',
                         'Enterprise' => 'Enterprise',
-                    ]),
+                    ])
+                    ->modifyFormFieldUsing(fn (Select $field): Select => $field
+                        ->extraFieldWrapperAttributes(['class' => 'ac-filter-field'])
+                        ->extraInputAttributes(['class' => 'ac-filter-control'])),
                 SelectFilter::make('billing')
                     ->label('Billing')
                     ->native(true)
+                    ->selectablePlaceholder(true)
                     ->placeholder('All billing')
                     ->options([
                         'Auto Debit' => 'Auto Debit',
                         'Manual'     => 'Manual',
                         'Invoice'    => 'Invoice',
-                    ]),
+                    ])
+                    ->modifyFormFieldUsing(fn (Select $field): Select => $field
+                        ->extraFieldWrapperAttributes(['class' => 'ac-filter-field'])
+                        ->extraInputAttributes(['class' => 'ac-filter-control'])),
                 SelectFilter::make('email_verified_at')
                     ->label('Status')
                     ->native(true)
+                    ->selectablePlaceholder(true)
                     ->placeholder('All status')
                     ->options([
                         '1' => 'Active',
                         '0' => 'Inactive',
                     ])
+                    ->modifyFormFieldUsing(fn (Select $field): Select => $field
+                        ->extraFieldWrapperAttributes(['class' => 'ac-filter-field'])
+                        ->extraInputAttributes(['class' => 'ac-filter-control']))
                     ->query(function (Builder $query, array $data): Builder {
                         $value = $data['value'] ?? null;
 
