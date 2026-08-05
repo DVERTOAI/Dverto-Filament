@@ -1,4 +1,4 @@
-{{-- Lives in the topbar brand zone; shown only when the sidebar is collapsed so it stays on the welcome row, centred over the rail icons. --}}
+{{-- Lives in the topbar brand zone; shown only when the sidebar is collapsed. --}}
 <button
     type="button"
     x-data="{}"
@@ -8,8 +8,4 @@
     x-bind:title="$store.sidebar.isOpen ? 'Collapse sidebar' : 'Expand sidebar'"
     x-bind:class="{ 'is-sidebar-collapsed': ! $store.sidebar.isOpen }"
     class="ac-sidebar-toggle ac-sidebar-toggle--rail"
->
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-    </svg>
-</button>
+></button>

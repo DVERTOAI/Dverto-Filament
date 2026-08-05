@@ -55,10 +55,9 @@
         @if (count($pageOptions) > 1)
             <div class="fi-pagination-records-per-page-select-ctn">
                 <label class="fi-pagination-records-per-page-select">
-                    <x-filament::input.wrapper
-                        :prefix="__('filament::components/pagination.fields.records_per_page.label')"
-                    >
+                    <x-filament::input.wrapper>
                         <x-filament::input.select
+                            :aria-label="__('filament::components/pagination.fields.records_per_page.label')"
                             :wire:model.live="$currentPageOptionProperty"
                         >
                             @foreach ($pageOptions as $option)
