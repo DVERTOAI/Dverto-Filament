@@ -26,37 +26,98 @@ class DatabaseSeeder extends Seeder
             Permission::findOrCreate($permission, 'web');
         }
 
-        $adminRole = Role::query()->firstOrCreate(
-            [
-                'name' => 'admin',
-                'guard_name' => 'web',
-            ],
-        );
-
         app(PermissionRegistrar::class)->forgetCachedPermissions();
 
-        $missingPermissions = array_values(array_diff(
-            AdminPermissions::all(),
-            $adminRole->permissions()->pluck('name')->all(),
-        ));
+        $roles = [
+            'admin' => AdminPermissions::all(),
+            'manager' => [
+                AdminPermissions::VIEW_DASHBOARD,
+                AdminPermissions::VIEW_REPORTS,
+                AdminPermissions::EXPORT_REPORTS,
+                AdminPermissions::VIEW_CUSTOMERS,
+                AdminPermissions::MANAGE_CUSTOMERS,
+                AdminPermissions::VIEW_CONTENT,
+                AdminPermissions::VIEW_USERS,
+                AdminPermissions::VIEW_ACTIVITY_LOG,
+            ],
+            'editor' => [
+                AdminPermissions::VIEW_DASHBOARD,
+                AdminPermissions::VIEW_CUSTOMERS,
+                AdminPermissions::VIEW_CONTENT,
+                AdminPermissions::MANAGE_CONTENT,
+                AdminPermissions::VIEW_REPORTS,
+            ],
+            'support' => [
+                AdminPermissions::VIEW_DASHBOARD,
+                AdminPermissions::VIEW_CUSTOMERS,
+                AdminPermissions::MANAGE_CUSTOMERS,
+                AdminPermissions::VIEW_ACTIVITY_LOG,
+            ],
+            'viewer' => [
+                AdminPermissions::VIEW_DASHBOARD,
+                AdminPermissions::VIEW_REPORTS,
+                AdminPermissions::VIEW_CUSTOMERS,
+                AdminPermissions::VIEW_CONTENT,
+            ],
+        ];
 
-        if ($missingPermissions !== []) {
-            $adminRole->givePermissionTo($missingPermissions);
+        $createdRoles = [];
+
+        foreach ($roles as $roleName => $permissions) {
+            $role = Role::query()->firstOrCreate([
+                'name' => $roleName,
+                'guard_name' => 'web',
+            ]);
+
+            $role->syncPermissions($permissions);
+            $createdRoles[$roleName] = $role;
         }
 
-        $adminUser = User::query()->firstOrCreate(
+        $users = [
             [
                 'email' => 'admin@example.com',
+                'name' => 'Admin User',
+                'role' => 'admin',
             ],
             [
-                'name' => 'Admin User',
-                'password' => Hash::make('password'),
-                'email_verified_at' => now(),
+                'email' => 'manager@example.com',
+                'name' => 'Manager User',
+                'role' => 'manager',
             ],
-        );
+            [
+                'email' => 'editor@example.com',
+                'name' => 'Editor User',
+                'role' => 'editor',
+            ],
+            [
+                'email' => 'support@example.com',
+                'name' => 'Support User',
+                'role' => 'support',
+            ],
+            [
+                'email' => 'viewer@example.com',
+                'name' => 'Viewer User',
+                'role' => 'viewer',
+            ],
+        ];
 
-        if (! $adminUser->hasRole($adminRole)) {
-            $adminUser->assignRole($adminRole);
+        foreach ($users as $userData) {
+            $user = User::query()->firstOrCreate(
+                [
+                    'email' => $userData['email'],
+                ],
+                [
+                    'name' => $userData['name'],
+                    'password' => Hash::make('password'),
+                    'email_verified_at' => now(),
+                ],
+            );
+
+            $role = $createdRoles[$userData['role']];
+
+            if (! $user->hasRole($role)) {
+                $user->syncRoles([$role]);
+            }
         }
 
         app(PermissionRegistrar::class)->forgetCachedPermissions();

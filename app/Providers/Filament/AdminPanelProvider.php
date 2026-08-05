@@ -61,28 +61,30 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->viteTheme('resources/css/filament/admin/theme.css')
-            ->brandName('Laravel')
+            ->brandName('Sneat')
             ->brandLogo(fn (): HtmlString => new HtmlString(<<<'HTML'
                 <span class="ac-brand">
                     <span class="ac-brand-mark" aria-hidden="true">
                         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 3.5L26.8253 9.75V22.25L16 28.5L5.17468 22.25V9.75L16 3.5Z" stroke="currentColor" stroke-width="2.75" stroke-linejoin="round" />
+                            <rect x="2.5" y="2.5" width="27" height="27" rx="8" fill="currentColor" opacity="0.12"/>
+                            <path d="M9.5 11.2h7.6c2.35 0 3.9 1.35 3.9 3.35 0 1.55-.9 2.7-2.35 3.15L22.5 21.5h-2.55l-3.55-3.55H11.9V21.5H9.5V11.2Zm2.4 1.85v3.05h5.05c1.2 0 1.9-.6 1.9-1.55s-.7-1.5-1.9-1.5H11.9Z" fill="currentColor"/>
                         </svg>
                     </span>
-                    <span class="ac-brand-text">Laravel</span>
+                    <span class="ac-brand-text">PSRI Finance</span>
                 </span>
             HTML))
-            ->brandLogoHeight('2.25rem')
-            ->sidebarWidth('20rem')
+            ->brandLogoHeight('2rem')
+            ->sidebarWidth('16.25rem')
+            ->collapsedSidebarWidth('4.375rem')
             ->sidebarCollapsibleOnDesktop()
             ->darkMode()
+            ->spa()
             ->globalSearch(position: GlobalSearchPosition::Topbar)
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
-            ->globalSearchFieldKeyBindingSuffix()
             ->login(Login::class)
             ->maxContentWidth(Width::Full)
             ->colors([
-                'primary' => Color::Violet,
+                'primary' => Color::hex('#2d7ef7'),
             ])
             ->plugins([
                 SpatieTranslatablePlugin::make()->defaultLocales([config('app.locale')]),
@@ -93,6 +95,7 @@ class AdminPanelProvider extends PanelProvider
 
                 return $builder->groups([
                     NavigationGroup::make()
+                        ->collapsible(false)
                         ->items([
                             NavigationItem::make('Dashboard')
                                 ->icon(Heroicon::OutlinedHome)

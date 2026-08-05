@@ -10,7 +10,7 @@ class GrowthChart extends ChartWidget
 
     protected static ?int $sort = 2;
 
-    protected static bool $isLazy = false;
+    protected static bool $isLazy = true;
 
     protected int|string|array $columnSpan = 1;
 

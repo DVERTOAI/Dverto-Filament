@@ -19,7 +19,7 @@ class CreateUser extends CreateAdminRecord
             <div class="ac-create-toolbar">
                 <a href="{$backUrl}" class="ac-create-back">
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    Back to users
+                    Back
                 </a>
                 <span class="ac-create-title">New User</span>
             </div>
@@ -28,7 +28,7 @@ class CreateUser extends CreateAdminRecord
 
     public function getSubheading(): ?string
     {
-        return null;
+        return 'Add a new admin user and assign their role and access.';
     }
 
     /**

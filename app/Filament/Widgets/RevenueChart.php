@@ -11,7 +11,7 @@ class RevenueChart extends ChartWidget
 
     protected static ?int $sort = 1;
 
-    protected static bool $isLazy = false;
+    protected static bool $isLazy = true;
 
     protected int|string|array $columnSpan = [
         'md' => 2,

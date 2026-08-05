@@ -26,7 +26,8 @@ class ListPermissions extends ListAdminRecords
         return [
             CreateAction::make()
                 ->label('New Permission')
-                ->icon(Heroicon::Plus),
+                ->icon(Heroicon::Plus)
+                ->color('primary'),
         ];
     }
 }

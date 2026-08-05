@@ -20,17 +20,13 @@ class EditUser extends EditAdminRecord
             <div class="ac-create-toolbar">
                 <a href="{$backUrl}" class="ac-create-back">
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    Back to users
+                    Back
                 </a>
                 <span class="ac-create-title">Edit User</span>
             </div>
         HTML);
     }
 
-    public function getSubheading(): ?string
-    {
-        return null;
-    }
 
     protected function getFormActions(): array
     {

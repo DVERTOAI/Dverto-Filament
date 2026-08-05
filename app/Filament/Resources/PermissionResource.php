@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PermissionResource\Pages;
 use App\Filament\Support\AccessControlFormCard;
+use App\Filament\Support\AdminListTable;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
@@ -17,7 +18,6 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Spatie\Permission\Models\Permission;
@@ -119,13 +119,12 @@ class PermissionResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table
-            ->extraAttributes(['class' => 'ac-compact-table ac-user-table'])
-            ->searchPlaceholder('Search permissions by name or guard')
-            ->defaultPaginationPageOption(10)
-            ->paginationPageOptions([10, 25, 50])
-            ->recordAction(null)
-            ->recordUrl(null)
+        return AdminListTable::configure(
+            $table,
+            searchPlaceholder: 'Search Permission',
+            filtersFormColumns: 1,
+            compact: true,
+        )
             ->columns([
                 TextColumn::make('name')
                     ->label('Permission')
@@ -157,23 +156,22 @@ class PermissionResource extends Resource
             ->filters([
                 SelectFilter::make('guard_name')
                     ->label('Guard')
-                    ->searchable()
-                    ->options(fn () => Permission::query()->distinct()->pluck('guard_name', 'guard_name')->toArray()),
-            ], layout: FiltersLayout::AboveContent)
-            ->filtersFormColumns(1)
+                    ->native(true)
+                    ->placeholder('All guards')
+                    ->options(fn () => Permission::query()->distinct()->orderBy('guard_name')->pluck('guard_name', 'guard_name')->all()),
+            ])
             ->defaultSort('name')
-            ->recordActionsColumnLabel('Actions')
             ->recordActions([
+                EditAction::make()
+                    ->iconButton()
+                    ->icon(Heroicon::OutlinedPencil)
+                    ->color('gray')
+                    ->tooltip('Edit'),
                 DeleteAction::make()
                     ->iconButton()
                     ->icon(Heroicon::OutlinedTrash)
                     ->color('danger')
                     ->tooltip('Delete'),
-                EditAction::make()
-                    ->iconButton()
-                    ->icon(Heroicon::OutlinedPencilSquare)
-                    ->color('gray')
-                    ->tooltip('Edit'),
             ]);
     }
 

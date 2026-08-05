@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Filament\Resources\Pages\ListAdminRecords;
 use App\Listeners\ClearLatestLoginSession;
 use App\Listeners\StoreLatestLoginSession;
 use App\Models\User;
 use App\Policies\PermissionPolicy;
 use App\Policies\RolePolicy;
+use Filament\Facades\Filament;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Auth\Events\CurrentDeviceLogout;
@@ -45,10 +47,13 @@ class AppServiceProvider extends ServiceProvider
             return $user->isSuperAdmin() ? true : null;
         });
 
-        FilamentView::registerRenderHook(
-            PanelsRenderHook::TOPBAR_START,
-            fn (): View => view('components.filament.sidebar-toggle'),
-        );
+        Filament::serving(function (): void {
+            $user = auth()->user();
+
+            if ($user instanceof User) {
+                $user->loadMissing('roles');
+            }
+        });
 
         FilamentView::registerRenderHook(
             PanelsRenderHook::GLOBAL_SEARCH_BEFORE,
@@ -61,6 +66,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         FilamentView::registerRenderHook(
+            PanelsRenderHook::TOPBAR_LOGO_AFTER,
+            fn (): View => view('components.filament.sidebar-rail-toggle'),
+        );
+
+        FilamentView::registerRenderHook(
             PanelsRenderHook::SIDEBAR_FOOTER,
             fn (): View => view('components.filament.sidebar-footer'),
         );
@@ -68,6 +78,12 @@ class AppServiceProvider extends ServiceProvider
         FilamentView::registerRenderHook(
             PanelsRenderHook::SCRIPTS_AFTER,
             fn (): View => view('components.filament.sidebar-accordion'),
+        );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::PAGE_START,
+            fn (): View => view('components.filament.table-loading'),
+            scopes: ListAdminRecords::class,
         );
     }
 }
