@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\Pages;
+namespace App\Filament\Resources\DoctorResource\Pages;
 
+use App\Filament\Resources\DoctorResource;
 use App\Filament\Resources\Pages\CreateAdminRecord;
-use App\Filament\Resources\UserResource;
 use Illuminate\Contracts\Support\Htmlable;
 
-class CreateUser extends CreateAdminRecord
+class CreateDoctor extends CreateAdminRecord
 {
-    protected static string $resource = UserResource::class;
+    protected static string $resource = DoctorResource::class;
 
     public function getHeading(): string|Htmlable
     {
-        return 'New User';
+        return 'Add Doctor';
     }
 
     public function getSubheading(): ?string
     {
-        return 'Add a new admin user and assign their role and access.';
+        return 'Doctor management';
     }
 
     /**

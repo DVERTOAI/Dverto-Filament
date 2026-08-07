@@ -1,23 +1,31 @@
 <?php
 
-namespace App\Filament\Resources\RoleResource\Pages;
+namespace App\Filament\Resources\DepartmentResource\Pages;
 
+use App\Filament\Resources\DepartmentResource;
 use App\Filament\Resources\Pages\EditAdminRecord;
-use App\Filament\Resources\RoleResource;
 use Illuminate\Contracts\Support\Htmlable;
 
-class EditRole extends EditAdminRecord
+class EditDepartment extends EditAdminRecord
 {
-    protected static string $resource = RoleResource::class;
+    protected static string $resource = DepartmentResource::class;
 
     public function getHeading(): string|Htmlable
     {
-        return 'Edit Role';
+        return 'Edit Department';
     }
 
     public function getSubheading(): ?string
     {
-        return null;
+        return 'Department management';
+    }
+
+    /**
+     * @return array<string>
+     */
+    public function getBreadcrumbs(): array
+    {
+        return [];
     }
 
     protected function getFormActions(): array

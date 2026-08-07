@@ -8,7 +8,6 @@ use App\Filament\Support\AdminListTable;
 use App\Models\User;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -293,11 +292,6 @@ class UserResource extends Resource
                     ->icon(Heroicon::OutlinedPencil)
                     ->color('gray')
                     ->tooltip('Edit'),
-                DeleteAction::make()
-                    ->iconButton()
-                    ->icon(Heroicon::OutlinedTrash)
-                    ->color('danger')
-                    ->tooltip('Delete'),
             ]);
     }
 

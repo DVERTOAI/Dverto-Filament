@@ -1082,8 +1082,8 @@
 }
 
 .ac-form-shell {
-    width: min(100%, 72rem);
-    margin-inline: auto;
+    width: 100%;
+    margin-inline: 0;
     --ac-accent: #d97706;
     --ac-accent-soft: rgba(217, 119, 6, 0.12);
     --ac-accent-strong: rgba(217, 119, 6, 0.22);
@@ -2200,12 +2200,36 @@
 }
 
 .fi-resource-users,
+.fi-resource-categories,
+.fi-resource-doctors,
+.fi-resource-departments,
 .fi-resource-roles,
 .fi-resource-permissions {
     --ac-resource-accent: #2563eb;
     --ac-resource-accent-soft: rgba(37, 99, 235, 0.09);
     --ac-resource-accent-border: rgba(37, 99, 235, 0.2);
     --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 21V19C17 16.7909 15.2091 15 13 15H7C4.79086 15 3 16.7909 3 19V21' stroke='%232563eb' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M10 11C12.2091 11 14 9.20914 14 7C14 4.79086 12.2091 3 10 3C7.79086 3 6 4.79086 6 7C6 9.20914 7.79086 11 10 11Z' stroke='%232563eb' stroke-width='1.8'/%3E%3Cpath d='M21 20V18.5C21 16.8431 19.6569 15.5 18 15.5' stroke='%232563eb' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M17 3.5C18.6569 3.5 20 4.84315 20 6.5C20 8.15685 18.6569 9.5 17 9.5' stroke='%232563eb' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.fi-resource-departments {
+    --ac-resource-accent: #0d9488;
+    --ac-resource-accent-soft: rgba(13, 148, 136, 0.09);
+    --ac-resource-accent-border: rgba(13, 148, 136, 0.2);
+    --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 21H21' stroke='%230d9488' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M5 21V8L12 4L19 8V21' stroke='%230d9488' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M9 21V13H15V21' stroke='%230d9488' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.fi-resource-doctors {
+    --ac-resource-accent: #e11d48;
+    --ac-resource-accent-soft: rgba(225, 29, 72, 0.09);
+    --ac-resource-accent-border: rgba(225, 29, 72, 0.2);
+    --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 21C12 21 4 14.5 4 9.5C4 6.46243 6.46243 4 9.5 4C10.8355 4 12.0583 4.48148 12.9991 5.27389C13.9401 4.48148 15.1629 4 16.5 4C19.5376 4 22 6.46243 22 9.5C22 14.5 14 21 12 21Z' stroke='%23e11d48' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.fi-resource-categories {
+    --ac-resource-accent: #ca8a04;
+    --ac-resource-accent-soft: rgba(202, 138, 4, 0.09);
+    --ac-resource-accent-border: rgba(202, 138, 4, 0.2);
+    --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 7H17V17H7V7Z' stroke='%23ca8a04' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M4 10H7' stroke='%23ca8a04' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M4 14H7' stroke='%23ca8a04' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 .fi-resource-roles {
@@ -2223,6 +2247,9 @@
 }
 
 .fi-resource-users .fi-header,
+.fi-resource-categories .fi-header,
+.fi-resource-doctors .fi-header,
+.fi-resource-departments .fi-header,
 .fi-resource-roles .fi-header,
 .fi-resource-permissions .fi-header {
     display: flex;
@@ -2234,6 +2261,9 @@
 }
 
 .fi-resource-users .fi-header > div:first-child,
+.fi-resource-categories .fi-header > div:first-child,
+.fi-resource-doctors .fi-header > div:first-child,
+.fi-resource-departments .fi-header > div:first-child,
 .fi-resource-roles .fi-header > div:first-child,
 .fi-resource-permissions .fi-header > div:first-child {
     display: grid;
@@ -2247,6 +2277,9 @@
 }
 
 .fi-resource-users .fi-header > div:first-child::before,
+.fi-resource-categories .fi-header > div:first-child::before,
+.fi-resource-doctors .fi-header > div:first-child::before,
+.fi-resource-departments .fi-header > div:first-child::before,
 .fi-resource-roles .fi-header > div:first-child::before,
 .fi-resource-permissions .fi-header > div:first-child::before {
     content: '';
@@ -2264,6 +2297,9 @@
 }
 
 .dark .fi-resource-users .fi-header > div:first-child::before,
+.dark .fi-resource-categories .fi-header > div:first-child::before,
+.dark .fi-resource-doctors .fi-header > div:first-child::before,
+.dark .fi-resource-departments .fi-header > div:first-child::before,
 .dark .fi-resource-roles .fi-header > div:first-child::before,
 .dark .fi-resource-permissions .fi-header > div:first-child::before {
     border-color: var(--ac-resource-accent-border);
@@ -2271,6 +2307,9 @@
 }
 
 .fi-resource-users .fi-header-heading,
+.fi-resource-categories .fi-header-heading,
+.fi-resource-doctors .fi-header-heading,
+.fi-resource-departments .fi-header-heading,
 .fi-resource-roles .fi-header-heading,
 .fi-resource-permissions .fi-header-heading {
     grid-area: heading;
@@ -2281,6 +2320,9 @@
 }
 
 .fi-resource-users .fi-header-subheading,
+.fi-resource-categories .fi-header-subheading,
+.fi-resource-doctors .fi-header-subheading,
+.fi-resource-departments .fi-header-subheading,
 .fi-resource-roles .fi-header-subheading,
 .fi-resource-permissions .fi-header-subheading {
     grid-area: subheading;
@@ -2290,6 +2332,9 @@
 }
 
 .fi-resource-users .fi-header-actions-ctn,
+.fi-resource-categories .fi-header-actions-ctn,
+.fi-resource-doctors .fi-header-actions-ctn,
+.fi-resource-departments .fi-header-actions-ctn,
 .fi-resource-roles .fi-header-actions-ctn,
 .fi-resource-permissions .fi-header-actions-ctn {
     flex-shrink: 0;
@@ -2297,6 +2342,9 @@
 }
 
 .fi-resource-users .fi-header-actions-ctn .fi-btn,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn,
 .fi-resource-permissions .fi-header-actions-ctn .fi-btn {
     min-height: 2.2rem;
@@ -3106,36 +3154,60 @@
     }
 
     .fi-resource-users .fi-header,
-    .fi-resource-roles .fi-header,
-    .fi-resource-permissions .fi-header {
+.fi-resource-categories .fi-header,
+.fi-resource-doctors .fi-header,
+.fi-resource-departments .fi-header,
+.fi-resource-roles .fi-header,
+.fi-resource-permissions .fi-header {
         align-items: stretch;
         flex-direction: column;
     }
 
     .fi-resource-users.fi-page-create-record .fi-header > div:first-child,
-    .fi-resource-users.fi-page-edit-record .fi-header > div:first-child,
-    .fi-resource-roles.fi-page-create-record .fi-header > div:first-child,
-    .fi-resource-permissions.fi-page-create-record .fi-header > div:first-child {
+.fi-resource-categories.fi-page-create-record .fi-header > div:first-child,
+.fi-resource-doctors.fi-page-create-record .fi-header > div:first-child,
+.fi-resource-departments.fi-page-create-record .fi-header > div:first-child,
+.fi-resource-users.fi-page-edit-record .fi-header > div:first-child,
+.fi-resource-categories.fi-page-edit-record .fi-header > div:first-child,
+.fi-resource-doctors.fi-page-edit-record .fi-header > div:first-child,
+.fi-resource-departments.fi-page-edit-record .fi-header > div:first-child,
+.fi-resource-roles.fi-page-create-record .fi-header > div:first-child,
+.fi-resource-permissions.fi-page-create-record .fi-header > div:first-child {
         grid-template-columns: 2.25rem minmax(0, 1fr);
     }
 
     .fi-resource-users.fi-page-create-record .fi-breadcrumbs-list,
-    .fi-resource-users.fi-page-edit-record .fi-breadcrumbs-list,
-    .fi-resource-roles.fi-page-create-record .fi-breadcrumbs-list,
-    .fi-resource-permissions.fi-page-create-record .fi-breadcrumbs-list {
+.fi-resource-categories.fi-page-create-record .fi-breadcrumbs-list,
+.fi-resource-doctors.fi-page-create-record .fi-breadcrumbs-list,
+.fi-resource-departments.fi-page-create-record .fi-breadcrumbs-list,
+.fi-resource-users.fi-page-edit-record .fi-breadcrumbs-list,
+.fi-resource-categories.fi-page-edit-record .fi-breadcrumbs-list,
+.fi-resource-doctors.fi-page-edit-record .fi-breadcrumbs-list,
+.fi-resource-departments.fi-page-edit-record .fi-breadcrumbs-list,
+.fi-resource-roles.fi-page-create-record .fi-breadcrumbs-list,
+.fi-resource-permissions.fi-page-create-record .fi-breadcrumbs-list {
         max-width: 100%;
         overflow-x: auto;
     }
 
     .fi-resource-users .fi-header-actions-ctn,
-    .fi-resource-users .fi-header-actions-ctn .fi-ac,
-    .fi-resource-users .fi-header-actions-ctn .fi-btn,
-    .fi-resource-roles .fi-header-actions-ctn,
-    .fi-resource-roles .fi-header-actions-ctn .fi-ac,
-    .fi-resource-roles .fi-header-actions-ctn .fi-btn,
-    .fi-resource-permissions .fi-header-actions-ctn,
-    .fi-resource-permissions .fi-header-actions-ctn .fi-ac,
-    .fi-resource-permissions .fi-header-actions-ctn .fi-btn {
+.fi-resource-categories .fi-header-actions-ctn,
+.fi-resource-doctors .fi-header-actions-ctn,
+.fi-resource-departments .fi-header-actions-ctn,
+.fi-resource-users .fi-header-actions-ctn .fi-ac,
+.fi-resource-categories .fi-header-actions-ctn .fi-ac,
+.fi-resource-doctors .fi-header-actions-ctn .fi-ac,
+.fi-resource-departments .fi-header-actions-ctn .fi-ac,
+.fi-resource-users .fi-header-actions-ctn .fi-btn,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn,
+.fi-resource-roles .fi-header-actions-ctn,
+.fi-resource-roles .fi-header-actions-ctn .fi-ac,
+.fi-resource-roles .fi-header-actions-ctn .fi-btn,
+.fi-resource-permissions .fi-header-actions-ctn,
+.fi-resource-permissions .fi-header-actions-ctn .fi-ac,
+.fi-resource-permissions .fi-header-actions-ctn .fi-btn {
         width: 100%;
     }
 }
@@ -6614,6 +6686,9 @@ html.fi {
 
 /* Users, Roles, Permissions resource pages */
 .fi-resource-users,
+.fi-resource-categories,
+.fi-resource-doctors,
+.fi-resource-departments,
 .fi-resource-roles,
 .fi-resource-permissions {
     --ac-resource-accent: #6338f5;
@@ -6647,6 +6722,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-page-header-main-ctn,
+.fi-resource-categories .fi-page-header-main-ctn,
+.fi-resource-doctors .fi-page-header-main-ctn,
+.fi-resource-departments .fi-page-header-main-ctn,
 .fi-resource-roles .fi-page-header-main-ctn,
 .fi-resource-permissions .fi-page-header-main-ctn {
     gap: 1.3rem;
@@ -6654,12 +6732,18 @@ html.fi {
 }
 
 .fi-resource-users .fi-page-content,
+.fi-resource-categories .fi-page-content,
+.fi-resource-doctors .fi-page-content,
+.fi-resource-departments .fi-page-content,
 .fi-resource-roles .fi-page-content,
 .fi-resource-permissions .fi-page-content {
     gap: 1.25rem;
 }
 
 .fi-resource-users .fi-header,
+.fi-resource-categories .fi-header,
+.fi-resource-doctors .fi-header,
+.fi-resource-departments .fi-header,
 .fi-resource-roles .fi-header,
 .fi-resource-permissions .fi-header {
     align-items: center;
@@ -6672,7 +6756,13 @@ html.fi {
 }
 
 .fi-resource-users .fi-header::before,
+.fi-resource-categories .fi-header::before,
+.fi-resource-doctors .fi-header::before,
+.fi-resource-departments .fi-header::before,
 .fi-resource-users .fi-header::after,
+.fi-resource-categories .fi-header::after,
+.fi-resource-doctors .fi-header::after,
+.fi-resource-departments .fi-header::after,
 .fi-resource-roles .fi-header::before,
 .fi-resource-roles .fi-header::after,
 .fi-resource-permissions .fi-header::before,
@@ -6681,6 +6771,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header > div:first-child,
+.fi-resource-categories .fi-header > div:first-child,
+.fi-resource-doctors .fi-header > div:first-child,
+.fi-resource-departments .fi-header > div:first-child,
 .fi-resource-roles .fi-header > div:first-child,
 .fi-resource-permissions .fi-header > div:first-child {
     display: grid;
@@ -6694,6 +6787,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header > div:first-child::before,
+.fi-resource-categories .fi-header > div:first-child::before,
+.fi-resource-doctors .fi-header > div:first-child::before,
+.fi-resource-departments .fi-header > div:first-child::before,
 .fi-resource-roles .fi-header > div:first-child::before,
 .fi-resource-permissions .fi-header > div:first-child::before {
     content: '';
@@ -6714,6 +6810,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header-heading,
+.fi-resource-categories .fi-header-heading,
+.fi-resource-doctors .fi-header-heading,
+.fi-resource-departments .fi-header-heading,
 .fi-resource-roles .fi-header-heading,
 .fi-resource-permissions .fi-header-heading {
     grid-area: heading;
@@ -6726,6 +6825,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header-subheading,
+.fi-resource-categories .fi-header-subheading,
+.fi-resource-doctors .fi-header-subheading,
+.fi-resource-departments .fi-header-subheading,
 .fi-resource-roles .fi-header-subheading,
 .fi-resource-permissions .fi-header-subheading {
     grid-area: subheading;
@@ -6737,6 +6839,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-breadcrumbs-item-label,
+.fi-resource-categories .fi-breadcrumbs-item-label,
+.fi-resource-doctors .fi-breadcrumbs-item-label,
+.fi-resource-departments .fi-breadcrumbs-item-label,
 .fi-resource-roles .fi-breadcrumbs-item-label,
 .fi-resource-permissions .fi-breadcrumbs-item-label {
     color: #7280a3;
@@ -6746,24 +6851,36 @@ html.fi {
 }
 
 .fi-resource-users .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
+.fi-resource-categories .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
+.fi-resource-doctors .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
+.fi-resource-departments .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
 .fi-resource-roles .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
 .fi-resource-permissions .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label {
     color: var(--ac-dashboard-purple);
 }
 
 .fi-resource-users .fi-breadcrumbs-item-separator,
+.fi-resource-categories .fi-breadcrumbs-item-separator,
+.fi-resource-doctors .fi-breadcrumbs-item-separator,
+.fi-resource-departments .fi-breadcrumbs-item-separator,
 .fi-resource-roles .fi-breadcrumbs-item-separator,
 .fi-resource-permissions .fi-breadcrumbs-item-separator {
     color: #a7b1c6;
 }
 
 .fi-resource-users .fi-header-actions-ctn,
+.fi-resource-categories .fi-header-actions-ctn,
+.fi-resource-doctors .fi-header-actions-ctn,
+.fi-resource-departments .fi-header-actions-ctn,
 .fi-resource-roles .fi-header-actions-ctn,
 .fi-resource-permissions .fi-header-actions-ctn {
     margin-inline-start: auto;
 }
 
 .fi-resource-users .fi-header-actions-ctn .fi-btn,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn,
 .fi-resource-permissions .fi-header-actions-ctn .fi-btn {
     min-height: 2.9rem;
@@ -6778,7 +6895,13 @@ html.fi {
 }
 
 .fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-primary,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-primary,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-primary,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-primary,
 .fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-custom,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-custom,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-custom,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-custom,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn.fi-color-primary,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn.fi-color-custom,
 .fi-resource-permissions .fi-header-actions-ctn .fi-btn.fi-color-primary,
@@ -6790,6 +6913,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-danger,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-danger,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-danger,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-danger,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn.fi-color-danger,
 .fi-resource-permissions .fi-header-actions-ctn .fi-btn.fi-color-danger {
     border-color: rgba(239, 68, 68, 0.16);
@@ -6798,6 +6924,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table,
+.fi-resource-categories .fi-ta.ac-user-table,
+.fi-resource-doctors .fi-ta.ac-user-table,
+.fi-resource-departments .fi-ta.ac-user-table,
 .fi-resource-roles .fi-ta.ac-user-table,
 .fi-resource-permissions .fi-ta.ac-user-table {
     overflow: hidden;
@@ -6811,6 +6940,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-ctn,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-ctn,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-ctn,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-ctn,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-ctn,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-ctn {
     border: 0;
@@ -6820,7 +6952,13 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-header,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-header,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-header,
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-header-toolbar,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header-toolbar,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-header,
@@ -6831,6 +6969,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp {
     min-height: 2.75rem;
@@ -6841,6 +6982,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within {
     border-color: color-mix(in srgb, var(--ac-resource-accent) 45%, white);
@@ -6848,12 +6992,18 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix {
     color: var(--ac-resource-accent);
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-table,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-table,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-table,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-table,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-table,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-table {
     min-width: 52rem;
@@ -6861,12 +7011,18 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-table thead,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-table thead,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-table thead,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-table thead,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-table thead,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-table thead {
     background: rgba(248, 250, 255, 0.82);
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-header-cell,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-header-cell,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header-cell,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-header-cell,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header-cell,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-header-cell {
     border-color: #e5ebf5;
@@ -6878,6 +7034,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-cell,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-cell,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-cell,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-cell,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-cell,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-cell {
     border-color: #edf1f7;
@@ -6886,6 +7045,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-col,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-col,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-col,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-col,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-col,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-col {
     min-height: 1.55rem;
@@ -6894,8 +7056,17 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-text,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-text,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-text,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-text,
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-text-item,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-text-item,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-text-item,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-text-item,
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-text-item-label,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-text-item-label,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-text-item-label,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-text-item-label,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-text,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-text-item,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-text-item-label,
@@ -6999,18 +7170,27 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-row:nth-child(even) {
     background: rgba(255, 255, 255, 0.42);
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-row:hover,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-row:hover,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-row:hover,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-row:hover,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-row:hover,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-row:hover {
     background: color-mix(in srgb, var(--ac-resource-accent) 5%, white);
 }
 
 .fi-resource-users .ac-user-avatar,
+.fi-resource-categories .ac-user-avatar,
+.fi-resource-doctors .ac-user-avatar,
+.fi-resource-departments .ac-user-avatar,
 .fi-resource-roles .ac-user-avatar,
 .fi-resource-permissions .ac-user-avatar {
     width: 2.75rem;
@@ -7023,6 +7203,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-user-name,
+.fi-resource-categories .ac-user-name,
+.fi-resource-doctors .ac-user-name,
+.fi-resource-departments .ac-user-name,
 .fi-resource-roles .ac-user-name,
 .fi-resource-permissions .ac-user-name {
     color: var(--ac-resource-text);
@@ -7032,6 +7215,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-user-email,
+.fi-resource-categories .ac-user-email,
+.fi-resource-doctors .ac-user-email,
+.fi-resource-departments .ac-user-email,
 .fi-resource-roles .ac-user-email,
 .fi-resource-permissions .ac-user-email {
     color: var(--ac-resource-muted);
@@ -7040,6 +7226,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-badge,
+.fi-resource-categories .fi-ta.ac-user-table .fi-badge,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-badge,
+.fi-resource-departments .fi-ta.ac-user-table .fi-badge,
 .fi-resource-roles .fi-ta.ac-user-table .fi-badge,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-badge {
     border: 1px solid color-mix(in srgb, var(--ac-resource-accent) 18%, white);
@@ -7052,6 +7241,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-badge.fi-color-success,
+.fi-resource-categories .fi-ta.ac-user-table .fi-badge.fi-color-success,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-badge.fi-color-success,
+.fi-resource-departments .fi-ta.ac-user-table .fi-badge.fi-color-success,
 .fi-resource-roles .fi-ta.ac-user-table .fi-badge.fi-color-success,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-badge.fi-color-success {
     border-color: rgba(22, 193, 93, 0.2);
@@ -7060,6 +7252,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-badge.fi-color-warning,
+.fi-resource-categories .fi-ta.ac-user-table .fi-badge.fi-color-warning,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-badge.fi-color-warning,
+.fi-resource-departments .fi-ta.ac-user-table .fi-badge.fi-color-warning,
 .fi-resource-roles .fi-ta.ac-user-table .fi-badge.fi-color-warning,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-badge.fi-color-warning {
     border-color: rgba(245, 158, 11, 0.22);
@@ -7068,7 +7263,13 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
@@ -7085,6 +7286,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-pagination,
+.fi-resource-categories .fi-ta.ac-user-table .fi-pagination,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-pagination,
+.fi-resource-departments .fi-ta.ac-user-table .fi-pagination,
 .fi-resource-roles .fi-ta.ac-user-table .fi-pagination,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-pagination {
     border-top: 1px solid #e5ebf5;
@@ -7092,15 +7296,25 @@ html.fi {
 }
 
 .fi-resource-create-record-page.fi-resource-users .fi-page-content,
+.fi-resource-create-record-page.fi-resource-categories .fi-page-content,
+.fi-resource-create-record-page.fi-resource-doctors .fi-page-content,
+.fi-resource-create-record-page.fi-resource-departments .fi-page-content,
 .fi-resource-edit-record-page.fi-resource-users .fi-page-content,
+.fi-resource-edit-record-page.fi-resource-categories .fi-page-content,
+.fi-resource-edit-record-page.fi-resource-doctors .fi-page-content,
+.fi-resource-edit-record-page.fi-resource-departments .fi-page-content,
 .fi-resource-create-record-page.fi-resource-roles .fi-page-content,
 .fi-resource-edit-record-page.fi-resource-roles .fi-page-content,
 .fi-resource-create-record-page.fi-resource-permissions .fi-page-content,
 .fi-resource-edit-record-page.fi-resource-permissions .fi-page-content {
-    width: min(100%, 72rem);
+    width: 100%;
+    max-width: none;
 }
 
 .fi-resource-users .ac-form-shell,
+.fi-resource-categories .ac-form-shell,
+.fi-resource-doctors .ac-form-shell,
+.fi-resource-departments .ac-form-shell,
 .fi-resource-roles .ac-form-shell,
 .fi-resource-permissions .ac-form-shell {
     width: 100%;
@@ -7108,6 +7322,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-section,
+.fi-resource-categories .ac-form-shell .fi-section,
+.fi-resource-doctors .ac-form-shell .fi-section,
+.fi-resource-departments .ac-form-shell .fi-section,
 .fi-resource-roles .ac-form-shell .fi-section,
 .fi-resource-permissions .ac-form-shell .fi-section {
     overflow: hidden;
@@ -7121,6 +7338,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-section-header,
+.fi-resource-categories .ac-form-shell .fi-section-header,
+.fi-resource-doctors .ac-form-shell .fi-section-header,
+.fi-resource-departments .ac-form-shell .fi-section-header,
 .fi-resource-roles .ac-form-shell .fi-section-header,
 .fi-resource-permissions .ac-form-shell .fi-section-header {
     padding: 1.25rem 1.35rem 0.95rem;
@@ -7129,6 +7349,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-section-header > .fi-icon,
+.fi-resource-categories .ac-form-shell .fi-section-header > .fi-icon,
+.fi-resource-doctors .ac-form-shell .fi-section-header > .fi-icon,
+.fi-resource-departments .ac-form-shell .fi-section-header > .fi-icon,
 .fi-resource-roles .ac-form-shell .fi-section-header > .fi-icon,
 .fi-resource-permissions .ac-form-shell .fi-section-header > .fi-icon {
     width: 2.7rem;
@@ -7141,6 +7364,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-section-header-heading,
+.fi-resource-categories .ac-form-shell .fi-section-header-heading,
+.fi-resource-doctors .ac-form-shell .fi-section-header-heading,
+.fi-resource-departments .ac-form-shell .fi-section-header-heading,
 .fi-resource-roles .ac-form-shell .fi-section-header-heading,
 .fi-resource-permissions .ac-form-shell .fi-section-header-heading {
     color: var(--ac-resource-text);
@@ -7149,12 +7375,18 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-section-content-ctn,
+.fi-resource-categories .ac-form-shell .fi-section-content-ctn,
+.fi-resource-doctors .ac-form-shell .fi-section-content-ctn,
+.fi-resource-departments .ac-form-shell .fi-section-content-ctn,
 .fi-resource-roles .ac-form-shell .fi-section-content-ctn,
 .fi-resource-permissions .ac-form-shell .fi-section-content-ctn {
     padding: 1.35rem;
 }
 
 .fi-resource-users .ac-form-shell .fi-fo-field-wrp-label,
+.fi-resource-categories .ac-form-shell .fi-fo-field-wrp-label,
+.fi-resource-doctors .ac-form-shell .fi-fo-field-wrp-label,
+.fi-resource-departments .ac-form-shell .fi-fo-field-wrp-label,
 .fi-resource-roles .ac-form-shell .fi-fo-field-wrp-label,
 .fi-resource-permissions .ac-form-shell .fi-fo-field-wrp-label {
     color: #53617f;
@@ -7165,7 +7397,13 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-input-wrp,
+.fi-resource-categories .ac-form-shell .fi-input-wrp,
+.fi-resource-doctors .ac-form-shell .fi-input-wrp,
+.fi-resource-departments .ac-form-shell .fi-input-wrp,
 .fi-resource-users .ac-form-shell .fi-select-input,
+.fi-resource-categories .ac-form-shell .fi-select-input,
+.fi-resource-doctors .ac-form-shell .fi-select-input,
+.fi-resource-departments .ac-form-shell .fi-select-input,
 .fi-resource-roles .ac-form-shell .fi-input-wrp,
 .fi-resource-roles .ac-form-shell .fi-select-input,
 .fi-resource-permissions .ac-form-shell .fi-input-wrp,
@@ -7178,7 +7416,13 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-input-wrp:focus-within,
+.fi-resource-categories .ac-form-shell .fi-input-wrp:focus-within,
+.fi-resource-doctors .ac-form-shell .fi-input-wrp:focus-within,
+.fi-resource-departments .ac-form-shell .fi-input-wrp:focus-within,
 .fi-resource-users .ac-form-shell .fi-select-input:focus,
+.fi-resource-categories .ac-form-shell .fi-select-input:focus,
+.fi-resource-doctors .ac-form-shell .fi-select-input:focus,
+.fi-resource-departments .ac-form-shell .fi-select-input:focus,
 .fi-resource-roles .ac-form-shell .fi-input-wrp:focus-within,
 .fi-resource-roles .ac-form-shell .fi-select-input:focus,
 .fi-resource-permissions .ac-form-shell .fi-input-wrp:focus-within,
@@ -7189,7 +7433,13 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-input-wrp-prefix .fi-icon,
+.fi-resource-categories .ac-form-shell .fi-input-wrp-prefix .fi-icon,
+.fi-resource-doctors .ac-form-shell .fi-input-wrp-prefix .fi-icon,
+.fi-resource-departments .ac-form-shell .fi-input-wrp-prefix .fi-icon,
 .fi-resource-users .ac-form-shell .fi-input-wrp-suffix .fi-icon,
+.fi-resource-categories .ac-form-shell .fi-input-wrp-suffix .fi-icon,
+.fi-resource-doctors .ac-form-shell .fi-input-wrp-suffix .fi-icon,
+.fi-resource-departments .ac-form-shell .fi-input-wrp-suffix .fi-icon,
 .fi-resource-roles .ac-form-shell .fi-input-wrp-prefix .fi-icon,
 .fi-resource-roles .ac-form-shell .fi-input-wrp-suffix .fi-icon,
 .fi-resource-permissions .ac-form-shell .fi-input-wrp-prefix .fi-icon,
@@ -7198,6 +7448,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-card-actions,
+.fi-resource-categories .ac-card-actions,
+.fi-resource-doctors .ac-card-actions,
+.fi-resource-departments .ac-card-actions,
 .fi-resource-roles .ac-card-actions,
 .fi-resource-permissions .ac-card-actions {
     margin-top: 0.3rem;
@@ -7206,12 +7459,18 @@ html.fi {
 }
 
 .fi-resource-users .ac-card-actions .fi-sc-actions,
+.fi-resource-categories .ac-card-actions .fi-sc-actions,
+.fi-resource-doctors .ac-card-actions .fi-sc-actions,
+.fi-resource-departments .ac-card-actions .fi-sc-actions,
 .fi-resource-roles .ac-card-actions .fi-sc-actions,
 .fi-resource-permissions .ac-card-actions .fi-sc-actions {
     gap: 0.7rem;
 }
 
 .fi-resource-users .ac-card-actions .fi-btn,
+.fi-resource-categories .ac-card-actions .fi-btn,
+.fi-resource-doctors .ac-card-actions .fi-btn,
+.fi-resource-departments .ac-card-actions .fi-btn,
 .fi-resource-roles .ac-card-actions .fi-btn,
 .fi-resource-permissions .ac-card-actions .fi-btn {
     min-height: 2.85rem;
@@ -7221,7 +7480,13 @@ html.fi {
 }
 
 .fi-resource-users .ac-card-actions .fi-btn.fi-color-primary,
+.fi-resource-categories .ac-card-actions .fi-btn.fi-color-primary,
+.fi-resource-doctors .ac-card-actions .fi-btn.fi-color-primary,
+.fi-resource-departments .ac-card-actions .fi-btn.fi-color-primary,
 .fi-resource-users .ac-card-actions .fi-btn.fi-color-custom,
+.fi-resource-categories .ac-card-actions .fi-btn.fi-color-custom,
+.fi-resource-doctors .ac-card-actions .fi-btn.fi-color-custom,
+.fi-resource-departments .ac-card-actions .fi-btn.fi-color-custom,
 .fi-resource-roles .ac-card-actions .fi-btn.fi-color-primary,
 .fi-resource-roles .ac-card-actions .fi-btn.fi-color-custom,
 .fi-resource-permissions .ac-card-actions .fi-btn.fi-color-primary,
@@ -7232,6 +7497,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-card-actions .fi-btn.fi-color-gray,
+.fi-resource-categories .ac-card-actions .fi-btn.fi-color-gray,
+.fi-resource-doctors .ac-card-actions .fi-btn.fi-color-gray,
+.fi-resource-departments .ac-card-actions .fi-btn.fi-color-gray,
 .fi-resource-roles .ac-card-actions .fi-btn.fi-color-gray,
 .fi-resource-permissions .ac-card-actions .fi-btn.fi-color-gray {
     border-color: #dfe6f3 !important;
@@ -7240,6 +7508,9 @@ html.fi {
 }
 
 .dark .fi-resource-users,
+.dark .fi-resource-categories,
+.dark .fi-resource-doctors,
+.dark .fi-resource-departments,
 .dark .fi-resource-roles,
 .dark .fi-resource-permissions {
     --ac-resource-card: rgba(15, 23, 42, 0.84);
@@ -7249,27 +7520,42 @@ html.fi {
 }
 
 .dark .fi-resource-users .fi-breadcrumbs-item-label,
+.dark .fi-resource-categories .fi-breadcrumbs-item-label,
+.dark .fi-resource-doctors .fi-breadcrumbs-item-label,
+.dark .fi-resource-departments .fi-breadcrumbs-item-label,
 .dark .fi-resource-roles .fi-breadcrumbs-item-label,
 .dark .fi-resource-permissions .fi-breadcrumbs-item-label {
     color: #94a3b8;
 }
 
 .dark .fi-resource-users .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
+.dark .fi-resource-categories .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
+.dark .fi-resource-doctors .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
+.dark .fi-resource-departments .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
 .dark .fi-resource-roles .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label,
 .dark .fi-resource-permissions .fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label {
     color: #a78bfa;
 }
 
 .dark .fi-resource-users .fi-breadcrumbs-item-separator,
+.dark .fi-resource-categories .fi-breadcrumbs-item-separator,
+.dark .fi-resource-doctors .fi-breadcrumbs-item-separator,
+.dark .fi-resource-departments .fi-breadcrumbs-item-separator,
 .dark .fi-resource-roles .fi-breadcrumbs-item-separator,
 .dark .fi-resource-permissions .fi-breadcrumbs-item-separator {
     color: #64748b;
 }
 
 .dark .fi-resource-users .fi-ta.ac-user-table,
+.dark .fi-resource-categories .fi-ta.ac-user-table,
+.dark .fi-resource-doctors .fi-ta.ac-user-table,
+.dark .fi-resource-departments .fi-ta.ac-user-table,
 .dark .fi-resource-roles .fi-ta.ac-user-table,
 .dark .fi-resource-permissions .fi-ta.ac-user-table,
 .dark .fi-resource-users .ac-form-shell .fi-section,
+.dark .fi-resource-categories .ac-form-shell .fi-section,
+.dark .fi-resource-doctors .ac-form-shell .fi-section,
+.dark .fi-resource-departments .ac-form-shell .fi-section,
 .dark .fi-resource-roles .ac-form-shell .fi-section,
 .dark .fi-resource-permissions .ac-form-shell .fi-section {
     border-color: var(--ac-resource-border);
@@ -7280,22 +7566,46 @@ html.fi {
 }
 
 .dark .fi-resource-users .fi-header-heading,
+.dark .fi-resource-categories .fi-header-heading,
+.dark .fi-resource-doctors .fi-header-heading,
+.dark .fi-resource-departments .fi-header-heading,
 .dark .fi-resource-roles .fi-header-heading,
 .dark .fi-resource-permissions .fi-header-heading,
 .dark .fi-resource-users .ac-user-name,
+.dark .fi-resource-categories .ac-user-name,
+.dark .fi-resource-doctors .ac-user-name,
+.dark .fi-resource-departments .ac-user-name,
 .dark .fi-resource-roles .ac-user-name,
 .dark .fi-resource-permissions .ac-user-name,
 .dark .fi-resource-users .ac-form-shell .fi-section-header-heading,
+.dark .fi-resource-categories .ac-form-shell .fi-section-header-heading,
+.dark .fi-resource-doctors .ac-form-shell .fi-section-header-heading,
+.dark .fi-resource-departments .ac-form-shell .fi-section-header-heading,
 .dark .fi-resource-roles .ac-form-shell .fi-section-header-heading,
 .dark .fi-resource-permissions .ac-form-shell .fi-section-header-heading {
     color: #f8fafc;
 }
 
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-header,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-header,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-header,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-header-toolbar,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-table thead,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-table thead,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-table thead,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-table thead,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-pagination,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-pagination,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-pagination,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-pagination,
 .dark .fi-resource-users .ac-form-shell .fi-section-header,
+.dark .fi-resource-categories .ac-form-shell .fi-section-header,
+.dark .fi-resource-doctors .ac-form-shell .fi-section-header,
+.dark .fi-resource-departments .ac-form-shell .fi-section-header,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header-toolbar,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-table thead,
@@ -7336,12 +7646,21 @@ html.fi {
 }
 
 .dark .fi-resource-users .ac-form-shell .fi-input-wrp,
+.dark .fi-resource-categories .ac-form-shell .fi-input-wrp,
+.dark .fi-resource-doctors .ac-form-shell .fi-input-wrp,
+.dark .fi-resource-departments .ac-form-shell .fi-input-wrp,
 .dark .fi-resource-users .ac-form-shell .fi-select-input,
+.dark .fi-resource-categories .ac-form-shell .fi-select-input,
+.dark .fi-resource-doctors .ac-form-shell .fi-select-input,
+.dark .fi-resource-departments .ac-form-shell .fi-select-input,
 .dark .fi-resource-roles .ac-form-shell .fi-input-wrp,
 .dark .fi-resource-roles .ac-form-shell .fi-select-input,
 .dark .fi-resource-permissions .ac-form-shell .fi-input-wrp,
 .dark .fi-resource-permissions .ac-form-shell .fi-select-input,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
 .dark .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp {
     border-color: #27344d;
@@ -7350,62 +7669,92 @@ html.fi {
 
 @media (max-width: 1024px) {
     .fi-resource-users .fi-page-header-main-ctn,
-    .fi-resource-roles .fi-page-header-main-ctn,
-    .fi-resource-permissions .fi-page-header-main-ctn {
+.fi-resource-categories .fi-page-header-main-ctn,
+.fi-resource-doctors .fi-page-header-main-ctn,
+.fi-resource-departments .fi-page-header-main-ctn,
+.fi-resource-roles .fi-page-header-main-ctn,
+.fi-resource-permissions .fi-page-header-main-ctn {
         padding: 1.35rem 1rem 1rem;
     }
 }
 
 @media (max-width: 768px) {
     .fi-resource-users .fi-header,
-    .fi-resource-roles .fi-header,
-    .fi-resource-permissions .fi-header {
+.fi-resource-categories .fi-header,
+.fi-resource-doctors .fi-header,
+.fi-resource-departments .fi-header,
+.fi-resource-roles .fi-header,
+.fi-resource-permissions .fi-header {
         align-items: stretch;
         flex-direction: column;
     }
 
     .fi-resource-users .fi-header-actions-ctn,
-    .fi-resource-users .fi-header-actions-ctn .fi-ac,
-    .fi-resource-users .fi-header-actions-ctn .fi-btn,
-    .fi-resource-roles .fi-header-actions-ctn,
-    .fi-resource-roles .fi-header-actions-ctn .fi-ac,
-    .fi-resource-roles .fi-header-actions-ctn .fi-btn,
-    .fi-resource-permissions .fi-header-actions-ctn,
-    .fi-resource-permissions .fi-header-actions-ctn .fi-ac,
-    .fi-resource-permissions .fi-header-actions-ctn .fi-btn {
+.fi-resource-categories .fi-header-actions-ctn,
+.fi-resource-doctors .fi-header-actions-ctn,
+.fi-resource-departments .fi-header-actions-ctn,
+.fi-resource-users .fi-header-actions-ctn .fi-ac,
+.fi-resource-categories .fi-header-actions-ctn .fi-ac,
+.fi-resource-doctors .fi-header-actions-ctn .fi-ac,
+.fi-resource-departments .fi-header-actions-ctn .fi-ac,
+.fi-resource-users .fi-header-actions-ctn .fi-btn,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn,
+.fi-resource-roles .fi-header-actions-ctn,
+.fi-resource-roles .fi-header-actions-ctn .fi-ac,
+.fi-resource-roles .fi-header-actions-ctn .fi-btn,
+.fi-resource-permissions .fi-header-actions-ctn,
+.fi-resource-permissions .fi-header-actions-ctn .fi-ac,
+.fi-resource-permissions .fi-header-actions-ctn .fi-btn {
         width: 100%;
     }
 
     .fi-resource-users .fi-header > div:first-child,
-    .fi-resource-roles .fi-header > div:first-child,
-    .fi-resource-permissions .fi-header > div:first-child {
+.fi-resource-categories .fi-header > div:first-child,
+.fi-resource-doctors .fi-header > div:first-child,
+.fi-resource-departments .fi-header > div:first-child,
+.fi-resource-roles .fi-header > div:first-child,
+.fi-resource-permissions .fi-header > div:first-child {
         grid-template-columns: 2.8rem minmax(0, 1fr);
         column-gap: 0.75rem;
     }
 
     .fi-resource-users .fi-header > div:first-child::before,
-    .fi-resource-roles .fi-header > div:first-child::before,
-    .fi-resource-permissions .fi-header > div:first-child::before {
+.fi-resource-categories .fi-header > div:first-child::before,
+.fi-resource-doctors .fi-header > div:first-child::before,
+.fi-resource-departments .fi-header > div:first-child::before,
+.fi-resource-roles .fi-header > div:first-child::before,
+.fi-resource-permissions .fi-header > div:first-child::before {
         width: 2.8rem;
         height: 2.8rem;
     }
 
     .fi-resource-users .fi-header-heading,
-    .fi-resource-roles .fi-header-heading,
-    .fi-resource-permissions .fi-header-heading {
+.fi-resource-categories .fi-header-heading,
+.fi-resource-doctors .fi-header-heading,
+.fi-resource-departments .fi-header-heading,
+.fi-resource-roles .fi-header-heading,
+.fi-resource-permissions .fi-header-heading {
         font-size: 1.35rem;
     }
 
     .fi-resource-users .ac-card-actions .fi-sc-actions,
-    .fi-resource-roles .ac-card-actions .fi-sc-actions,
-    .fi-resource-permissions .ac-card-actions .fi-sc-actions {
+.fi-resource-categories .ac-card-actions .fi-sc-actions,
+.fi-resource-doctors .ac-card-actions .fi-sc-actions,
+.fi-resource-departments .ac-card-actions .fi-sc-actions,
+.fi-resource-roles .ac-card-actions .fi-sc-actions,
+.fi-resource-permissions .ac-card-actions .fi-sc-actions {
         flex-direction: column;
         align-items: stretch;
     }
 
     .fi-resource-users .ac-card-actions .fi-btn,
-    .fi-resource-roles .ac-card-actions .fi-btn,
-    .fi-resource-permissions .ac-card-actions .fi-btn {
+.fi-resource-categories .ac-card-actions .fi-btn,
+.fi-resource-doctors .ac-card-actions .fi-btn,
+.fi-resource-departments .ac-card-actions .fi-btn,
+.fi-resource-roles .ac-card-actions .fi-btn,
+.fi-resource-permissions .ac-card-actions .fi-btn {
         width: 100%;
     }
 }
@@ -8031,15 +8380,15 @@ html.fi {
 }
 
 /* ?? Hide redundant group header button (label already shown via ::before) ?? */
-
 /* Sidebar groups ? collapsible with toggle button */
-
 /* ???????????????????????????????????????????????????
    UNIFIED CRUD STYLING ? Users, Roles, Permissions
    All three share identical table + form appearance
 ??????????????????????????????????????????????????? */
-
 .fi-resource-users,
+.fi-resource-categories,
+.fi-resource-doctors,
+.fi-resource-departments,
 .fi-resource-roles,
 .fi-resource-permissions {
     --ac-resource-accent:        #6338f5;
@@ -8053,6 +8402,9 @@ html.fi {
 }
 
 .dark .fi-resource-users,
+.dark .fi-resource-categories,
+.dark .fi-resource-doctors,
+.dark .fi-resource-departments,
 .dark .fi-resource-roles,
 .dark .fi-resource-permissions {
     --ac-resource-border:  #1e2a3d;
@@ -8063,6 +8415,9 @@ html.fi {
 
 /* ?? Page header ?? */
 .fi-resource-users .fi-page-header-main-ctn,
+.fi-resource-categories .fi-page-header-main-ctn,
+.fi-resource-doctors .fi-page-header-main-ctn,
+.fi-resource-departments .fi-page-header-main-ctn,
 .fi-resource-roles .fi-page-header-main-ctn,
 .fi-resource-permissions .fi-page-header-main-ctn {
     gap: 1.2rem;
@@ -8070,6 +8425,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header,
+.fi-resource-categories .fi-header,
+.fi-resource-doctors .fi-header,
+.fi-resource-departments .fi-header,
 .fi-resource-roles .fi-header,
 .fi-resource-permissions .fi-header {
     align-items: center;
@@ -8082,7 +8440,13 @@ html.fi {
 }
 
 .fi-resource-users .fi-header::before,
+.fi-resource-categories .fi-header::before,
+.fi-resource-doctors .fi-header::before,
+.fi-resource-departments .fi-header::before,
 .fi-resource-users .fi-header::after,
+.fi-resource-categories .fi-header::after,
+.fi-resource-doctors .fi-header::after,
+.fi-resource-departments .fi-header::after,
 .fi-resource-roles .fi-header::before,
 .fi-resource-roles .fi-header::after,
 .fi-resource-permissions .fi-header::before,
@@ -8092,6 +8456,9 @@ html.fi {
 
 /* Icon + heading layout */
 .fi-resource-users .fi-header > div:first-child,
+.fi-resource-categories .fi-header > div:first-child,
+.fi-resource-doctors .fi-header > div:first-child,
+.fi-resource-departments .fi-header > div:first-child,
 .fi-resource-roles .fi-header > div:first-child,
 .fi-resource-permissions .fi-header > div:first-child {
     display: grid;
@@ -8102,6 +8469,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header > div:first-child::before,
+.fi-resource-categories .fi-header > div:first-child::before,
+.fi-resource-doctors .fi-header > div:first-child::before,
+.fi-resource-departments .fi-header > div:first-child::before,
 .fi-resource-roles .fi-header > div:first-child::before,
 .fi-resource-permissions .fi-header > div:first-child::before {
     content: '';
@@ -8119,6 +8489,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header-heading,
+.fi-resource-categories .fi-header-heading,
+.fi-resource-doctors .fi-header-heading,
+.fi-resource-departments .fi-header-heading,
 .fi-resource-roles .fi-header-heading,
 .fi-resource-permissions .fi-header-heading {
     grid-area: heading;
@@ -8131,6 +8504,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header-subheading,
+.fi-resource-categories .fi-header-subheading,
+.fi-resource-doctors .fi-header-subheading,
+.fi-resource-departments .fi-header-subheading,
 .fi-resource-roles .fi-header-subheading,
 .fi-resource-permissions .fi-header-subheading {
     grid-area: subheading;
@@ -8141,6 +8517,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-header-actions-ctn,
+.fi-resource-categories .fi-header-actions-ctn,
+.fi-resource-doctors .fi-header-actions-ctn,
+.fi-resource-departments .fi-header-actions-ctn,
 .fi-resource-roles .fi-header-actions-ctn,
 .fi-resource-permissions .fi-header-actions-ctn {
     margin-inline-start: auto;
@@ -8148,6 +8527,9 @@ html.fi {
 
 /* New record button */
 .fi-resource-users .fi-header-actions-ctn .fi-btn,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn,
 .fi-resource-permissions .fi-header-actions-ctn .fi-btn {
     min-height: 2.75rem;
@@ -8159,7 +8541,13 @@ html.fi {
 }
 
 .fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-primary,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-primary,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-primary,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-primary,
 .fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-custom,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-custom,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-custom,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-custom,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn.fi-color-primary,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn.fi-color-custom,
 .fi-resource-permissions .fi-header-actions-ctn .fi-btn.fi-color-primary,
@@ -8172,6 +8560,9 @@ html.fi {
 
 /* ?? Table ?? */
 .fi-resource-users .fi-ta.ac-user-table,
+.fi-resource-categories .fi-ta.ac-user-table,
+.fi-resource-doctors .fi-ta.ac-user-table,
+.fi-resource-departments .fi-ta.ac-user-table,
 .fi-resource-roles .fi-ta.ac-user-table,
 .fi-resource-permissions .fi-ta.ac-user-table {
     overflow: hidden;
@@ -8183,6 +8574,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-ctn,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-ctn,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-ctn,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-ctn,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-ctn,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-ctn {
     border: 0;
@@ -8192,7 +8586,13 @@ html.fi {
 
 /* Toolbar */
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-header,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-header,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-header,
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-header-toolbar,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header-toolbar,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-header,
@@ -8204,6 +8604,9 @@ html.fi {
 
 /* Search */
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp {
     min-height: 2.65rem;
@@ -8214,6 +8617,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp:focus-within {
     border-color: var(--ac-resource-accent);
@@ -8222,6 +8628,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp-prefix {
     color: var(--ac-resource-accent);
@@ -8229,12 +8638,18 @@ html.fi {
 
 /* Table head */
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-table thead,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-table thead,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-table thead,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-table thead,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-table thead,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-table thead {
     background: #f6f8ff;
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-header-cell,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-header-cell,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header-cell,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-header-cell,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header-cell,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-header-cell {
     border-color: var(--ac-resource-border);
@@ -8247,6 +8662,9 @@ html.fi {
 
 /* Rows */
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-cell,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-cell,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-cell,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-cell,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-cell,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-cell {
     border-color: #edf1f9;
@@ -8255,12 +8673,18 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-row:nth-child(even) {
     background: rgba(246, 248, 255, 0.6);
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-row:hover,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-row:hover,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-row:hover,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-row:hover,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-row:hover,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-row:hover {
     background: rgba(99, 56, 245, 0.04);
@@ -8268,6 +8692,9 @@ html.fi {
 
 /* Avatar */
 .fi-resource-users .ac-user-avatar,
+.fi-resource-categories .ac-user-avatar,
+.fi-resource-doctors .ac-user-avatar,
+.fi-resource-departments .ac-user-avatar,
 .fi-resource-roles .ac-user-avatar,
 .fi-resource-permissions .ac-user-avatar {
     width: 2.6rem;
@@ -8282,6 +8709,9 @@ html.fi {
 
 /* Name / email */
 .fi-resource-users .ac-user-name,
+.fi-resource-categories .ac-user-name,
+.fi-resource-doctors .ac-user-name,
+.fi-resource-departments .ac-user-name,
 .fi-resource-roles .ac-user-name,
 .fi-resource-permissions .ac-user-name {
     color: var(--ac-resource-text);
@@ -8290,6 +8720,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-user-email,
+.fi-resource-categories .ac-user-email,
+.fi-resource-doctors .ac-user-email,
+.fi-resource-departments .ac-user-email,
 .fi-resource-roles .ac-user-email,
 .fi-resource-permissions .ac-user-email {
     color: var(--ac-resource-muted);
@@ -8298,6 +8731,9 @@ html.fi {
 
 /* Badges */
 .fi-resource-users .fi-ta.ac-user-table .fi-badge,
+.fi-resource-categories .fi-ta.ac-user-table .fi-badge,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-badge,
+.fi-resource-departments .fi-ta.ac-user-table .fi-badge,
 .fi-resource-roles .fi-ta.ac-user-table .fi-badge,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-badge {
     border: 1px solid var(--ac-resource-accent-border);
@@ -8312,7 +8748,13 @@ html.fi {
 
 /* Action buttons */
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
@@ -8329,7 +8771,13 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn:hover,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn:hover,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn:hover,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn:hover,
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-btn:hover,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-btn:hover,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-btn:hover,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-btn:hover,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn:hover,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-btn:hover,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn:hover,
@@ -8340,6 +8788,9 @@ html.fi {
 
 /* Danger (delete) button */
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger {
     border-color: rgba(239, 68, 68, 0.2);
@@ -8347,6 +8798,9 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger:hover,
+.fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger:hover,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger:hover,
+.fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger:hover,
 .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger:hover,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-actions .fi-btn.fi-color-danger:hover {
     background: rgba(239, 68, 68, 0.07);
@@ -8355,6 +8809,9 @@ html.fi {
 
 /* Pagination */
 .fi-resource-users .fi-ta.ac-user-table .fi-pagination,
+.fi-resource-categories .fi-ta.ac-user-table .fi-pagination,
+.fi-resource-doctors .fi-ta.ac-user-table .fi-pagination,
+.fi-resource-departments .fi-ta.ac-user-table .fi-pagination,
 .fi-resource-roles .fi-ta.ac-user-table .fi-pagination,
 .fi-resource-permissions .fi-ta.ac-user-table .fi-pagination {
     border-top: 1px solid var(--ac-resource-border);
@@ -8363,6 +8820,9 @@ html.fi {
 
 /* ?? Form ?? */
 .fi-resource-users .ac-form-shell .fi-section,
+.fi-resource-categories .ac-form-shell .fi-section,
+.fi-resource-doctors .ac-form-shell .fi-section,
+.fi-resource-departments .ac-form-shell .fi-section,
 .fi-resource-roles .ac-form-shell .fi-section,
 .fi-resource-permissions .ac-form-shell .fi-section {
     overflow: hidden;
@@ -8373,6 +8833,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-section-header,
+.fi-resource-categories .ac-form-shell .fi-section-header,
+.fi-resource-doctors .ac-form-shell .fi-section-header,
+.fi-resource-departments .ac-form-shell .fi-section-header,
 .fi-resource-roles .ac-form-shell .fi-section-header,
 .fi-resource-permissions .ac-form-shell .fi-section-header {
     padding: 1.1rem 1.25rem 0.85rem;
@@ -8381,6 +8844,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-section-header > .fi-icon,
+.fi-resource-categories .ac-form-shell .fi-section-header > .fi-icon,
+.fi-resource-doctors .ac-form-shell .fi-section-header > .fi-icon,
+.fi-resource-departments .ac-form-shell .fi-section-header > .fi-icon,
 .fi-resource-roles .ac-form-shell .fi-section-header > .fi-icon,
 .fi-resource-permissions .ac-form-shell .fi-section-header > .fi-icon {
     width: 2.5rem;
@@ -8393,6 +8859,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-section-header-heading,
+.fi-resource-categories .ac-form-shell .fi-section-header-heading,
+.fi-resource-doctors .ac-form-shell .fi-section-header-heading,
+.fi-resource-departments .ac-form-shell .fi-section-header-heading,
 .fi-resource-roles .ac-form-shell .fi-section-header-heading,
 .fi-resource-permissions .ac-form-shell .fi-section-header-heading {
     color: var(--ac-resource-text);
@@ -8401,12 +8870,18 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-section-content-ctn,
+.fi-resource-categories .ac-form-shell .fi-section-content-ctn,
+.fi-resource-doctors .ac-form-shell .fi-section-content-ctn,
+.fi-resource-departments .ac-form-shell .fi-section-content-ctn,
 .fi-resource-roles .ac-form-shell .fi-section-content-ctn,
 .fi-resource-permissions .ac-form-shell .fi-section-content-ctn {
     padding: 1.25rem;
 }
 
 .fi-resource-users .ac-form-shell .fi-fo-field-wrp-label,
+.fi-resource-categories .ac-form-shell .fi-fo-field-wrp-label,
+.fi-resource-doctors .ac-form-shell .fi-fo-field-wrp-label,
+.fi-resource-departments .ac-form-shell .fi-fo-field-wrp-label,
 .fi-resource-roles .ac-form-shell .fi-fo-field-wrp-label,
 .fi-resource-permissions .ac-form-shell .fi-fo-field-wrp-label {
     color: #53617f;
@@ -8417,7 +8892,13 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-input-wrp,
+.fi-resource-categories .ac-form-shell .fi-input-wrp,
+.fi-resource-doctors .ac-form-shell .fi-input-wrp,
+.fi-resource-departments .ac-form-shell .fi-input-wrp,
 .fi-resource-users .ac-form-shell .fi-select-input,
+.fi-resource-categories .ac-form-shell .fi-select-input,
+.fi-resource-doctors .ac-form-shell .fi-select-input,
+.fi-resource-departments .ac-form-shell .fi-select-input,
 .fi-resource-roles .ac-form-shell .fi-input-wrp,
 .fi-resource-roles .ac-form-shell .fi-select-input,
 .fi-resource-permissions .ac-form-shell .fi-input-wrp,
@@ -8431,6 +8912,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-input-wrp:focus-within,
+.fi-resource-categories .ac-form-shell .fi-input-wrp:focus-within,
+.fi-resource-doctors .ac-form-shell .fi-input-wrp:focus-within,
+.fi-resource-departments .ac-form-shell .fi-input-wrp:focus-within,
 .fi-resource-roles .ac-form-shell .fi-input-wrp:focus-within,
 .fi-resource-permissions .ac-form-shell .fi-input-wrp:focus-within {
     border-color: var(--ac-resource-accent);
@@ -8439,6 +8923,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-form-shell .fi-input-wrp-prefix .fi-icon,
+.fi-resource-categories .ac-form-shell .fi-input-wrp-prefix .fi-icon,
+.fi-resource-doctors .ac-form-shell .fi-input-wrp-prefix .fi-icon,
+.fi-resource-departments .ac-form-shell .fi-input-wrp-prefix .fi-icon,
 .fi-resource-roles .ac-form-shell .fi-input-wrp-prefix .fi-icon,
 .fi-resource-permissions .ac-form-shell .fi-input-wrp-prefix .fi-icon {
     color: var(--ac-resource-accent);
@@ -8446,6 +8933,9 @@ html.fi {
 
 /* Form action buttons */
 .fi-resource-users .ac-card-actions,
+.fi-resource-categories .ac-card-actions,
+.fi-resource-doctors .ac-card-actions,
+.fi-resource-departments .ac-card-actions,
 .fi-resource-roles .ac-card-actions,
 .fi-resource-permissions .ac-card-actions {
     margin-top: 0.5rem;
@@ -8454,6 +8944,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-card-actions .fi-btn,
+.fi-resource-categories .ac-card-actions .fi-btn,
+.fi-resource-doctors .ac-card-actions .fi-btn,
+.fi-resource-departments .ac-card-actions .fi-btn,
 .fi-resource-roles .ac-card-actions .fi-btn,
 .fi-resource-permissions .ac-card-actions .fi-btn {
     min-height: 2.75rem;
@@ -8463,7 +8956,13 @@ html.fi {
 }
 
 .fi-resource-users .ac-card-actions .fi-btn.fi-color-primary,
+.fi-resource-categories .ac-card-actions .fi-btn.fi-color-primary,
+.fi-resource-doctors .ac-card-actions .fi-btn.fi-color-primary,
+.fi-resource-departments .ac-card-actions .fi-btn.fi-color-primary,
 .fi-resource-users .ac-card-actions .fi-btn.fi-color-custom,
+.fi-resource-categories .ac-card-actions .fi-btn.fi-color-custom,
+.fi-resource-doctors .ac-card-actions .fi-btn.fi-color-custom,
+.fi-resource-departments .ac-card-actions .fi-btn.fi-color-custom,
 .fi-resource-roles .ac-card-actions .fi-btn.fi-color-primary,
 .fi-resource-roles .ac-card-actions .fi-btn.fi-color-custom,
 .fi-resource-permissions .ac-card-actions .fi-btn.fi-color-primary,
@@ -8475,6 +8974,9 @@ html.fi {
 }
 
 .fi-resource-users .ac-card-actions .fi-btn.fi-color-gray,
+.fi-resource-categories .ac-card-actions .fi-btn.fi-color-gray,
+.fi-resource-doctors .ac-card-actions .fi-btn.fi-color-gray,
+.fi-resource-departments .ac-card-actions .fi-btn.fi-color-gray,
 .fi-resource-roles .ac-card-actions .fi-btn.fi-color-gray,
 .fi-resource-permissions .ac-card-actions .fi-btn.fi-color-gray {
     border-color: var(--ac-resource-border) !important;
@@ -8485,9 +8987,15 @@ html.fi {
 
 /* ?? Dark mode ?? */
 .dark .fi-resource-users .fi-ta.ac-user-table,
+.dark .fi-resource-categories .fi-ta.ac-user-table,
+.dark .fi-resource-doctors .fi-ta.ac-user-table,
+.dark .fi-resource-departments .fi-ta.ac-user-table,
 .dark .fi-resource-roles .fi-ta.ac-user-table,
 .dark .fi-resource-permissions .fi-ta.ac-user-table,
 .dark .fi-resource-users .ac-form-shell .fi-section,
+.dark .fi-resource-categories .ac-form-shell .fi-section,
+.dark .fi-resource-doctors .ac-form-shell .fi-section,
+.dark .fi-resource-departments .ac-form-shell .fi-section,
 .dark .fi-resource-roles .ac-form-shell .fi-section,
 .dark .fi-resource-permissions .ac-form-shell .fi-section {
     border-color: var(--ac-resource-border);
@@ -8496,10 +9004,25 @@ html.fi {
 }
 
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-header,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-header,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-header,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-header-toolbar,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-header-toolbar,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-table thead,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-table thead,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-table thead,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-table thead,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-pagination,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-pagination,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-pagination,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-pagination,
 .dark .fi-resource-users .ac-form-shell .fi-section-header,
+.dark .fi-resource-categories .ac-form-shell .fi-section-header,
+.dark .fi-resource-doctors .ac-form-shell .fi-section-header,
+.dark .fi-resource-departments .ac-form-shell .fi-section-header,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-header-toolbar,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-table thead,
@@ -8515,9 +9038,15 @@ html.fi {
 }
 
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
 .dark .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-search-field .fi-input-wrp,
 .dark .fi-resource-users .ac-form-shell .fi-input-wrp,
+.dark .fi-resource-categories .ac-form-shell .fi-input-wrp,
+.dark .fi-resource-doctors .ac-form-shell .fi-input-wrp,
+.dark .fi-resource-departments .ac-form-shell .fi-input-wrp,
 .dark .fi-resource-roles .ac-form-shell .fi-input-wrp,
 .dark .fi-resource-permissions .ac-form-shell .fi-input-wrp {
     border-color: var(--ac-resource-border);
@@ -8525,6 +9054,9 @@ html.fi {
 }
 
 .dark .fi-resource-users .ac-card-actions .fi-btn.fi-color-gray,
+.dark .fi-resource-categories .ac-card-actions .fi-btn.fi-color-gray,
+.dark .fi-resource-doctors .ac-card-actions .fi-btn.fi-color-gray,
+.dark .fi-resource-departments .ac-card-actions .fi-btn.fi-color-gray,
 .dark .fi-resource-roles .ac-card-actions .fi-btn.fi-color-gray,
 .dark .fi-resource-permissions .ac-card-actions .fi-btn.fi-color-gray {
     border-color: var(--ac-resource-border) !important;
@@ -8533,7 +9065,13 @@ html.fi {
 }
 
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-actions .fi-btn,
 .dark .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-actions .fi-icon-btn,
@@ -8545,24 +9083,36 @@ html.fi {
 /* ?? Responsive ?? */
 @media (max-width: 768px) {
     .fi-resource-users .fi-header,
-    .fi-resource-roles .fi-header,
-    .fi-resource-permissions .fi-header {
+.fi-resource-categories .fi-header,
+.fi-resource-doctors .fi-header,
+.fi-resource-departments .fi-header,
+.fi-resource-roles .fi-header,
+.fi-resource-permissions .fi-header {
         flex-direction: column;
         align-items: stretch;
     }
 
     .fi-resource-users .fi-header-actions-ctn,
-    .fi-resource-users .fi-header-actions-ctn .fi-btn,
-    .fi-resource-roles .fi-header-actions-ctn,
-    .fi-resource-roles .fi-header-actions-ctn .fi-btn,
-    .fi-resource-permissions .fi-header-actions-ctn,
-    .fi-resource-permissions .fi-header-actions-ctn .fi-btn {
+.fi-resource-categories .fi-header-actions-ctn,
+.fi-resource-doctors .fi-header-actions-ctn,
+.fi-resource-departments .fi-header-actions-ctn,
+.fi-resource-users .fi-header-actions-ctn .fi-btn,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn,
+.fi-resource-roles .fi-header-actions-ctn,
+.fi-resource-roles .fi-header-actions-ctn .fi-btn,
+.fi-resource-permissions .fi-header-actions-ctn,
+.fi-resource-permissions .fi-header-actions-ctn .fi-btn {
         width: 100%;
     }
 
     .fi-resource-users .fi-page-header-main-ctn,
-    .fi-resource-roles .fi-page-header-main-ctn,
-    .fi-resource-permissions .fi-page-header-main-ctn {
+.fi-resource-categories .fi-page-header-main-ctn,
+.fi-resource-doctors .fi-page-header-main-ctn,
+.fi-resource-departments .fi-page-header-main-ctn,
+.fi-resource-roles .fi-page-header-main-ctn,
+.fi-resource-permissions .fi-page-header-main-ctn {
         padding: 1.2rem 1rem 0.8rem;
     }
 }
@@ -10687,8 +11237,7 @@ html.fi {
 }
 
 /* ?? Users index stats strip ??????????????????????????????????????????????? */
-
-.fi-resource-users .fi-wi-widget > .ac-users-index-stats {
+.fi-resource-users .fi-wi-widget > .ac-users-index-stats, .fi-resource-categories .fi-wi-widget > .ac-users-index-stats, .fi-resource-doctors .fi-wi-widget > .ac-users-index-stats, .fi-resource-departments .fi-wi-widget > .ac-users-index-stats {
     border: 1px solid var(--ac-resource-border, #e1e7f3);
     border-radius: 0.85rem;
     background: var(--ac-resource-card, rgba(255, 255, 255, 0.78));
@@ -10760,66 +11309,65 @@ html.fi {
 .ac-users-stat--blue .ac-users-stat-icon { color: #2563eb; background: rgba(37, 99, 235, 0.1); }
 
 /* ?? Users index ? open filters, search, table ????????????????????????????? */
-
-.fi-resource-users:has(.ac-users-index-table) .fi-page-header-main-ctn {
+.fi-resource-users:has(.ac-users-index-table) .fi-page-header-main-ctn, .fi-resource-categories:has(.ac-users-index-table) .fi-page-header-main-ctn, .fi-resource-doctors:has(.ac-users-index-table) .fi-page-header-main-ctn, .fi-resource-departments:has(.ac-users-index-table) .fi-page-header-main-ctn {
     gap: 0.75rem;
     padding: 1.25rem 1.5rem 0.65rem;
 }
 
-.fi-resource-users:has(.ac-users-index-table) .fi-page-content {
+.fi-resource-users:has(.ac-users-index-table) .fi-page-content, .fi-resource-categories:has(.ac-users-index-table) .fi-page-content, .fi-resource-doctors:has(.ac-users-index-table) .fi-page-content, .fi-resource-departments:has(.ac-users-index-table) .fi-page-content {
     gap: 0.75rem;
 }
 
-.fi-resource-users:has(.ac-users-index-table) .fi-header > div:first-child {
+.fi-resource-users:has(.ac-users-index-table) .fi-header > div:first-child, .fi-resource-categories:has(.ac-users-index-table) .fi-header > div:first-child, .fi-resource-doctors:has(.ac-users-index-table) .fi-header > div:first-child, .fi-resource-departments:has(.ac-users-index-table) .fi-header > div:first-child {
     grid-template-columns: 2.75rem minmax(0, 1fr);
     column-gap: 0.85rem;
 }
 
-.fi-resource-users:has(.ac-users-index-table) .fi-header > div:first-child::before {
+.fi-resource-users:has(.ac-users-index-table) .fi-header > div:first-child::before, .fi-resource-categories:has(.ac-users-index-table) .fi-header > div:first-child::before, .fi-resource-doctors:has(.ac-users-index-table) .fi-header > div:first-child::before, .fi-resource-departments:has(.ac-users-index-table) .fi-header > div:first-child::before {
     width: 2.75rem;
     height: 2.75rem;
     border-radius: 0.75rem;
     background-size: 1.15rem;
 }
 
-.fi-resource-users:has(.ac-users-index-table) .fi-header-heading {
+.fi-resource-users:has(.ac-users-index-table) .fi-header-heading, .fi-resource-categories:has(.ac-users-index-table) .fi-header-heading, .fi-resource-doctors:has(.ac-users-index-table) .fi-header-heading, .fi-resource-departments:has(.ac-users-index-table) .fi-header-heading {
     font-size: 1.45rem;
 }
 
-.fi-resource-users:has(.ac-users-index-table) .fi-header-subheading {
+.fi-resource-users:has(.ac-users-index-table) .fi-header-subheading, .fi-resource-categories:has(.ac-users-index-table) .fi-header-subheading, .fi-resource-doctors:has(.ac-users-index-table) .fi-header-subheading, .fi-resource-departments:has(.ac-users-index-table) .fi-header-subheading {
     display: block;
     margin-top: 0.12rem;
     font-size: 0.84rem;
     line-height: 1.35;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table {
+.fi-resource-users .fi-ta.ac-users-index-table, .fi-resource-categories .fi-ta.ac-users-index-table, .fi-resource-doctors .fi-ta.ac-users-index-table, .fi-resource-departments .fi-ta.ac-users-index-table {
     overflow: hidden;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn {
+.fi-resource-users .fi-ta-filters-above-content-ctn, .fi-resource-categories .fi-ta-filters-above-content-ctn, .fi-resource-doctors .fi-ta-filters-above-content-ctn, .fi-resource-departments .fi-ta-filters-above-content-ctn {
     padding: 0;
     border-bottom: 1px solid #e5ebf5;
     background: rgba(248, 250, 255, 0.92);
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-ta-filters, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-ta-filters, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-ta-filters {
     gap: 0.65rem;
     padding: 0.85rem 1.15rem 0.75rem;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-trigger-action-ctn {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-trigger-action-ctn, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-ta-filters-trigger-action-ctn, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-ta-filters-trigger-action-ctn, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-ta-filters-trigger-action-ctn {
     display: none;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-header {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-header, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-ta-filters-header, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-ta-filters-header, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-ta-filters-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0.15rem;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-heading {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-heading, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-ta-filters-heading, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-ta-filters-heading, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-ta-filters-heading {
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -10827,25 +11375,25 @@ html.fi {
     color: #687698;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-header .fi-link {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-header .fi-link, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-ta-filters-header .fi-link, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-ta-filters-header .fi-link, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-ta-filters-header .fi-link {
     font-size: 0.78rem;
     font-weight: 700;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-component-ctn {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-component-ctn, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-fo-component-ctn, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-fo-component-ctn, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-fo-component-ctn {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 0.65rem 0.85rem;
     align-items: end;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-field-wrp {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-field-wrp, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-fo-field-wrp, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-fo-field-wrp, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-fo-field-wrp {
     min-width: 0;
     width: 100%;
     padding: 0;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label {
     margin-bottom: 0.3rem;
     color: #53617f;
     font-size: 0.72rem;
@@ -10855,7 +11403,13 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta-filters-above-content-ctn .fi-input-wrp,
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-select-input {
+.fi-resource-categories .fi-ta-filters-above-content-ctn .fi-input-wrp,
+.fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-input-wrp,
+.fi-resource-departments .fi-ta-filters-above-content-ctn .fi-input-wrp,
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-select-input,
+.fi-resource-categories .fi-ta-filters-above-content-ctn .fi-select-input,
+.fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-select-input,
+.fi-resource-departments .fi-ta-filters-above-content-ctn .fi-select-input {
     min-height: 2.45rem;
     border: 1px solid #dfe6f3;
     border-radius: 0.65rem;
@@ -10865,12 +11419,12 @@ html.fi {
     transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-input-wrp:focus-within {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-input-wrp:focus-within, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-input-wrp:focus-within, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-input-wrp:focus-within, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-input-wrp:focus-within {
     border-color: color-mix(in srgb, var(--ac-resource-accent, #6338f5) 45%, white);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--ac-resource-accent, #6338f5) 10%, transparent);
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-radio-list {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-radio-list, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-fo-radio-list, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-fo-radio-list, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-fo-radio-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.45rem 0.85rem;
@@ -10879,39 +11433,39 @@ html.fi {
     padding-top: 0.1rem;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label {
     font-size: 0.82rem;
     font-weight: 600;
     color: #3d4a6b;
 }
 
-.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-actions-ctn {
+.fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-actions-ctn, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-ta-filters-actions-ctn, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-ta-filters-actions-ctn, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-ta-filters-actions-ctn {
     display: none;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-toolbar {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-toolbar, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-header-toolbar, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-header-toolbar, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-header-toolbar {
     display: block;
     padding: 0.75rem 1.15rem;
     border-bottom: 1px solid #e5ebf5;
     background: rgba(255, 255, 255, 0.82);
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-toolbar > .fi-ta-actions:first-child {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-toolbar > .fi-ta-actions:first-child, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-header-toolbar > .fi-ta-actions:first-child, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-header-toolbar > .fi-ta-actions:first-child, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-header-toolbar > .fi-ta-actions:first-child {
     display: none;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-toolbar > div:last-child {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-toolbar > div:last-child, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-header-toolbar > div:last-child, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-header-toolbar > div:last-child, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-header-toolbar > div:last-child {
     width: 100%;
     max-width: none;
     margin: 0;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-search-field, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-search-field, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-search-field {
     width: 100%;
     max-width: none;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp {
     min-height: 2.55rem;
     border: 1px solid #dfe6f3;
     border-radius: 0.7rem;
@@ -10919,22 +11473,22 @@ html.fi {
     box-shadow: none;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp:focus-within {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp:focus-within, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp:focus-within, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp:focus-within, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp:focus-within {
     border-color: color-mix(in srgb, var(--ac-resource-accent, #6338f5) 45%, white);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--ac-resource-accent, #6338f5) 10%, transparent);
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input {
     min-height: 2.45rem;
     font-size: 0.86rem;
     font-weight: 500;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp-prefix {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp-prefix, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp-prefix, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp-prefix, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp-prefix {
     color: var(--ac-resource-accent, #6338f5);
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-cell {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-cell, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-header-cell, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-header-cell, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-header-cell {
     padding: 0.65rem 1rem;
     font-size: 0.72rem;
     font-weight: 800;
@@ -10943,51 +11497,63 @@ html.fi {
     color: #7a86a4;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-cell {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-cell, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-cell, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-cell, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-cell {
     padding: 0.65rem 1rem;
     vertical-align: middle;
 }
 
 .fi-resource-users .fi-ta.ac-users-index-table .fi-ta-row:has(.ac-user-cell),
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-row:has(.ac-access-list) {
+.fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-row:has(.ac-user-cell),
+.fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-row:has(.ac-user-cell),
+.fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-row:has(.ac-user-cell),
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-row:has(.ac-access-list),
+.fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-row:has(.ac-access-list),
+.fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-row:has(.ac-access-list),
+.fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-row:has(.ac-access-list) {
     height: auto;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .ac-user-cell {
+.fi-resource-users .fi-ta.ac-users-index-table .ac-user-cell, .fi-resource-categories .fi-ta.ac-users-index-table .ac-user-cell, .fi-resource-doctors .fi-ta.ac-users-index-table .ac-user-cell, .fi-resource-departments .fi-ta.ac-users-index-table .ac-user-cell {
     gap: 0.75rem;
     min-width: 0;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .ac-user-avatar {
+.fi-resource-users .fi-ta.ac-users-index-table .ac-user-avatar, .fi-resource-categories .fi-ta.ac-users-index-table .ac-user-avatar, .fi-resource-doctors .fi-ta.ac-users-index-table .ac-user-avatar, .fi-resource-departments .fi-ta.ac-users-index-table .ac-user-avatar {
     width: 2.35rem;
     height: 2.35rem;
     font-size: 0.72rem;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .ac-user-name {
+.fi-resource-users .fi-ta.ac-users-index-table .ac-user-name, .fi-resource-categories .fi-ta.ac-users-index-table .ac-user-name, .fi-resource-doctors .fi-ta.ac-users-index-table .ac-user-name, .fi-resource-departments .fi-ta.ac-users-index-table .ac-user-name {
     font-size: 0.92rem;
     font-weight: 800;
     line-height: 1.25;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .ac-user-email {
+.fi-resource-users .fi-ta.ac-users-index-table .ac-user-email, .fi-resource-categories .fi-ta.ac-users-index-table .ac-user-email, .fi-resource-doctors .fi-ta.ac-users-index-table .ac-user-email, .fi-resource-departments .fi-ta.ac-users-index-table .ac-user-email {
     font-size: 0.78rem;
     line-height: 1.25;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-col {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-col, .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-col, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-col, .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-col {
     display: inline-flex;
     align-items: center;
     font-size: 0.86rem;
     line-height: 1.3;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .ac-access-list {
+.fi-resource-users .fi-ta.ac-users-index-table .ac-access-list, .fi-resource-categories .fi-ta.ac-users-index-table .ac-access-list, .fi-resource-doctors .fi-ta.ac-users-index-table .ac-access-list, .fi-resource-departments .fi-ta.ac-users-index-table .ac-access-list {
     align-items: center;
 }
 
 .fi-resource-users .fi-ta.ac-users-index-table .fi-ta-actions-header-cell,
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-cell:has(> .fi-ta-actions) {
+.fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-actions-header-cell,
+.fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-actions-header-cell,
+.fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-actions-header-cell,
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-cell:has(> .fi-ta-actions),
+.fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-cell:has(> .fi-ta-actions),
+.fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-cell:has(> .fi-ta-actions),
+.fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-cell:has(> .fi-ta-actions) {
     width: 5.25rem;
     min-width: 5.25rem;
     max-width: 5.25rem;
@@ -10995,7 +11561,13 @@ html.fi {
 }
 
 .fi-resource-users .fi-ta.ac-users-index-table .fi-ta-actions .fi-icon-btn,
-.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-actions .fi-btn {
+.fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-actions .fi-icon-btn,
+.fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-actions .fi-icon-btn,
+.fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-actions .fi-icon-btn,
+.fi-resource-users .fi-ta.ac-users-index-table .fi-ta-actions .fi-btn,
+.fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-actions .fi-btn,
+.fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-actions .fi-btn,
+.fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-actions .fi-btn {
     width: 2rem;
     min-width: 2rem;
     height: 2rem;
@@ -11003,59 +11575,71 @@ html.fi {
     border-radius: 0.55rem;
 }
 
-.fi-resource-users .fi-ta.ac-users-index-table .fi-pagination {
+.fi-resource-users .fi-ta.ac-users-index-table .fi-pagination, .fi-resource-categories .fi-ta.ac-users-index-table .fi-pagination, .fi-resource-doctors .fi-ta.ac-users-index-table .fi-pagination, .fi-resource-departments .fi-ta.ac-users-index-table .fi-pagination {
     min-height: 3.25rem;
     padding: 0.55rem 1.15rem;
 }
 
 @media (min-width: 640px) {
-    .fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-component-ctn {
+    .fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-component-ctn, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-fo-component-ctn, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-fo-component-ctn, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-fo-component-ctn {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (min-width: 1280px) {
-    .fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-component-ctn {
+    .fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-component-ctn, .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-fo-component-ctn, .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-fo-component-ctn, .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-fo-component-ctn {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
-.dark .fi-resource-users .fi-ta-filters-above-content-ctn {
+.dark .fi-resource-users .fi-ta-filters-above-content-ctn, .dark .fi-resource-categories .fi-ta-filters-above-content-ctn, .dark .fi-resource-doctors .fi-ta-filters-above-content-ctn, .dark .fi-resource-departments .fi-ta-filters-above-content-ctn {
     border-bottom-color: #27344d;
     background: rgba(13, 21, 38, 0.72);
 }
 
 .dark .fi-resource-users .fi-ta-filters-above-content-ctn .fi-ta-filters-heading,
-.dark .fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label {
+.dark .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-ta-filters-heading,
+.dark .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-ta-filters-heading,
+.dark .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-ta-filters-heading,
+.dark .fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label,
+.dark .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label,
+.dark .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label,
+.dark .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-fo-field-wrp-label {
     color: #94a3b8;
 }
 
 .dark .fi-resource-users .fi-ta-filters-above-content-ctn .fi-input-wrp,
-.dark .fi-resource-users .fi-ta-filters-above-content-ctn .fi-select-input {
+.dark .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-input-wrp,
+.dark .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-input-wrp,
+.dark .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-input-wrp,
+.dark .fi-resource-users .fi-ta-filters-above-content-ctn .fi-select-input,
+.dark .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-select-input,
+.dark .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-select-input,
+.dark .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-select-input {
     border-color: #27344d;
     background: rgba(8, 15, 29, 0.82);
     color: #f8fafc;
 }
 
-.dark .fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label {
+.dark .fi-resource-users .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label, .dark .fi-resource-categories .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label, .dark .fi-resource-doctors .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label, .dark .fi-resource-departments .fi-ta-filters-above-content-ctn .fi-fo-radio-option-label {
     color: #cbd5e1;
 }
 
-.dark .fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-toolbar {
+.dark .fi-resource-users .fi-ta.ac-users-index-table .fi-ta-header-toolbar, .dark .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-header-toolbar, .dark .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-header-toolbar, .dark .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-header-toolbar {
     border-bottom-color: #27344d;
     background: rgba(15, 23, 42, 0.62);
 }
 
-.dark .fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp {
+.dark .fi-resource-users .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp, .dark .fi-resource-categories .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp, .dark .fi-resource-doctors .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp, .dark .fi-resource-departments .fi-ta.ac-users-index-table .fi-ta-search-field .fi-input-wrp {
     border-color: #27344d;
     background: rgba(8, 15, 29, 0.82);
 }
 
-.fi-resource-users .fi-page-content {
+.fi-resource-users .fi-page-content, .fi-resource-categories .fi-page-content, .fi-resource-doctors .fi-page-content, .fi-resource-departments .fi-page-content {
     gap: 0.75rem;
 }
 
-.dark .fi-resource-users .fi-wi-widget > .ac-users-index-stats {
+.dark .fi-resource-users .fi-wi-widget > .ac-users-index-stats, .dark .fi-resource-categories .fi-wi-widget > .ac-users-index-stats, .dark .fi-resource-doctors .fi-wi-widget > .ac-users-index-stats, .dark .fi-resource-departments .fi-wi-widget > .ac-users-index-stats {
     border-color: rgba(51, 65, 85, 0.92);
     background: linear-gradient(145deg, rgba(9, 17, 31, 0.94), rgba(15, 23, 42, 0.88));
 }
@@ -11256,81 +11840,79 @@ html.fi {
 }
 
 /* ?? Users create / edit page polish ????????????????????????????????????? */
-
-.fi-resource-edit-record-page.fi-resource-users .fi-page-content {
+.fi-resource-edit-record-page.fi-resource-users .fi-page-content, .fi-resource-edit-record-page.fi-resource-categories .fi-page-content, .fi-resource-edit-record-page.fi-resource-doctors .fi-page-content, .fi-resource-edit-record-page.fi-resource-departments .fi-page-content {
     gap: 0.85rem;
 }
 
-.fi-resource-create-record-page.fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-gray {
+.fi-resource-create-record-page.fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-gray, .fi-resource-create-record-page.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-gray, .fi-resource-create-record-page.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-gray, .fi-resource-create-record-page.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-gray {
     border-color: #dfe6f3 !important;
     background: #ffffff !important;
     color: #53617f !important;
     font-weight: 700;
 }
 
-.fi-resource-users .ac-form-shell--user .fi-section-header-description {
+.fi-resource-users .ac-form-shell--user .fi-section-header-description, .fi-resource-categories .ac-form-shell--user .fi-section-header-description, .fi-resource-doctors .ac-form-shell--user .fi-section-header-description, .fi-resource-departments .ac-form-shell--user .fi-section-header-description {
     max-width: 42rem;
     font-size: 0.88rem;
     line-height: 1.45;
     color: #64748b;
 }
 
-.fi-resource-edit-record-page.fi-resource-users .ac-form-shell--user .fi-fo-component-ctn > .fi-sc {
+.fi-resource-edit-record-page.fi-resource-users .ac-form-shell--user .fi-fo-component-ctn > .fi-sc, .fi-resource-edit-record-page.fi-resource-categories .ac-form-shell--user .fi-fo-component-ctn > .fi-sc, .fi-resource-edit-record-page.fi-resource-doctors .ac-form-shell--user .fi-fo-component-ctn > .fi-sc, .fi-resource-edit-record-page.fi-resource-departments .ac-form-shell--user .fi-fo-component-ctn > .fi-sc {
     gap: 1rem;
 }
 
-.fi-resource-edit-record-page.fi-resource-users .ac-form-shell .fi-section-content-ctn {
+.fi-resource-edit-record-page.fi-resource-users .ac-form-shell .fi-section-content-ctn, .fi-resource-edit-record-page.fi-resource-categories .ac-form-shell .fi-section-content-ctn, .fi-resource-edit-record-page.fi-resource-doctors .ac-form-shell .fi-section-content-ctn, .fi-resource-edit-record-page.fi-resource-departments .ac-form-shell .fi-section-content-ctn {
     padding: 1.5rem 1.35rem 1.25rem;
 }
 
-.fi-resource-edit-record-page.fi-resource-users .ac-card-actions {
+.fi-resource-edit-record-page.fi-resource-users .ac-card-actions, .fi-resource-edit-record-page.fi-resource-categories .ac-card-actions, .fi-resource-edit-record-page.fi-resource-doctors .ac-card-actions, .fi-resource-edit-record-page.fi-resource-departments .ac-card-actions {
     margin-top: 0.5rem;
     padding-top: 1.25rem;
 }
 
-.dark .fi-resource-create-record-page.fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-gray {
+.dark .fi-resource-create-record-page.fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-gray, .dark .fi-resource-create-record-page.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-gray, .dark .fi-resource-create-record-page.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-gray, .dark .fi-resource-create-record-page.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-gray {
     border-color: #27344d !important;
     background: rgba(8, 15, 29, 0.82) !important;
     color: #cbd5e1 !important;
 }
 
-.dark .fi-resource-users .ac-form-shell--user .fi-section-header-description {
+.dark .fi-resource-users .ac-form-shell--user .fi-section-header-description, .dark .fi-resource-categories .ac-form-shell--user .fi-section-header-description, .dark .fi-resource-doctors .ac-form-shell--user .fi-section-header-description, .dark .fi-resource-departments .ac-form-shell--user .fi-section-header-description {
     color: #94a3b8;
 }
 
 /* ?? Users create page (compact, 3-col grid) ????????????????????????????? */
-
-.fi-resource-create-record-page.fi-resource-users .fi-breadcrumbs {
+.fi-resource-create-record-page.fi-resource-users .fi-breadcrumbs, .fi-resource-create-record-page.fi-resource-categories .fi-breadcrumbs, .fi-resource-create-record-page.fi-resource-doctors .fi-breadcrumbs, .fi-resource-create-record-page.fi-resource-departments .fi-breadcrumbs {
     display: none;
 }
 
-.fi-resource-create-record-page.fi-resource-users .fi-page-content {
+.fi-resource-create-record-page.fi-resource-users .fi-page-content, .fi-resource-create-record-page.fi-resource-categories .fi-page-content, .fi-resource-create-record-page.fi-resource-doctors .fi-page-content, .fi-resource-create-record-page.fi-resource-departments .fi-page-content {
     width: min(100%, 100%);
     gap: 0.65rem;
 }
 
-.fi-resource-create-record-page.fi-resource-users .fi-page-header-main-ctn {
+.fi-resource-create-record-page.fi-resource-users .fi-page-header-main-ctn, .fi-resource-create-record-page.fi-resource-categories .fi-page-header-main-ctn, .fi-resource-create-record-page.fi-resource-doctors .fi-page-header-main-ctn, .fi-resource-create-record-page.fi-resource-departments .fi-page-header-main-ctn {
     padding: 0.55rem 2rem 0.45rem;
     gap: 0;
 }
 
-.fi-resource-create-record-page.fi-resource-users .fi-header {
+.fi-resource-create-record-page.fi-resource-users .fi-header, .fi-resource-create-record-page.fi-resource-categories .fi-header, .fi-resource-create-record-page.fi-resource-doctors .fi-header, .fi-resource-create-record-page.fi-resource-departments .fi-header {
     width: 100%;
     min-height: 0;
     padding: 0;
 }
 
-.fi-resource-create-record-page.fi-resource-users .fi-header > div:first-child {
+.fi-resource-create-record-page.fi-resource-users .fi-header > div:first-child, .fi-resource-create-record-page.fi-resource-categories .fi-header > div:first-child, .fi-resource-create-record-page.fi-resource-doctors .fi-header > div:first-child, .fi-resource-create-record-page.fi-resource-departments .fi-header > div:first-child {
     display: block;
     width: 100%;
     min-width: 0;
 }
 
-.fi-resource-create-record-page.fi-resource-users .fi-header > div:first-child::before {
+.fi-resource-create-record-page.fi-resource-users .fi-header > div:first-child::before, .fi-resource-create-record-page.fi-resource-categories .fi-header > div:first-child::before, .fi-resource-create-record-page.fi-resource-doctors .fi-header > div:first-child::before, .fi-resource-create-record-page.fi-resource-departments .fi-header > div:first-child::before {
     display: none;
 }
 
-.fi-resource-create-record-page.fi-resource-users .fi-header-heading {
+.fi-resource-create-record-page.fi-resource-users .fi-header-heading, .fi-resource-create-record-page.fi-resource-categories .fi-header-heading, .fi-resource-create-record-page.fi-resource-doctors .fi-header-heading, .fi-resource-create-record-page.fi-resource-departments .fi-header-heading {
     margin: 0;
     font-size: inherit;
     font-weight: inherit;
@@ -11338,14 +11920,14 @@ html.fi {
     letter-spacing: inherit;
 }
 
-.fi-resource-create-record-page.fi-resource-users .ac-create-toolbar {
+.fi-resource-create-record-page.fi-resource-users .ac-create-toolbar, .fi-resource-create-record-page.fi-resource-categories .ac-create-toolbar, .fi-resource-create-record-page.fi-resource-doctors .ac-create-toolbar, .fi-resource-create-record-page.fi-resource-departments .ac-create-toolbar {
     display: flex;
     align-items: center;
     gap: 1rem;
     min-width: 0;
 }
 
-.fi-resource-create-record-page.fi-resource-users .ac-create-back {
+.fi-resource-create-record-page.fi-resource-users .ac-create-back, .fi-resource-create-record-page.fi-resource-categories .ac-create-back, .fi-resource-create-record-page.fi-resource-doctors .ac-create-back, .fi-resource-create-record-page.fi-resource-departments .ac-create-back {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
@@ -11361,87 +11943,111 @@ html.fi {
     transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
 }
 
-.fi-resource-create-record-page.fi-resource-users .ac-create-back svg {
+.fi-resource-create-record-page.fi-resource-users .ac-create-back svg, .fi-resource-create-record-page.fi-resource-categories .ac-create-back svg, .fi-resource-create-record-page.fi-resource-doctors .ac-create-back svg, .fi-resource-create-record-page.fi-resource-departments .ac-create-back svg {
     width: 1rem;
     height: 1rem;
 }
 
-.fi-resource-create-record-page.fi-resource-users .ac-create-back:hover {
+.fi-resource-create-record-page.fi-resource-users .ac-create-back:hover, .fi-resource-create-record-page.fi-resource-categories .ac-create-back:hover, .fi-resource-create-record-page.fi-resource-doctors .ac-create-back:hover, .fi-resource-create-record-page.fi-resource-departments .ac-create-back:hover {
     border-color: rgba(99, 56, 245, 0.28);
     background: rgba(99, 56, 245, 0.04);
     color: #6338f5;
 }
 
-.fi-resource-create-record-page.fi-resource-users .ac-create-title {
+.fi-resource-create-record-page.fi-resource-users .ac-create-title, .fi-resource-create-record-page.fi-resource-categories .ac-create-title, .fi-resource-create-record-page.fi-resource-doctors .ac-create-title, .fi-resource-create-record-page.fi-resource-departments .ac-create-title {
     font-size: 1.05rem;
     font-weight: 800;
     letter-spacing: -0.02em;
     color: #162454;
 }
 
-.dark .fi-resource-create-record-page.fi-resource-users .ac-create-back {
+.dark .fi-resource-create-record-page.fi-resource-users .ac-create-back, .dark .fi-resource-create-record-page.fi-resource-categories .ac-create-back, .dark .fi-resource-create-record-page.fi-resource-doctors .ac-create-back, .dark .fi-resource-create-record-page.fi-resource-departments .ac-create-back {
     border-color: #27344d;
     background: rgba(8, 15, 29, 0.82);
     color: #cbd5e1;
 }
 
-.dark .fi-resource-create-record-page.fi-resource-users .ac-create-title {
+.dark .fi-resource-create-record-page.fi-resource-users .ac-create-title, .dark .fi-resource-create-record-page.fi-resource-categories .ac-create-title, .dark .fi-resource-create-record-page.fi-resource-doctors .ac-create-title, .dark .fi-resource-create-record-page.fi-resource-departments .ac-create-title {
     color: #eef2ff;
 }
 
-.fi-resource-create-record-page.fi-resource-users .fi-header-subheading {
+.fi-resource-create-record-page.fi-resource-users .fi-header-subheading, .fi-resource-create-record-page.fi-resource-categories .fi-header-subheading, .fi-resource-create-record-page.fi-resource-doctors .fi-header-subheading, .fi-resource-create-record-page.fi-resource-departments .fi-header-subheading {
+    display: block;
+}
+
+.fi-resource-create-record-page.fi-resource-users .ac-form-shell--user > .fi-section-header, .fi-resource-create-record-page.fi-resource-categories .ac-form-shell--user > .fi-section-header, .fi-resource-create-record-page.fi-resource-doctors .ac-form-shell--user > .fi-section-header, .fi-resource-create-record-page.fi-resource-departments .ac-form-shell--user > .fi-section-header {
     display: none;
 }
 
-.fi-resource-create-record-page.fi-resource-users .ac-form-shell--user > .fi-section-header {
-    display: none;
-}
-
-.fi-resource-create-record-page.fi-resource-users .ac-form-shell .fi-section-content-ctn {
+.fi-resource-create-record-page.fi-resource-users .ac-form-shell .fi-section-content-ctn, .fi-resource-create-record-page.fi-resource-categories .ac-form-shell .fi-section-content-ctn, .fi-resource-create-record-page.fi-resource-doctors .ac-form-shell .fi-section-content-ctn, .fi-resource-create-record-page.fi-resource-departments .ac-form-shell .fi-section-content-ctn {
     padding: 1rem 1.15rem 0.85rem;
 }
 
-.fi-resource-create-record-page.fi-resource-users .ac-form-shell .fi-fo-field-wrp-label {
+.fi-resource-create-record-page.fi-resource-users .ac-form-shell .fi-fo-field-wrp-label, .fi-resource-create-record-page.fi-resource-categories .ac-form-shell .fi-fo-field-wrp-label, .fi-resource-create-record-page.fi-resource-doctors .ac-form-shell .fi-fo-field-wrp-label, .fi-resource-create-record-page.fi-resource-departments .ac-form-shell .fi-fo-field-wrp-label {
     font-size: 0.68rem;
     margin-bottom: 0.2rem;
 }
 
 .fi-resource-create-record-page.fi-resource-users .ac-form-shell .fi-input-wrp,
-.fi-resource-create-record-page.fi-resource-users .ac-form-shell .fi-select-input {
+.fi-resource-create-record-page.fi-resource-categories .ac-form-shell .fi-input-wrp,
+.fi-resource-create-record-page.fi-resource-doctors .ac-form-shell .fi-input-wrp,
+.fi-resource-create-record-page.fi-resource-departments .ac-form-shell .fi-input-wrp,
+.fi-resource-create-record-page.fi-resource-users .ac-form-shell .fi-select-input,
+.fi-resource-create-record-page.fi-resource-categories .ac-form-shell .fi-select-input,
+.fi-resource-create-record-page.fi-resource-doctors .ac-form-shell .fi-select-input,
+.fi-resource-create-record-page.fi-resource-departments .ac-form-shell .fi-select-input {
     min-height: 2.55rem;
     border-radius: 0.65rem;
 }
 
 .fi-resource-create-record-page.fi-resource-users .ac-user-form-grid > .fi-sc-component-ctn,
-.fi-resource-create-record-page.fi-resource-users .ac-user-form-grid > .fi-fo-component-ctn {
+.fi-resource-create-record-page.fi-resource-categories .ac-user-form-grid > .fi-sc-component-ctn,
+.fi-resource-create-record-page.fi-resource-doctors .ac-user-form-grid > .fi-sc-component-ctn,
+.fi-resource-create-record-page.fi-resource-departments .ac-user-form-grid > .fi-sc-component-ctn,
+.fi-resource-create-record-page.fi-resource-users .ac-user-form-grid > .fi-fo-component-ctn,
+.fi-resource-create-record-page.fi-resource-categories .ac-user-form-grid > .fi-fo-component-ctn,
+.fi-resource-create-record-page.fi-resource-doctors .ac-user-form-grid > .fi-fo-component-ctn,
+.fi-resource-create-record-page.fi-resource-departments .ac-user-form-grid > .fi-fo-component-ctn {
     gap: 0.65rem 0.75rem;
 }
 
-.fi-resource-create-record-page.fi-resource-users .ac-card-actions {
+.fi-resource-create-record-page.fi-resource-users .ac-card-actions, .fi-resource-create-record-page.fi-resource-categories .ac-card-actions, .fi-resource-create-record-page.fi-resource-doctors .ac-card-actions, .fi-resource-create-record-page.fi-resource-departments .ac-card-actions {
     margin-top: 0;
     padding-top: 0.75rem;
 }
 
-.fi-resource-create-record-page.fi-resource-users .ac-card-actions .fi-btn {
+.fi-resource-create-record-page.fi-resource-users .ac-card-actions .fi-btn, .fi-resource-create-record-page.fi-resource-categories .ac-card-actions .fi-btn, .fi-resource-create-record-page.fi-resource-doctors .ac-card-actions .fi-btn, .fi-resource-create-record-page.fi-resource-departments .ac-card-actions .fi-btn {
     min-height: 2.55rem;
     min-width: 7.5rem;
 }
 
 @media (min-width: 1280px) {
     .fi-resource-create-record-page.fi-resource-users .ac-user-form-grid > .fi-sc-component-ctn,
-    .fi-resource-create-record-page.fi-resource-users .ac-user-form-grid > .fi-fo-component-ctn {
+.fi-resource-create-record-page.fi-resource-categories .ac-user-form-grid > .fi-sc-component-ctn,
+.fi-resource-create-record-page.fi-resource-doctors .ac-user-form-grid > .fi-sc-component-ctn,
+.fi-resource-create-record-page.fi-resource-departments .ac-user-form-grid > .fi-sc-component-ctn,
+.fi-resource-create-record-page.fi-resource-users .ac-user-form-grid > .fi-fo-component-ctn,
+.fi-resource-create-record-page.fi-resource-categories .ac-user-form-grid > .fi-fo-component-ctn,
+.fi-resource-create-record-page.fi-resource-doctors .ac-user-form-grid > .fi-fo-component-ctn,
+.fi-resource-create-record-page.fi-resource-departments .ac-user-form-grid > .fi-fo-component-ctn {
         grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
 }
 
 @media (max-width: 1279px) and (min-width: 768px) {
     .fi-resource-create-record-page.fi-resource-users .ac-user-form-grid > .fi-sc-component-ctn,
-    .fi-resource-create-record-page.fi-resource-users .ac-user-form-grid > .fi-fo-component-ctn {
+.fi-resource-create-record-page.fi-resource-categories .ac-user-form-grid > .fi-sc-component-ctn,
+.fi-resource-create-record-page.fi-resource-doctors .ac-user-form-grid > .fi-sc-component-ctn,
+.fi-resource-create-record-page.fi-resource-departments .ac-user-form-grid > .fi-sc-component-ctn,
+.fi-resource-create-record-page.fi-resource-users .ac-user-form-grid > .fi-fo-component-ctn,
+.fi-resource-create-record-page.fi-resource-categories .ac-user-form-grid > .fi-fo-component-ctn,
+.fi-resource-create-record-page.fi-resource-doctors .ac-user-form-grid > .fi-fo-component-ctn,
+.fi-resource-create-record-page.fi-resource-departments .ac-user-form-grid > .fi-fo-component-ctn {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
 }
 
-.dark .fi-resource-create-record-page.fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-gray {
+.dark .fi-resource-create-record-page.fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-gray, .dark .fi-resource-create-record-page.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-gray, .dark .fi-resource-create-record-page.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-gray, .dark .fi-resource-create-record-page.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-gray {
     border-color: #27344d !important;
     background: rgba(8, 15, 29, 0.82) !important;
     color: #cbd5e1 !important;
@@ -13463,9 +14069,11 @@ html.ac-navigating .fi-main {
 /* ---------------------------------------------------------------------------
    SNEAT LISTING FIXES — density, full-width, toolbar, filter badge
 --------------------------------------------------------------------------- */
-
 /* Page content: less side waste on list pages */
 .fi-resource-users .fi-page-content,
+.fi-resource-categories .fi-page-content,
+.fi-resource-doctors .fi-page-content,
+.fi-resource-departments .fi-page-content,
 .fi-resource-roles .fi-page-content,
 .fi-resource-permissions .fi-page-content {
     padding-inline: 1rem !important;
@@ -13473,6 +14081,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users .fi-main,
+.fi-resource-categories .fi-main,
+.fi-resource-doctors .fi-main,
+.fi-resource-departments .fi-main,
 .fi-resource-roles .fi-main,
 .fi-resource-permissions .fi-main {
     max-width: none !important;
@@ -13637,18 +14248,26 @@ html.ac-navigating .fi-main {
 /* ---------------------------------------------------------------------------
    LISTING v3 — visible horizontal filters, compact rows, less page chrome
 --------------------------------------------------------------------------- */
-
 /* Tighter page padding / less empty sides + top */
 .fi-resource-users.fi-page,
+.fi-resource-categories.fi-page,
+.fi-resource-doctors.fi-page,
+.fi-resource-departments.fi-page,
 .fi-resource-roles.fi-page,
 .fi-resource-permissions.fi-page {
     gap: 0.75rem !important;
 }
 
 .fi-resource-users .fi-page-header-main-ctn,
+.fi-resource-categories .fi-page-header-main-ctn,
+.fi-resource-doctors .fi-page-header-main-ctn,
+.fi-resource-departments .fi-page-header-main-ctn,
 .fi-resource-roles .fi-page-header-main-ctn,
 .fi-resource-permissions .fi-page-header-main-ctn,
 .fi-resource-users .fi-header,
+.fi-resource-categories .fi-header,
+.fi-resource-doctors .fi-header,
+.fi-resource-departments .fi-header,
 .fi-resource-roles .fi-header,
 .fi-resource-permissions .fi-header {
     margin-bottom: 0.5rem !important;
@@ -13656,6 +14275,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users .fi-page-content,
+.fi-resource-categories .fi-page-content,
+.fi-resource-doctors .fi-page-content,
+.fi-resource-departments .fi-page-content,
 .fi-resource-roles .fi-page-content,
 .fi-resource-permissions .fi-page-content {
     padding: 0.5rem 0.85rem 1rem !important;
@@ -13664,6 +14286,9 @@ html.ac-navigating .fi-main {
 
 /* Show New User on page header — Sneat primary */
 .fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-primary,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-primary,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-primary,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-primary,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn.fi-color-primary,
 .fi-resource-permissions .fi-header-actions-ctn .fi-btn.fi-color-primary {
     display: inline-flex !important;
@@ -13864,8 +14489,10 @@ html.ac-navigating .fi-main {
 /* ---------------------------------------------------------------------------
    LISTING v4 — ONE ROW: filters + search | edge-to-edge | ultra-compact rows
 --------------------------------------------------------------------------- */
-
 .fi-resource-users.fi-resource-list-records-page .fi-page-content,
+.fi-resource-categories.fi-resource-list-records-page .fi-page-content,
+.fi-resource-doctors.fi-resource-list-records-page .fi-page-content,
+.fi-resource-departments.fi-resource-list-records-page .fi-page-content,
 .fi-resource-roles.fi-resource-list-records-page .fi-page-content,
 .fi-resource-permissions.fi-resource-list-records-page .fi-page-content {
     padding: 0.35rem 0.5rem 0.75rem !important;
@@ -13873,6 +14500,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-header,
+.fi-resource-categories.fi-resource-list-records-page .fi-header,
+.fi-resource-doctors.fi-resource-list-records-page .fi-header,
+.fi-resource-departments.fi-resource-list-records-page .fi-header,
 .fi-resource-roles.fi-resource-list-records-page .fi-header,
 .fi-resource-permissions.fi-resource-list-records-page .fi-header {
     margin: 0 0 0.35rem !important;
@@ -13880,6 +14510,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .ac-page-header-shell,
+.fi-resource-categories.fi-resource-list-records-page .ac-page-header-shell,
+.fi-resource-doctors.fi-resource-list-records-page .ac-page-header-shell,
+.fi-resource-departments.fi-resource-list-records-page .ac-page-header-shell,
 .fi-resource-roles.fi-resource-list-records-page .ac-page-header-shell,
 .fi-resource-permissions.fi-resource-list-records-page .ac-page-header-shell {
     margin: 0 !important;
@@ -14224,6 +14857,9 @@ html.ac-navigating .fi-main {
 
 /* Edge-to-edge list page */
 .fi-resource-users.fi-resource-list-records-page .fi-page-content,
+.fi-resource-categories.fi-resource-list-records-page .fi-page-content,
+.fi-resource-doctors.fi-resource-list-records-page .fi-page-content,
+.fi-resource-departments.fi-resource-list-records-page .fi-page-content,
 .fi-resource-roles.fi-resource-list-records-page .fi-page-content,
 .fi-resource-permissions.fi-resource-list-records-page .fi-page-content {
     padding: 0.25rem 0.5rem 0.75rem !important;
@@ -14712,8 +15348,10 @@ html.ac-navigating .fi-main {
 /* ---------------------------------------------------------------------------
    LISTING — flush table card: zero left/right gutter
 --------------------------------------------------------------------------- */
-
 .fi-main:has(.fi-resource-users.fi-resource-list-records-page),
+.fi-main:has(.fi-resource-categories.fi-resource-list-records-page),
+.fi-main:has(.fi-resource-doctors.fi-resource-list-records-page),
+.fi-main:has(.fi-resource-departments.fi-resource-list-records-page),
 .fi-main:has(.fi-resource-roles.fi-resource-list-records-page),
 .fi-main:has(.fi-resource-permissions.fi-resource-list-records-page) {
     padding-left: 0 !important;
@@ -14721,6 +15359,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-page-header-main-ctn,
+.fi-resource-categories.fi-resource-list-records-page .fi-page-header-main-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .fi-page-header-main-ctn,
+.fi-resource-departments.fi-resource-list-records-page .fi-page-header-main-ctn,
 .fi-resource-roles.fi-resource-list-records-page .fi-page-header-main-ctn,
 .fi-resource-permissions.fi-resource-list-records-page .fi-page-header-main-ctn {
     padding: 1rem 1.25rem 0.75rem !important;
@@ -14728,6 +15369,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-page-content,
+.fi-resource-categories.fi-resource-list-records-page .fi-page-content,
+.fi-resource-doctors.fi-resource-list-records-page .fi-page-content,
+.fi-resource-departments.fi-resource-list-records-page .fi-page-content,
 .fi-resource-roles.fi-resource-list-records-page .fi-page-content,
 .fi-resource-permissions.fi-resource-list-records-page .fi-page-content {
     padding: 0 !important;
@@ -14737,6 +15381,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-header,
+.fi-resource-categories.fi-resource-list-records-page .fi-header,
+.fi-resource-doctors.fi-resource-list-records-page .fi-header,
+.fi-resource-departments.fi-resource-list-records-page .fi-header,
 .fi-resource-roles.fi-resource-list-records-page .fi-header,
 .fi-resource-permissions.fi-resource-list-records-page .fi-header {
     margin: 0 !important;
@@ -14744,7 +15391,13 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-user-table,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-user-table,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-user-table,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta.ac-list-table,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta.ac-user-table,
 .fi-resource-permissions.fi-resource-list-records-page .fi-ta.ac-list-table,
@@ -14758,7 +15411,13 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-ctn,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-ctn,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-ctn,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-ctn,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-ctn,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-ctn,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-ctn,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-ctn,
 .fi-resource-permissions.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-ctn,
@@ -14770,6 +15429,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn,
 .fi-resource-permissions.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn {
     padding-left: 1rem !important;
@@ -14835,9 +15497,14 @@ html.ac-navigating .fi-main {
 /* ---------------------------------------------------------------------------
    LISTING densify + Actions side-by-side (no wrap/overlap)
 --------------------------------------------------------------------------- */
-
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table th,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table th,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table th,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table th,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table th,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table th,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table th,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table th,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table th,
 .fi-resource-permissions.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table th {
     padding: 0.35rem 0.65rem !important;
@@ -14848,9 +15515,21 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table td,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table td,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table td,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table td,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table td,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table td,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table td,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table td,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-cell,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-cell,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-cell,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-cell,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell,
 .fi-resource-permissions.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell {
     padding: 0.2rem 0.65rem !important;
@@ -14861,19 +15540,25 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-row,
-.fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-row {
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-row,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-row,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-row,
+.fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-row,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-row,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-row,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-row {
     height: auto !important;
     min-height: 0 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-user-cell {
+.fi-resource-users.fi-resource-list-records-page .ac-user-cell, .fi-resource-categories.fi-resource-list-records-page .ac-user-cell, .fi-resource-doctors.fi-resource-list-records-page .ac-user-cell, .fi-resource-departments.fi-resource-list-records-page .ac-user-cell {
     display: inline-flex !important;
     align-items: center !important;
     gap: 0.45rem !important;
     min-height: 0 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-user-avatar {
+.fi-resource-users.fi-resource-list-records-page .ac-user-avatar, .fi-resource-categories.fi-resource-list-records-page .ac-user-avatar, .fi-resource-doctors.fi-resource-list-records-page .ac-user-avatar, .fi-resource-departments.fi-resource-list-records-page .ac-user-avatar {
     width: 1.5rem !important;
     height: 1.5rem !important;
     min-width: 1.5rem !important;
@@ -14882,23 +15567,23 @@ html.ac-navigating .fi-main {
     border-width: 0 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-user-meta {
+.fi-resource-users.fi-resource-list-records-page .ac-user-meta, .fi-resource-categories.fi-resource-list-records-page .ac-user-meta, .fi-resource-doctors.fi-resource-list-records-page .ac-user-meta, .fi-resource-departments.fi-resource-list-records-page .ac-user-meta {
     gap: 0 !important;
     line-height: 1.1 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-user-name {
+.fi-resource-users.fi-resource-list-records-page .ac-user-name, .fi-resource-categories.fi-resource-list-records-page .ac-user-name, .fi-resource-doctors.fi-resource-list-records-page .ac-user-name, .fi-resource-departments.fi-resource-list-records-page .ac-user-name {
     font-size: 0.78rem !important;
     font-weight: 600 !important;
     line-height: 1.15 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-user-email {
+.fi-resource-users.fi-resource-list-records-page .ac-user-email, .fi-resource-categories.fi-resource-list-records-page .ac-user-email, .fi-resource-doctors.fi-resource-list-records-page .ac-user-email, .fi-resource-departments.fi-resource-list-records-page .ac-user-email {
     font-size: 0.65rem !important;
     line-height: 1.1 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .fi-badge {
+.fi-resource-users.fi-resource-list-records-page .fi-badge, .fi-resource-categories.fi-resource-list-records-page .fi-badge, .fi-resource-doctors.fi-resource-list-records-page .fi-badge, .fi-resource-departments.fi-resource-list-records-page .fi-badge {
     padding: 0.05rem 0.35rem !important;
     font-size: 0.65rem !important;
     line-height: 1.2 !important;
@@ -14906,7 +15591,13 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-col,
-.fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-col {
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-col,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-col,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-col,
+.fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-col,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-col,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-col,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-col {
     min-height: 0 !important;
     font-size: 0.78rem !important;
     line-height: 1.15 !important;
@@ -14914,7 +15605,13 @@ html.ac-navigating .fi-main {
 
 /* Actions column: wide enough for 2 icons in ONE row */
 .fi-resource-users.fi-resource-list-records-page .fi-ta-actions-header-cell,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta-actions-header-cell,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta-actions-header-cell,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta-actions-header-cell,
 .fi-resource-users.fi-resource-list-records-page .fi-ta-cell:has(.fi-ta-actions),
+.fi-resource-categories.fi-resource-list-records-page .fi-ta-cell:has(.fi-ta-actions),
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta-cell:has(.fi-ta-actions),
+.fi-resource-departments.fi-resource-list-records-page .fi-ta-cell:has(.fi-ta-actions),
 .fi-resource-roles.fi-resource-list-records-page .fi-ta-actions-header-cell,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta-cell:has(.fi-ta-actions),
 .fi-resource-permissions.fi-resource-list-records-page .fi-ta-actions-header-cell,
@@ -14928,7 +15625,13 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions,
 .fi-resource-users.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions.fi-wrapped,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions.fi-wrapped,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions.fi-wrapped,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions.fi-wrapped,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions,
 .fi-resource-permissions.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions {
     display: grid !important;
@@ -14945,7 +15648,13 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon-btn,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon-btn,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon-btn,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon-btn,
 .fi-resource-users.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-btn,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-btn,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-btn,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-btn,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon-btn,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-btn,
 .fi-resource-permissions.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon-btn,
@@ -14969,23 +15678,32 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon,
 .fi-resource-roles.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon,
 .fi-resource-permissions.fi-resource-list-records-page .fi-ta-cell .fi-ta-actions .fi-icon {
     width: 0.9rem !important;
     height: 0.9rem !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .fi-ta-header-ctn {
+.fi-resource-users.fi-resource-list-records-page .fi-ta-header-ctn, .fi-resource-categories.fi-resource-list-records-page .fi-ta-header-ctn, .fi-resource-doctors.fi-resource-list-records-page .fi-ta-header-ctn, .fi-resource-departments.fi-resource-list-records-page .fi-ta-header-ctn {
     padding-top: 0.45rem !important;
     padding-bottom: 0.45rem !important;
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta-filters .fi-input-wrp,
-.fi-resource-users.fi-resource-list-records-page .fi-ta-search-field .fi-input-wrp {
+.fi-resource-categories.fi-resource-list-records-page .fi-ta-filters .fi-input-wrp,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta-filters .fi-input-wrp,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta-filters .fi-input-wrp,
+.fi-resource-users.fi-resource-list-records-page .fi-ta-search-field .fi-input-wrp,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta-search-field .fi-input-wrp,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta-search-field .fi-input-wrp,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta-search-field .fi-input-wrp {
     min-height: 1.9rem !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .fi-ta-pagination {
+.fi-resource-users.fi-resource-list-records-page .fi-ta-pagination, .fi-resource-categories.fi-resource-list-records-page .fi-ta-pagination, .fi-resource-doctors.fi-resource-list-records-page .fi-ta-pagination, .fi-resource-departments.fi-resource-list-records-page .fi-ta-pagination {
     min-height: 0 !important;
     padding: 0.4rem 0.75rem !important;
 }
@@ -15452,7 +16170,13 @@ html.ac-navigating .fi-main {
 .dark .fi-ta.ac-list-table .fi-ta-cell,
 .dark .fi-ta.ac-user-table .fi-ta-cell,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-row,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-row,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-row,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-row,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-cell,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-cell,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-cell,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-cell,
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-row,
 .dark .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-row {
     background: #2b2c40 !important;
@@ -15464,17 +16188,26 @@ html.ac-navigating .fi-main {
 .dark .fi-ta.ac-list-table .fi-ta-row:nth-child(even),
 .dark .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
 .dark .fi-resource-roles .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
 .dark .fi-resource-permissions .fi-ta.ac-user-table .fi-ta-row:nth-child(even),
 .dark .fi-ta.ac-list-table .fi-ta-row:nth-child(even) > .fi-ta-cell,
 .dark .fi-ta.ac-user-table .fi-ta-row:nth-child(even) > .fi-ta-cell,
-.dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-row:nth-child(even) > .fi-ta-cell {
+.dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-row:nth-child(even) > .fi-ta-cell,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-row:nth-child(even) > .fi-ta-cell,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-row:nth-child(even) > .fi-ta-cell,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-row:nth-child(even) > .fi-ta-cell {
     background: #32334a !important;
 }
 
 .dark .fi-ta.ac-list-table .fi-ta-row:hover,
 .dark .fi-ta.ac-user-table .fi-ta-row:hover,
 .dark .fi-resource-users .fi-ta.ac-user-table .fi-ta-row:hover,
+.dark .fi-resource-categories .fi-ta.ac-user-table .fi-ta-row:hover,
+.dark .fi-resource-doctors .fi-ta.ac-user-table .fi-ta-row:hover,
+.dark .fi-resource-departments .fi-ta.ac-user-table .fi-ta-row:hover,
 .dark .fi-ta.ac-list-table .fi-ta-row:hover > .fi-ta-cell,
 .dark .fi-ta.ac-user-table .fi-ta-row:hover > .fi-ta-cell {
     background: rgba(105, 108, 255, 0.12) !important;
@@ -15484,6 +16217,9 @@ html.ac-navigating .fi-main {
 .dark .fi-ta.ac-list-table .ac-user-name,
 .dark .fi-ta.ac-user-table .ac-user-name,
 .dark .fi-resource-users .ac-user-name,
+.dark .fi-resource-categories .ac-user-name,
+.dark .fi-resource-doctors .ac-user-name,
+.dark .fi-resource-departments .ac-user-name,
 .dark .ac-list-table .ac-user-name {
     color: #e7e7ff !important;
 }
@@ -15491,6 +16227,9 @@ html.ac-navigating .fi-main {
 .dark .fi-ta.ac-list-table .ac-user-email,
 .dark .fi-ta.ac-user-table .ac-user-email,
 .dark .fi-resource-users .ac-user-email,
+.dark .fi-resource-categories .ac-user-email,
+.dark .fi-resource-doctors .ac-user-email,
+.dark .fi-resource-departments .ac-user-email,
 .dark .ac-list-table .ac-user-email {
     color: #a3a4cc !important;
 }
@@ -15503,7 +16242,10 @@ html.ac-navigating .fi-main {
 }
 
 .dark .fi-ta.ac-list-table .ac-user-avatar,
-.dark .fi-resource-users .ac-user-avatar {
+.dark .fi-resource-users .ac-user-avatar,
+.dark .fi-resource-categories .ac-user-avatar,
+.dark .fi-resource-doctors .ac-user-avatar,
+.dark .fi-resource-departments .ac-user-avatar {
     border-color: rgba(105, 108, 255, 0.35) !important;
     background: rgba(105, 108, 255, 0.18) !important;
     color: #c7c8ff !important;
@@ -15570,17 +16312,26 @@ html.ac-navigating .fi-main {
 }
 
 .dark .fi-resource-users.fi-resource-list-records-page .fi-page-content,
+.dark .fi-resource-categories.fi-resource-list-records-page .fi-page-content,
+.dark .fi-resource-doctors.fi-resource-list-records-page .fi-page-content,
+.dark .fi-resource-departments.fi-resource-list-records-page .fi-page-content,
 .dark .fi-resource-roles.fi-resource-list-records-page .fi-page-content,
 .dark .fi-resource-permissions.fi-resource-list-records-page .fi-page-content {
     background: transparent !important;
 }
 
 .dark .fi-resource-users .fi-header-heading,
-.dark .fi-resource-users .fi-header-subheading {
+.dark .fi-resource-categories .fi-header-heading,
+.dark .fi-resource-doctors .fi-header-heading,
+.dark .fi-resource-departments .fi-header-heading,
+.dark .fi-resource-users .fi-header-subheading,
+.dark .fi-resource-categories .fi-header-subheading,
+.dark .fi-resource-doctors .fi-header-subheading,
+.dark .fi-resource-departments .fi-header-subheading {
     color: #cbcbe2 !important;
 }
 
-.dark .fi-resource-users .fi-header-subheading {
+.dark .fi-resource-users .fi-header-subheading, .dark .fi-resource-categories .fi-header-subheading, .dark .fi-resource-doctors .fi-header-subheading, .dark .fi-resource-departments .fi-header-subheading {
     color: #a3a4cc !important;
 }
 
@@ -15614,8 +16365,17 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table td,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table td,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table td,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-table td,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table td,
-.fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell {
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table td,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table td,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-table td,
+.fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-cell {
     padding-top: 0.2rem !important;
     padding-bottom: 0.2rem !important;
 }
@@ -16250,11 +17010,13 @@ html.ac-navigating .fi-main {
 /* ---------------------------------------------------------------------------
    Role badges softer + clean per-page pagination
 --------------------------------------------------------------------------- */
-
 .fi-ta.ac-list-table .ac-access-badge,
 .fi-ta.ac-user-table .ac-access-badge,
 .ac-list-table .ac-access-badge,
-.fi-resource-users .ac-access-badge {
+.fi-resource-users .ac-access-badge,
+.fi-resource-categories .ac-access-badge,
+.fi-resource-doctors .ac-access-badge,
+.fi-resource-departments .ac-access-badge {
     border: 1px solid rgba(105, 108, 255, 0.18) !important;
     border-radius: 0.375rem !important;
     background: rgba(105, 108, 255, 0.08) !important;
@@ -16534,9 +17296,14 @@ html.ac-navigating .fi-main {
 /* ---------------------------------------------------------------------------
    Filters v10 — full-width equal columns + larger placeholder text
 --------------------------------------------------------------------------- */
-
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-ctn,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-header-ctn,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-header-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-header-ctn,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-user-table .fi-ta-header-ctn,
 .fi-ta.ac-list-table .fi-ta-header-ctn,
 .ac-list-table .fi-ta-header-ctn {
     display: flex !important;
@@ -16554,6 +17321,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters-above-content-ctn,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters-above-content-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters-above-content-ctn,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters-above-content-ctn,
 .fi-ta.ac-list-table .fi-ta-filters-above-content-ctn,
 .ac-list-table .fi-ta-filters-above-content-ctn {
     flex: 4 1 0 !important;
@@ -16567,6 +17337,9 @@ html.ac-navigating .fi-main {
 }
 
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-toolbar,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-toolbar,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-toolbar,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-header-toolbar,
 .fi-ta.ac-list-table .fi-ta-header-toolbar,
 .ac-list-table .fi-ta-header-toolbar {
     flex: 1 1 0 !important;
@@ -16617,8 +17390,17 @@ html.ac-navigating .fi-main {
 
 /* Bigger filter text — match search */
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters select.fi-select-input,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters select.fi-select-input,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters select.fi-select-input,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters select.fi-select-input,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters .fi-select-input,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters .fi-select-input,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters .fi-select-input,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters .fi-select-input,
 .fi-resource-users.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters select,
+.fi-resource-categories.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters select,
+.fi-resource-doctors.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters select,
+.fi-resource-departments.fi-resource-list-records-page .fi-ta.ac-list-table .fi-ta-filters select,
 .fi-ta.ac-list-table .fi-ta-filters select.fi-select-input,
 .fi-ta.ac-list-table .fi-ta-filters .fi-select-input,
 .fi-ta.ac-list-table .fi-ta-filters select,
@@ -17975,8 +18757,7 @@ body > .fi-dropdown-panel,
    rules must stay on the outer grid only — otherwise each control shrinks to
    1/nth of its own column.
    =========================================================================== */
-
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-ctn {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-ctn, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-ctn, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-ctn, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-ctn {
     display: flex !important;
     flex-direction: column !important;
     flex-wrap: nowrap !important;
@@ -17991,8 +18772,17 @@ body > .fi-dropdown-panel,
 }
 
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn,
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-content-ctn,
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-pagination {
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-content-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-content-ctn,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-content-ctn,
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-pagination,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-pagination,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-pagination,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-pagination {
     grid-area: auto !important;
     order: unset !important;
     flex: none !important;
@@ -18001,7 +18791,7 @@ body > .fi-dropdown-panel,
     margin: 0 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn {
     display: block !important;
     padding: 1rem 1.25rem !important;
     box-sizing: border-box !important;
@@ -18011,12 +18801,24 @@ body > .fi-dropdown-panel,
 
 /* Search lives in the filter row now */
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-header-toolbar,
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters-header {
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-header-toolbar,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-header-toolbar,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-header-toolbar,
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters-header,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters-header,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters-header,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters-header {
     display: none !important;
 }
 
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters-above-content-ctn,
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters {
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters-above-content-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters-above-content-ctn,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters-above-content-ctn,
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters {
     display: block !important;
     width: 100% !important;
     min-width: 0 !important;
@@ -18030,7 +18832,7 @@ body > .fi-dropdown-panel,
 }
 
 /* Outer grid — one column per filter */
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc {
     display: grid !important;
     grid-template-columns: var(--cols-default) !important;
     gap: 0.75rem !important;
@@ -18044,12 +18846,12 @@ body > .fi-dropdown-panel,
 
 /* Search takes roughly twice the width of a select column */
 @media (min-width: 64rem) {
-    .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc {
+    .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc {
         grid-template-columns: minmax(0, 1.9fr) repeat(4, minmax(0, 1fr)) !important;
     }
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc > .fi-grid-col {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc > .fi-grid-col, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc > .fi-grid-col, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc > .fi-grid-col, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters > .fi-sc > .fi-grid-col {
     display: block !important;
     grid-column: auto !important;
     width: 100% !important;
@@ -18062,12 +18864,33 @@ body > .fi-dropdown-panel,
 
 /* Everything below the outer grid is a plain full-width block */
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component,
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component > div,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component > div,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component > div,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component > div,
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component .fi-grid,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component .fi-grid,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component .fi-grid,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component .fi-grid,
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component .fi-grid-col,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component .fi-grid-col,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component .fi-grid-col,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-sc-component .fi-grid-col,
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-col,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-col,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-col,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-col,
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-ctn,
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-content-col {
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-ctn,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-ctn,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-ctn,
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-content-col,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-content-col,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-content-col,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-content-col {
     display: block !important;
     grid-template-columns: none !important;
     grid-column: auto !important;
@@ -18080,7 +18903,7 @@ body > .fi-dropdown-panel,
     gap: 0 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field {
     display: block !important;
     width: 100% !important;
     min-width: 0 !important;
@@ -18088,13 +18911,13 @@ body > .fi-dropdown-panel,
     padding: 0 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label {
     display: block !important;
     margin: 0 0 0.4rem !important;
     padding: 0 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content {
     color: #67748e !important;
     font-size: 0.8125rem !important;
     font-weight: 600 !important;
@@ -18103,7 +18926,7 @@ body > .fi-dropdown-panel,
 }
 
 /* Text input wrapper carries the border; the input inside stays bare */
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -18121,16 +18944,16 @@ body > .fi-dropdown-panel,
     transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:hover {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:hover, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:hover, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:hover, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:hover {
     border-color: #b9c0cd !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:focus-within {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:focus-within, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:focus-within, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:focus-within, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp:focus-within {
     border-color: #2d7ef7 !important;
     box-shadow: 0 0 0 3px rgba(45, 126, 247, 0.14) !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix {
     display: flex !important;
     align-items: center !important;
     flex: 0 0 auto !important;
@@ -18139,24 +18962,24 @@ body > .fi-dropdown-panel,
     border: 0 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix .fi-icon {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix .fi-icon, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix .fi-icon, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix .fi-icon, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-prefix .fi-icon {
     width: 1.05rem !important;
     height: 1.05rem !important;
     color: #8b96a8 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-suffix {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-suffix, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-suffix, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-suffix, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-suffix {
     display: none !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-content-ctn {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-content-ctn, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-content-ctn, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-content-ctn, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp-content-ctn {
     display: block !important;
     flex: 1 1 auto !important;
     width: 100% !important;
     min-width: 0 !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input {
     display: block !important;
     width: 100% !important;
     height: 2.5rem !important;
@@ -18173,7 +18996,7 @@ body > .fi-dropdown-panel,
     line-height: 2.5rem !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input::placeholder {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input::placeholder, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input::placeholder, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input::placeholder, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input::placeholder {
     color: #97a1b0 !important;
     font-size: 0.9375rem !important;
     font-weight: 500 !important;
@@ -18181,7 +19004,7 @@ body > .fi-dropdown-panel,
 }
 
 /* Native selects — full width, single border, single chevron */
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters select, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters select, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters select {
     display: block !important;
     width: 100% !important;
     max-width: none !important;
@@ -18211,16 +19034,16 @@ body > .fi-dropdown-panel,
     transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:hover {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:hover, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:hover, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:hover, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:hover {
     border-color: #b9c0cd !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:focus {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:focus, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:focus, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:focus, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters select:focus {
     border-color: #2d7ef7 !important;
     box-shadow: 0 0 0 3px rgba(45, 126, 247, 0.14) !important;
 }
 
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select option {
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select option, .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters select option, .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters select option, .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters select option {
     color: #3b4b5e !important;
     font-size: 0.9375rem !important;
     font-weight: 500 !important;
@@ -18228,7 +19051,13 @@ body > .fi-dropdown-panel,
 
 /* Select wrappers must not draw a second border around the control */
 .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-select-wrp .fi-input-wrp,
-.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-select {
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-select-wrp .fi-input-wrp,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-select-wrp .fi-input-wrp,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-select-wrp .fi-input-wrp,
+.fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-select,
+.fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-select,
+.fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-select,
+.fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-select {
     display: block !important;
     height: auto !important;
     min-height: 0 !important;
@@ -18238,19 +19067,25 @@ body > .fi-dropdown-panel,
     box-shadow: none !important;
 }
 
-.dark .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn {
+.dark .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn, .dark .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn, .dark .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn, .dark .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-header-ctn {
     background: #1c1c28 !important;
     border-bottom-color: #33334a !important;
 }
 
 .dark .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp,
-.dark .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select {
+.dark .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp,
+.dark .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp,
+.dark .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-input-wrp,
+.dark .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters select,
+.dark .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters select,
+.dark .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters select,
+.dark .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters select {
     background-color: #232333 !important;
     border-color: #444564 !important;
     color: #cbcbe2 !important;
 }
 
-.dark .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content {
+.dark .fi-resource-users.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content, .dark .fi-resource-categories.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content, .dark .fi-resource-doctors.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content, .dark .fi-resource-departments.fi-resource-list-records-page .ac-list-table .fi-ta-filters .fi-fo-field-label-content {
     color: #a5adba !important;
 }
 
@@ -18684,19 +19519,38 @@ body > .fi-dropdown-panel,
    CREATE / EDIT FORM PAGES — full-width white card that matches the listing
    =========================================================================== */
 
+.fi-main:has(.fi-resource-create-record-page),
+.fi-main:has(.fi-resource-edit-record-page) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.fi-resource-create-record-page .fi-page-header-main-ctn,
+.fi-resource-edit-record-page .fi-page-header-main-ctn {
+    padding: 1rem 1.25rem 0.75rem !important;
+    max-width: none !important;
+}
+
 .fi-resource-create-record-page .fi-page-content,
 .fi-resource-edit-record-page .fi-page-content {
     width: 100% !important;
     max-width: none !important;
     margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
 }
 
 .fi-resource-create-record-page .fi-page-content > .fi-sc,
 .fi-resource-edit-record-page .fi-page-content > .fi-sc,
 .fi-resource-create-record-page .fi-sc-form,
-.fi-resource-edit-record-page .fi-sc-form {
+.fi-resource-edit-record-page .fi-sc-form,
+.fi-resource-create-record-page .fi-sc-form > .fi-grid,
+.fi-resource-edit-record-page .fi-sc-form > .fi-grid,
+.fi-resource-create-record-page .fi-sc-form > .fi-grid > .fi-grid-col,
+.fi-resource-edit-record-page .fi-sc-form > .fi-grid > .fi-grid-col {
     width: 100% !important;
     max-width: none !important;
+    margin: 0 !important;
 }
 
 .fi-resource-create-record-page .ac-form-shell,
@@ -18711,7 +19565,7 @@ body > .fi-dropdown-panel,
     box-shadow: none !important;
 }
 
-/* The card itself */
+/* The card itself — flush like listing table */
 .fi-resource-create-record-page .ac-form-shell > .fi-section,
 .fi-resource-edit-record-page .ac-form-shell > .fi-section {
     display: block !important;
@@ -18720,10 +19574,12 @@ body > .fi-dropdown-panel,
     margin: 0 !important;
     padding: 0 !important;
     border: 1px solid #e9eaee !important;
-    border-radius: 0.75rem !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
     background: #ffffff !important;
     background-image: none !important;
-    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04) !important;
+    box-shadow: none !important;
     backdrop-filter: none !important;
     overflow: hidden !important;
 }
@@ -18915,7 +19771,7 @@ body > .fi-dropdown-panel,
 .fi-resource-edit-record-page .fi-page-header-main-ctn {
     max-width: none !important;
     gap: 0 !important;
-    padding: 1rem 1.25rem 0.9rem !important;
+    padding: 1rem 1.25rem 0.75rem !important;
 }
 
 .fi-resource-create-record-page .fi-header,
@@ -18950,78 +19806,57 @@ body > .fi-dropdown-panel,
     display: none !important;
 }
 
+.fi-resource-create-record-page .fi-header > div:first-child,
+.fi-resource-edit-record-page .fi-header > div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 0.35rem !important;
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
 .fi-resource-create-record-page .fi-header-heading,
 .fi-resource-edit-record-page .fi-header-heading {
     display: block !important;
     margin: 0 !important;
     padding: 0 !important;
-    font: inherit !important;
-    letter-spacing: normal !important;
+    color: #1f2d3d !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    line-height: 1.25 !important;
 }
 
 .fi-resource-create-record-page .ac-create-toolbar,
 .fi-resource-edit-record-page .ac-create-toolbar {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 0.75rem !important;
+    display: block !important;
     min-width: 0 !important;
 }
 
 .fi-resource-create-record-page .ac-create-back,
 .fi-resource-edit-record-page .ac-create-back {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex: 0 0 auto !important;
-    gap: 0.35rem !important;
-    height: 2.25rem !important;
-    padding: 0 0.75rem 0 0.6rem !important;
-    border: 1px solid #dcdfe6 !important;
-    border-radius: 0.5rem !important;
-    background: #ffffff !important;
-    color: #566a7f !important;
-    font-size: 0.8125rem !important;
-    font-weight: 600 !important;
-    text-decoration: none !important;
-    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04) !important;
-    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease !important;
+    display: none !important;
 }
 
-.fi-resource-create-record-page .ac-create-back svg,
-.fi-resource-edit-record-page .ac-create-back svg {
-    width: 1rem !important;
-    height: 1rem !important;
-    flex: 0 0 auto !important;
-}
-
-.fi-resource-create-record-page .ac-create-back:hover,
-.fi-resource-edit-record-page .ac-create-back:hover {
-    border-color: #2d7ef7 !important;
-    background: #f0f6ff !important;
-    color: #2d7ef7 !important;
-}
-
-/* Divider between the back button and the page title */
 .fi-resource-create-record-page .ac-create-title,
 .fi-resource-edit-record-page .ac-create-title {
-    display: inline-flex !important;
-    align-items: center !important;
-    min-width: 0 !important;
-    padding-inline-start: 0.75rem !important;
-    border-inline-start: 1px solid #e4e7ec !important;
-    color: #1f2d3d !important;
-    font-size: 1.25rem !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.01em !important;
-    line-height: 1.2 !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    color: inherit !important;
+    font: inherit !important;
+    letter-spacing: inherit !important;
+    line-height: inherit !important;
 }
 
 .fi-resource-create-record-page .fi-header-subheading,
 .fi-resource-edit-record-page .fi-header-subheading {
     display: block !important;
-    margin: 0.4rem 0 0 !important;
-    padding-inline-start: 3rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
     color: #7b8794 !important;
     font-size: 0.8125rem !important;
     font-weight: 400 !important;
@@ -19064,16 +19899,10 @@ body > .fi-dropdown-panel,
     color: inherit !important;
 }
 
-.dark .fi-resource-create-record-page .ac-create-back,
-.dark .fi-resource-edit-record-page .ac-create-back {
-    border-color: #3a3a52 !important;
-    background: #232333 !important;
-    color: #cbcbe2 !important;
-}
-
+.dark .fi-resource-create-record-page .fi-header-heading,
+.dark .fi-resource-edit-record-page .fi-header-heading,
 .dark .fi-resource-create-record-page .ac-create-title,
 .dark .fi-resource-edit-record-page .ac-create-title {
-    border-inline-start-color: #3a3a52 !important;
     color: #e8eaf2 !important;
 }
 
@@ -19089,14 +19918,9 @@ body > .fi-dropdown-panel,
 }
 
 @media (max-width: 640px) {
-    .fi-resource-create-record-page .ac-create-title,
-    .fi-resource-edit-record-page .ac-create-title {
+    .fi-resource-create-record-page .fi-header-heading,
+    .fi-resource-edit-record-page .fi-header-heading {
         font-size: 1.1rem !important;
-    }
-
-    .fi-resource-create-record-page .fi-header-subheading,
-    .fi-resource-edit-record-page .fi-header-subheading {
-        padding-inline-start: 0 !important;
     }
 }
 
@@ -19604,13 +20428,18 @@ body > .fi-dropdown-panel,
 /* ===========================================================================
    "NEW USER" (+) ICON — force white on the primary header button
    =========================================================================== */
-
 .fi-resource-list-records-page .fi-header-actions-ctn .fi-btn.fi-color-primary .fi-icon,
 .fi-resource-list-records-page .fi-header-actions-ctn .fi-btn.fi-color-primary svg,
 .fi-resource-list-records-page .fi-header-actions-ctn .fi-btn.fi-color-custom .fi-icon,
 .fi-resource-list-records-page .fi-header-actions-ctn .fi-btn.fi-color-custom svg,
 .fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-primary .fi-icon,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-primary .fi-icon,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-primary .fi-icon,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-primary .fi-icon,
 .fi-resource-users .fi-header-actions-ctn .fi-btn.fi-color-primary svg,
+.fi-resource-categories .fi-header-actions-ctn .fi-btn.fi-color-primary svg,
+.fi-resource-doctors .fi-header-actions-ctn .fi-btn.fi-color-primary svg,
+.fi-resource-departments .fi-header-actions-ctn .fi-btn.fi-color-primary svg,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn.fi-color-primary .fi-icon,
 .fi-resource-roles .fi-header-actions-ctn .fi-btn.fi-color-primary svg,
 .fi-resource-permissions .fi-header-actions-ctn .fi-btn.fi-color-primary .fi-icon,

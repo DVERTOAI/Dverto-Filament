@@ -7,7 +7,6 @@ use App\Filament\Support\AccessControlFormCard;
 use App\Filament\Support\AdminListTable;
 use App\Support\AdminPermissions;
 use Filament\Actions\Action;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\CreateRecord;
@@ -167,11 +166,6 @@ class PermissionResource extends Resource
                     ->icon(Heroicon::OutlinedPencil)
                     ->color('gray')
                     ->tooltip('Edit'),
-                DeleteAction::make()
-                    ->iconButton()
-                    ->icon(Heroicon::OutlinedTrash)
-                    ->color('danger')
-                    ->tooltip('Delete'),
             ]);
     }
 

@@ -16,6 +16,9 @@ use App\Filament\Pages\ReportsMonthly;
 use App\Filament\Pages\Settings;
 use App\Filament\Pages\SettingsGeneral;
 use App\Filament\Pages\SettingsNotifications;
+use App\Filament\Resources\CategoryResource;
+use App\Filament\Resources\DepartmentResource;
+use App\Filament\Resources\DoctorResource;
 use App\Filament\Resources\PermissionResource;
 use App\Filament\Resources\RoleResource;
 use App\Filament\Resources\UserResource;
@@ -216,6 +219,21 @@ class AdminPanelProvider extends PanelProvider
                                 ->isActiveWhen(fn (): bool => request()->routeIs(PermissionResource::getRouteBaseName().'.*'))
                                 ->visible(fn (): bool => PermissionResource::canAccess())
                                 ->url(PermissionResource::getUrl()),
+                            NavigationItem::make(DepartmentResource::getNavigationLabel())
+                                ->icon(DepartmentResource::getNavigationIcon())
+                                ->isActiveWhen(fn (): bool => request()->routeIs(DepartmentResource::getRouteBaseName().'.*'))
+                                ->visible(fn (): bool => DepartmentResource::canAccess())
+                                ->url(DepartmentResource::getUrl()),
+                            NavigationItem::make(DoctorResource::getNavigationLabel())
+                                ->icon(DoctorResource::getNavigationIcon())
+                                ->isActiveWhen(fn (): bool => request()->routeIs(DoctorResource::getRouteBaseName().'.*'))
+                                ->visible(fn (): bool => DoctorResource::canAccess())
+                                ->url(DoctorResource::getUrl()),
+                            NavigationItem::make(CategoryResource::getNavigationLabel())
+                                ->icon(CategoryResource::getNavigationIcon())
+                                ->isActiveWhen(fn (): bool => request()->routeIs(CategoryResource::getRouteBaseName().'.*'))
+                                ->visible(fn (): bool => CategoryResource::canAccess())
+                                ->url(CategoryResource::getUrl()),
                         ]),
                 ]);
             })
