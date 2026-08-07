@@ -190,7 +190,7 @@ class DoctorResource extends Resource
 
                         return <<<HTML
                             <div class="ac-user-cell ac-user-cell--single">
-                                <span class="ac-user-avatar" style="background:color-mix(in srgb,{$color} 14%,#fff);color:{$color};">{$initials}</span>
+                                <span class="ac-user-avatar" style="background:{$color};color:#fff;">{$initials}</span>
                                 <span class="ac-user-name">{$name}</span>
                             </div>
                         HTML;

@@ -20853,3 +20853,75 @@ body > .fi-dropdown-panel,
     }
 }
 
+
+/* ===========================================================================
+   LISTING HEADER ICONS — solid iOS-style tile, white glyph
+   =========================================================================== */
+
+.fi-resource-users.fi-resource-list-records-page {
+    --ac-resource-accent: #2d7ef7;
+    --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 21V19C17 16.7909 15.2091 15 13 15H7C4.79086 15 3 16.7909 3 19V21' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M10 11C12.2091 11 14 9.20914 14 7C14 4.79086 12.2091 3 10 3C7.79086 3 6 4.79086 6 7C6 9.20914 7.79086 11 10 11Z' stroke='%23ffffff' stroke-width='1.9'/%3E%3Cpath d='M21 20V18.5C21 16.8431 19.6569 15.5 18 15.5' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M17 3.5C18.6569 3.5 20 4.84315 20 6.5C20 8.15685 18.6569 9.5 17 9.5' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.fi-resource-departments.fi-resource-list-records-page {
+    --ac-resource-accent: #0d9488;
+    --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 21H21' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M5 21V8L12 4L19 8V21' stroke='%23ffffff' stroke-width='1.9' stroke-linejoin='round'/%3E%3Cpath d='M9 21V13H15V21' stroke='%23ffffff' stroke-width='1.9' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.fi-resource-doctors.fi-resource-list-records-page {
+    --ac-resource-accent: #e11d48;
+    --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 21C12 21 4 14.5 4 9.5C4 6.46243 6.46243 4 9.5 4C10.8355 4 12.0583 4.48148 12.9991 5.27389C13.9401 4.48148 15.1629 4 16.5 4C19.5376 4 22 6.46243 22 9.5C22 14.5 14 21 12 21Z' stroke='%23ffffff' stroke-width='1.9' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.fi-resource-categories.fi-resource-list-records-page {
+    --ac-resource-accent: #d97706;
+    --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 7H17V17H7V7Z' stroke='%23ffffff' stroke-width='1.9' stroke-linejoin='round'/%3E%3Cpath d='M4 10H7' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M4 14H7' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.fi-resource-roles.fi-resource-list-records-page {
+    --ac-resource-accent: #7c3aed;
+    --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 3L19 6V11C19 15.4183 16.1346 19.1997 12 20.5C7.86539 19.1997 5 15.4183 5 11V6L12 3Z' stroke='%23ffffff' stroke-width='1.9' stroke-linejoin='round'/%3E%3Cpath d='M9.25 12L11.25 14L15.25 9.75' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.fi-resource-permissions.fi-resource-list-records-page {
+    --ac-resource-accent: #0891b2;
+    --ac-resource-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8.5' cy='12' r='3.5' stroke='%23ffffff' stroke-width='1.9'/%3E%3Cpath d='M12 12H21' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M17 12V15' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M20 12V14' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.fi-resource-users.fi-resource-list-records-page .fi-header > div:first-child::before,
+.fi-resource-categories.fi-resource-list-records-page .fi-header > div:first-child::before,
+.fi-resource-doctors.fi-resource-list-records-page .fi-header > div:first-child::before,
+.fi-resource-departments.fi-resource-list-records-page .fi-header > div:first-child::before,
+.fi-resource-roles.fi-resource-list-records-page .fi-header > div:first-child::before,
+.fi-resource-permissions.fi-resource-list-records-page .fi-header > div:first-child::before {
+    content: '' !important;
+    display: block !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    border: 0 !important;
+    border-radius: 0.7rem !important;
+    background-color: var(--ac-resource-accent) !important;
+    background-image: var(--ac-resource-icon) !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 1.25rem !important;
+    box-shadow: 0 4px 10px color-mix(in srgb, var(--ac-resource-accent) 28%, transparent) !important;
+}
+
+.dark .fi-resource-users.fi-resource-list-records-page .fi-header > div:first-child::before,
+.dark .fi-resource-categories.fi-resource-list-records-page .fi-header > div:first-child::before,
+.dark .fi-resource-doctors.fi-resource-list-records-page .fi-header > div:first-child::before,
+.dark .fi-resource-departments.fi-resource-list-records-page .fi-header > div:first-child::before,
+.dark .fi-resource-roles.fi-resource-list-records-page .fi-header > div:first-child::before,
+.dark .fi-resource-permissions.fi-resource-list-records-page .fi-header > div:first-child::before {
+    border: 0 !important;
+    background-color: var(--ac-resource-accent) !important;
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--ac-resource-accent) 35%, transparent) !important;
+}
+
+/* Listing name-column avatars — solid fill, white initials */
+.fi-resource-list-records-page .ac-user-avatar {
+    border: 0 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}

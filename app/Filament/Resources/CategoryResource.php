@@ -186,7 +186,7 @@ class CategoryResource extends Resource
 
                         return <<<HTML
                             <div class="ac-user-cell ac-user-cell--single">
-                                <span class="ac-user-avatar" style="background:color-mix(in srgb,{$color} 14%,#fff);color:{$color};">{$initials}</span>
+                                <span class="ac-user-avatar" style="background:{$color};color:#fff;">{$initials}</span>
                                 <span class="ac-user-name">{$name}</span>
                             </div>
                         HTML;
@@ -204,10 +204,6 @@ class CategoryResource extends Resource
                         Category::TYPE_SUBCATEGORY => 'warning',
                         default => 'info',
                     })
-                    ->sortable(),
-                TextColumn::make('parent.name')
-                    ->label('Parent')
-                    ->placeholder('—')
                     ->sortable(),
                 TextColumn::make('rooms')
                     ->label('Rooms')
@@ -322,7 +318,7 @@ class CategoryResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->with('parent');
+        return parent::getEloquentQuery();
     }
 
     protected static function getCategoryInitials(string $name): string

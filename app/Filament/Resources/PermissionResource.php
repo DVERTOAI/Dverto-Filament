@@ -133,10 +133,12 @@ class PermissionResource extends Resource
                         $initials = e(static::getPermissionInitials($record->name));
                         $name = e($record->name);
                         $guard = e($record->guard_name);
+                        $colors = ['#7367f0', '#28c76f', '#ff9f43', '#ea5455', '#00cfe8'];
+                        $color = $colors[crc32($record->name) % count($colors)];
 
                         return <<<HTML
                             <div class="ac-user-cell">
-                                <span class="ac-user-avatar">{$initials}</span>
+                                <span class="ac-user-avatar" style="background:{$color};color:#fff;">{$initials}</span>
                                 <span class="ac-user-meta">
                                     <span class="ac-user-name">{$name}</span>
                                     <span class="ac-user-email">{$guard}</span>
